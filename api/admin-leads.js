@@ -6,10 +6,12 @@
 // DELETE ?secret=XXX            → body { id }
 
 import { createClient } from '@supabase/supabase-js';
+import ws from 'ws';
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_KEY
+  process.env.SUPABASE_SERVICE_KEY,
+  { realtime: { transport: ws } }
 );
 
 function authCheck(req, res) {

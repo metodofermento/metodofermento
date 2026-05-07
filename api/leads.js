@@ -11,11 +11,13 @@
 //   ADMIN_SECRET        → contraseña del panel admin (cualquier string seguro)
 
 import { createClient } from '@supabase/supabase-js';
+import ws from 'ws';
 import nodemailer from 'nodemailer';
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_KEY
+  process.env.SUPABASE_SERVICE_KEY,
+  { realtime: { transport: ws } }
 );
 
 const transporter = nodemailer.createTransport({
