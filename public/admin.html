@@ -249,6 +249,19 @@ input,select,textarea{font:inherit}
 #toast.success::before{content:'✓  '}
 #toast.error::before{content:'✕  ';color:#f87171}
 
+/* ── PRECIOS ── */
+.mod-precio-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);margin-bottom:16px;overflow:hidden}
+.mod-precio-header{background:var(--sand);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.mod-precio-header h4{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink)}
+.mod-precio-total{font-size:13px;font-weight:600;color:var(--terra)}
+.precio-row{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:12px 20px;border-bottom:1px solid var(--line)}
+.precio-row:last-child{border-bottom:none}
+.precio-label{font-size:13.5px;color:var(--muted)}
+.precio-input{width:140px;padding:7px 12px;border:1.5px solid var(--line);border-radius:var(--r);font-size:13.5px;color:var(--ink);text-align:right;outline:none;transition:border-color .18s}
+.precio-input:focus{border-color:var(--terra)}
+.btn-precio-save{padding:7px 14px;background:var(--terra);color:#fff;border-radius:999px;font-size:12px;font-weight:600;transition:background .18s;white-space:nowrap}
+.btn-precio-save:hover{background:var(--terra-d)}
+
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
   .leads-header{display:none}
@@ -321,6 +334,7 @@ input,select,textarea{font:inherit}
   <div class="view-tabs">
     <div class="view-tab active" onclick="setView('leads',this)">Lista de leads</div>
     <div class="view-tab" onclick="setView('charts',this)">Estadísticas</div>
+    <div class="view-tab" onclick="setView('precios',this)">💰 Precios</div>
   </div>
 
   <!-- Toolbar -->
@@ -356,8 +370,40 @@ input,select,textarea{font:inherit}
     </div>
   </div>
 
-  <!-- Charts view -->
-  <div id="charts-panel">
+  <!-- Precios view -->
+  <div id="precios-panel" style="display:none;padding:24px;max-width:900px;margin:0 auto">
+    
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+      <div>
+        <h2 style="font-family:var(--sans);font-size:16px;font-weight:600;color:var(--ink);margin-bottom:4px">Tabla de precios</h2>
+        <p style="font-size:13px;color:var(--muted)" id="dolar-info">Cargando tipo de cambio...</p>
+      </div>
+      <button class="btn-export" onclick="cargarPrecios()" style="display:flex;align-items:center;gap:6px">↻ Actualizar TC</button>
+    </div>
+
+    <!-- Tipo de cambio -->
+    <div style="background:var(--navy);border-radius:var(--r-lg);padding:20px 24px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+      <div>
+        <p style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:6px">Tipo de cambio BNA (ARS/USD)</p>
+        <div style="display:flex;align-items:center;gap:12px">
+          <span id="tc-display" style="font-size:28px;font-weight:700;color:#A85636">—</span>
+          <span id="tc-fuente" style="font-size:12px;color:rgba(255,255,255,.4)"></span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <input id="tc-input" type="number" placeholder="Editar TC manual" 
+               style="padding:10px 14px;border:1.5px solid rgba(255,255,255,.2);border-radius:var(--r-md);background:rgba(255,255,255,.08);color:#fff;font-size:14px;width:180px;outline:none">
+        <button onclick="guardarPrecio('EXCHANGE_RATE', document.getElementById('tc-input').value)"
+                class="btn-save" style="white-space:nowrap">Guardar TC</button>
+      </div>
+    </div>
+
+    <!-- Módulos -->
+    <div id="precios-list">
+      <div class="loading-dots"><span></span><span></span><span></span></div>
+    </div>
+
+  </div>
     <div class="charts-grid">
       <div class="chart-card">
         <h3>Módulos más solicitados</h3>
@@ -609,9 +655,98 @@ function debounceSearch(val) {
 function setView(view, el) {
   document.querySelectorAll('.view-tab').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
-  document.getElementById('leads-view').style.display    = view === 'leads'  ? 'block' : 'none';
-  document.getElementById('charts-panel').style.display  = view === 'charts' ? 'block' : 'none';
-  if (view === 'charts' && state.stats) renderCharts(state.stats);
+  document.getElementById('leads-view').style.display    = view === 'leads'   ? 'block' : 'none';
+  document.getElementById('charts-panel').style.display  = view === 'charts'  ? 'block' : 'none';
+  document.getElementById('precios-panel').style.display = view === 'precios' ? 'block' : 'none';
+  if (view === 'charts'  && state.stats) renderCharts(state.stats);
+  if (view === 'precios') cargarPrecios();
+}
+
+/* ── PRECIOS ── */
+const MODS_CONFIG = [
+  { num:'M1', title:'Concepción & Diagnóstico', items:['Concepto y público objetivo','Ubicación o zonas candidatas','Factibilidad (competencia/demografía)'] },
+  { num:'M2', title:'Marketing & Marca',         items:['Nombre, identidad y lineamientos','Plan de lanzamiento (4P) + calendario','FODA propio vs competidores'] },
+  { num:'M3', title:'Oferta & Costeo',            items:['Diseño de carta','Recetas estándar con costos por ración','Precios y márgenes (food cost)'] },
+  { num:'M4', title:'Diseño Operativo',           items:['Layout a escala cocina/salón y flujos','Equipos, vajilla y presupuestos','Optimización de circulación y tiempos'] },
+  { num:'M5', title:'RR.HH. & Operación',         items:['Organigrama y descripciones de puestos','Protocolos/limpieza y capacitación','Turnos, francos y menú staff'] },
+  { num:'M6', title:'Legal & Finanzas',           items:['Societario/habilitaciones/seguros','Proyección de ventas y gastos (P&L)','Punto de equilibrio y recupero'] },
+  { num:'M7', title:'Tecnología & Datos',         items:['Reservas online y/o delivery integrados','CRM y fidelización','Inventario y dashboards'] },
+  { num:'M8', title:'Diseño & Arquitectura',      items:['Proyecto arquitectónico/interiorismo','Planos, renders y dirección de obra','Coordinación de obra y proveedores'] },
+];
+
+let preciosData = {};
+
+async function cargarPrecios() {
+  document.getElementById('precios-list').innerHTML = '<div class="loading-dots"><span></span><span></span><span></span></div>';
+  
+  const res = await fetch(`/api/precios?secret=${encodeURIComponent(state.secret)}`);
+  if (!res.ok) { toast('Error al cargar precios', 'error'); return; }
+  
+  const { precios, dolarBNA, dolarFuente } = await res.json();
+  
+  // Indexar por key
+  preciosData = {};
+  (precios || []).forEach(p => { preciosData[p.key] = p.valor; });
+
+  // Mostrar TC
+  const tc = preciosData['EXCHANGE_RATE'] || dolarBNA || 0;
+  document.getElementById('tc-display').textContent = '$' + Number(tc).toLocaleString('es-AR');
+  document.getElementById('tc-fuente').textContent  = dolarFuente || '';
+  document.getElementById('tc-input').value         = tc;
+  document.getElementById('dolar-info').textContent = `TC BNA actualizado · ${new Date().toLocaleTimeString('es-AR')}`;
+
+  // Renderizar módulos
+  const list = document.getElementById('precios-list');
+  list.innerHTML = MODS_CONFIG.map(mod => `
+    <div class="mod-precio-card">
+      <div class="mod-precio-header">
+        <h4>${mod.num.replace('M','')}. ${mod.title}</h4>
+        <span class="mod-precio-total">Total: $${Number(preciosData[mod.num+'_TOTAL']||0).toLocaleString('es-AR')}</span>
+      </div>
+      <!-- Total del módulo -->
+      <div class="precio-row" style="background:rgba(168,86,54,.04)">
+        <span class="precio-label" style="font-weight:500;color:var(--ink)">Total módulo completo</span>
+        <input class="precio-input" id="inp-${mod.num}_TOTAL" type="number" value="${preciosData[mod.num+'_TOTAL']||0}">
+        <button class="btn-precio-save" onclick="guardarPrecioYRefresh('${mod.num}_TOTAL', document.getElementById('inp-${mod.num}_TOTAL').value, '${mod.num}')">Guardar</button>
+      </div>
+      <!-- Ítems -->
+      ${mod.items.map((item, i) => {
+        const key = `${mod.num}_ITEM${i+1}`;
+        return `
+        <div class="precio-row">
+          <span class="precio-label">${item}</span>
+          <input class="precio-input" id="inp-${key}" type="number" value="${preciosData[key]||0}">
+          <button class="btn-precio-save" onclick="guardarPrecio('${key}', document.getElementById('inp-${key}').value)">Guardar</button>
+        </div>`;
+      }).join('')}
+    </div>
+  `).join('');
+}
+
+async function guardarPrecio(key, valor) {
+  if (!valor && valor !== 0) return;
+  const res = await fetch(`/api/precios?secret=${encodeURIComponent(state.secret)}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ key, valor: Number(valor) }),
+  });
+  if (res.ok) {
+    preciosData[key] = Number(valor);
+    toast(`${key} actualizado ✓`, 'success');
+    // Actualizar display TC si corresponde
+    if (key === 'EXCHANGE_RATE') {
+      document.getElementById('tc-display').textContent = '$' + Number(valor).toLocaleString('es-AR');
+    }
+  } else {
+    toast('Error al guardar', 'error');
+  }
+}
+
+async function guardarPrecioYRefresh(key, valor, modNum) {
+  await guardarPrecio(key, valor);
+  // Actualizar el display del total en el header
+  const header = document.querySelector(`#precios-list .mod-precio-card:nth-child(${MODS_CONFIG.findIndex(m=>m.num===modNum)+1}) .mod-precio-total`);
+  if (header) header.textContent = `Total: $${Number(valor).toLocaleString('es-AR')}`;
 }
 
 /* ── EXPORT ── */
