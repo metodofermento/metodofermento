@@ -1,0 +1,13 @@
+{
+  "name": "metodofermento",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Método Fermento — sitio web y panel admin",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "nodemailer": "^6.9.14"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}
