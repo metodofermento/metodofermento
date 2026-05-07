@@ -1,9 +1,8 @@
 {
   "version": 2,
-  "routes": [
-    { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "/admin",    "dest": "/admin/index.html" },
-    { "src": "/admin/(.*)", "dest": "/admin/$1" },
-    { "src": "/(.*)",     "dest": "/public/$1" }
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/admin",    "destination": "/admin/index.html" },
+    { "source": "/",         "destination": "/public/index.html" }
   ]
 }
