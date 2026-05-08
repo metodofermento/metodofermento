@@ -346,6 +346,7 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
 /* ── RUEDA GRID RESPONSIVE ── */
 @media(max-width:900px){
   .rueda-grid{grid-template-columns:1fr!important}
+  .rueda-grid > div:first-child{border-right:none!important;border-bottom:1px solid rgba(255,255,255,.06)}
 }
 </style>
 </head>
@@ -476,11 +477,11 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
       </div>
     </div>
 
-    <!-- RUEDA + PANEL: grid desktop -->
-    <div class="scale-in rueda-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;max-width:1040px;margin:0 auto">
+    <!-- RUEDA + PANEL: un solo bloque unificado -->
+    <div class="scale-in rueda-grid" style="background:#12121f;border-radius:24px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;max-width:1040px;margin:0 auto">
 
-      <!-- RUEDA -->
-      <div style="background:#12121f;border-radius:24px;overflow:hidden;padding:1.5rem 1rem 1.5rem;display:flex;flex-direction:column;align-items:center">
+      <!-- RUEDA (izquierda) -->
+      <div style="padding:1.75rem 1rem 1.25rem;display:flex;flex-direction:column;align-items:center;border-right:1px solid rgba(255,255,255,.06)">
         <svg viewBox="0 0 440 380" style="width:100%;height:auto;display:block;overflow:visible">
           <defs>
             <radialGradient id="rgi" cx="35%" cy="30%" r="80%"><stop offset="0%" stop-color="#2e2e50"/><stop offset="100%" stop-color="#1a1a30"/></radialGradient>
@@ -538,7 +539,7 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
         </svg>
 
         <!-- Total presupuesto bajo la rueda -->
-        <div id="Rbudget-display" style="width:100%;background:rgba(168,86,54,.08);border:1px solid rgba(168,86,54,.2);border-radius:14px;padding:14px 20px;margin-top:.5rem;display:flex;align-items:center;justify-content:space-between;gap:12px">
+        <div id="Rbudget-display" style="width:100%;background:rgba(168,86,54,.08);border:1px solid rgba(168,86,54,.2);border-radius:14px;padding:14px 20px;margin-top:.75rem;display:flex;align-items:center;justify-content:space-between;gap:12px">
           <span style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35)">Estimado seleccionado</span>
           <div style="text-align:right">
             <div id="Rbudget-ars" style="font-family:var(--serif);font-size:1.4rem;font-weight:700;color:#A85636;line-height:1;font-optical-sizing:auto">$ 0</div>
@@ -548,7 +549,7 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
       </div>
 
       <!-- PANEL derecho -->
-      <div style="background:#1a1a2e;border-radius:24px;overflow:hidden;min-height:480px;display:flex;flex-direction:column">
+      <div style="display:flex;flex-direction:column;min-height:480px">
         <div id="RD0" style="display:flex;align-items:center;justify-content:center;flex:1;gap:.5rem;padding:2rem">
           <div style="text-align:center">
             <div style="width:48px;height:48px;border-radius:50%;border:1px solid rgba(168,86,54,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:20px">←</div>
