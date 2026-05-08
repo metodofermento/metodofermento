@@ -363,7 +363,10 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
       <li><a href="#contacto">Contacto</a></li>
     </ul>
     <div class="nav-right">
-      <a href="tel:+541124946818" style="font-size:12.5px;color:rgba(255,255,255,.5);transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.5)'">+54 11 2494‑6818</a>
+      <a href="https://wa.me/5491124946818?text=Hola%2C%20quiero%20consultar%20sobre%20el%20servicio" target="_blank" rel="noopener" id="nav-wa" style="font-size:12.5px;color:rgba(255,255,255,.6);transition:color .2s;display:flex;align-items:center;gap:5px" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=document.getElementById('nav').classList.contains('scrolled')?'var(--muted)':'rgba(255,255,255,.6)'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        +54 11 2494‑6818
+      </a>
       <a href="#contacto" class="btn btn-p btn-sm">Consulta gratis</a>
       <button class="nav-burger" onclick="document.getElementById('mobileMenu').classList.add('open')" aria-label="Menú">
         <span></span><span></span><span></span>
@@ -418,28 +421,12 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
       </div>
     </div>
 
-    <!-- 4 diferenciadores -->
-    <div class="hero-bottom stagger">
-      <div class="hero-diff">
-        <div class="hero-diff-icon">📊</div>
-        <h5>Modelo antes que obra</h5>
-        <p>Validamos la rentabilidad antes de invertir en construcción.</p>
-      </div>
-      <div class="hero-diff">
-        <div class="hero-diff-icon">🧭</div>
-        <h5>Acompañamiento real</h5>
-        <p>Presentes en cada decisión crítica, no solo al inicio.</p>
-      </div>
-      <div class="hero-diff">
-        <div class="hero-diff-icon">🏗️</div>
-        <h5>Arquitectura + Gastronomía</h5>
-        <p>Espacio, concepto y números bajo una misma mirada.</p>
-      </div>
-      <div class="hero-diff">
-        <div class="hero-diff-icon">💸</div>
-        <h5>Inversión dimensionada</h5>
-        <p>Sabemos cuánto invertir y cuándo se recupera.</p>
-      </div>
+    <!-- 4 diferenciadores como chips compactos -->
+    <div class="hero-bottom stagger" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:999px;font-size:12px;color:rgba(255,255,255,.7)"><span style="font-size:14px">📊</span> Modelo antes que obra</div>
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:999px;font-size:12px;color:rgba(255,255,255,.7)"><span style="font-size:14px">🧭</span> Acompañamiento real</div>
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:999px;font-size:12px;color:rgba(255,255,255,.7)"><span style="font-size:14px">🏗️</span> Arq. + Gastronomía</div>
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:999px;font-size:12px;color:rgba(255,255,255,.7)"><span style="font-size:14px">💸</span> Inversión dimensionada</div>
     </div>
   </div>
 
@@ -519,22 +506,23 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
           <circle cx="220" cy="190" r="46" fill="none" stroke="rgba(168,86,54,.08)" stroke-width="10"/>
 
           <g id="rci">
-            <text x="220" y="183" font-family="Georgia,serif" font-size="10" fill="rgba(255,255,255,.22)" text-anchor="middle" font-style="italic">método</text>
-            <text x="220" y="197" font-family="Georgia,serif" font-size="10" fill="rgba(255,255,255,.22)" text-anchor="middle" font-style="italic">fermento</text>
+            <text x="220" y="185" font-family="Georgia,serif" font-size="10" fill="rgba(255,255,255,.22)" text-anchor="middle" font-style="italic">método</text>
+            <text x="220" y="199" font-family="Georgia,serif" font-size="10" fill="rgba(255,255,255,.22)" text-anchor="middle" font-style="italic">fermento</text>
           </g>
           <g id="rca" opacity="0">
-            <text id="rcnum" x="220" y="195" font-family="Georgia,serif" font-size="38" font-weight="700" fill="#A85636" text-anchor="middle">—</text>
+            <text id="rcnum" x="220" y="182" font-family="Georgia,serif" font-size="34" font-weight="700" fill="#A85636" text-anchor="middle" dominant-baseline="auto">—</text>
+            <text id="rcname" x="220" y="202" font-family="system-ui,sans-serif" font-size="11" font-weight="500" fill="rgba(255,255,255,.55)" text-anchor="middle" dominant-baseline="auto">—</text>
           </g>
 
           <g id="rng">
-            <g id="RN0" style="cursor:pointer" pointer-events="all" transform="translate(220,38)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">1</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">Concepción</text><text id="RCK0" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
-            <g id="RN1" style="cursor:pointer" pointer-events="all" transform="translate(327,73)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">2</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">Marketing</text><text id="RCK1" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
-            <g id="RN2" style="cursor:pointer" pointer-events="all" transform="translate(372,190)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">3</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">Costeo</text><text id="RCK2" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
-            <g id="RN3" style="cursor:pointer" pointer-events="all" transform="translate(327,307)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">4</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">Operativo</text><text id="RCK3" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
-            <g id="RN4" style="cursor:pointer" pointer-events="all" transform="translate(220,342)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">5</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">RR.HH.</text><text id="RCK4" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
-            <g id="RN5" style="cursor:pointer" pointer-events="all" transform="translate(113,307)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">6</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">Finanzas</text><text id="RCK5" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
-            <g id="RN6" style="cursor:pointer" pointer-events="all" transform="translate(68,190)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">7</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">Tecnología</text><text id="RCK6" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
-            <g id="RN7" style="cursor:pointer" pointer-events="all" transform="translate(113,73)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">8</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">Arquitectura</text><text id="RCK7" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
+            <g id="RN0" style="cursor:pointer" pointer-events="all" transform="translate(220,38)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="0" dy=".35em" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">M1</text><text id="RCK0" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
+            <g id="RN1" style="cursor:pointer" pointer-events="all" transform="translate(327,73)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="0" dy=".35em" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">M2</text><text id="RCK1" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
+            <g id="RN2" style="cursor:pointer" pointer-events="all" transform="translate(372,190)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="0" dy=".35em" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">M3</text><text id="RCK2" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
+            <g id="RN3" style="cursor:pointer" pointer-events="all" transform="translate(327,307)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="0" dy=".35em" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">M4</text><text id="RCK3" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
+            <g id="RN4" style="cursor:pointer" pointer-events="all" transform="translate(220,342)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="0" dy=".35em" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">M5</text><text id="RCK4" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
+            <g id="RN5" style="cursor:pointer" pointer-events="all" transform="translate(113,307)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="0" dy=".35em" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">M6</text><text id="RCK5" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
+            <g id="RN6" style="cursor:pointer" pointer-events="all" transform="translate(68,190)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="0" dy=".35em" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">M7</text><text id="RCK6" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
+            <g id="RN7" style="cursor:pointer" pointer-events="all" transform="translate(113,73)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="0" dy=".35em" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">M8</text><text id="RCK7" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
           </g>
         </svg>
 
@@ -685,8 +673,11 @@ document.querySelectorAll('.btn-mag').forEach(btn => {
 
 /* ── Nav scroll ── */
 const nav = document.getElementById('nav');
+const navWa = document.getElementById('nav-wa');
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
+  const scrolled = window.scrollY > 60;
+  nav.classList.toggle('scrolled', scrolled);
+  if(navWa) navWa.style.color = scrolled ? 'var(--muted)' : 'rgba(255,255,255,.6)';
 }, {passive:true});
 
 /* ── Parallax orbs on mouse ── */
@@ -1108,6 +1099,8 @@ function Rpick(i){
   var cur=Rang[i]+Rrot,d=-90-cur;
   while(d>180)d-=360;while(d<-180)d+=360;
   var cn=document.getElementById('rcnum');if(cn)cn.textContent=RM[i].n;
+  var cname=document.getElementById('rcname');
+  if(cname)cname.textContent=RM[i].t.split(' ')[0];
   var rci=document.getElementById('rci');if(rci)rci.setAttribute('opacity','0');
   var rca=document.getElementById('rca');if(rca)rca.setAttribute('opacity','1');
   var l=document.getElementById('RL'+i);
