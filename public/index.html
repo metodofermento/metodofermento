@@ -343,6 +343,10 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
   .hero-h1{font-size:2rem}
   .hero-stats{grid-template-columns:1fr}
 }
+/* ── RUEDA GRID RESPONSIVE ── */
+@media(max-width:900px){
+  .rueda-grid{grid-template-columns:1fr!important}
+}
 </style>
 </head>
 <body>
@@ -468,64 +472,91 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
       <div class="sistema-head-left slide-l">
         <span class="eyebrow">El sistema</span>
         <h2>8 módulos.<br>Tu proyecto, a medida.</h2>
-        <p>Seleccioná un módulo, elegí los temas que necesitás y cotizá directo. Sin pasos extra.</p>
+        <p>Seleccioná un módulo, tildá los temas y armá tu presupuesto estimativo en tiempo real.</p>
       </div>
     </div>
 
-    <!-- RUEDA INTEGRADA -->
-    <div class="scale-in" style="max-width:560px;margin:0 auto">
-    <div style="width:100%;display:flex;flex-direction:column;align-items:center;background:#12121f;border-radius:24px;overflow:hidden;padding:1.5rem 1rem 0;font-family:var(--sans)">
-      <div style="width:100%;max-width:460px">
-      <svg viewBox="0 0 440 360" style="width:100%;height:auto;display:block;overflow:visible">
-        <defs>
-          <radialGradient id="rgi" cx="35%" cy="30%" r="80%"><stop offset="0%" stop-color="#2e2e50"/><stop offset="100%" stop-color="#1a1a30"/></radialGradient>
-          <radialGradient id="rga" cx="30%" cy="25%" r="80%"><stop offset="0%" stop-color="#d4754a"/><stop offset="100%" stop-color="#7F3A22"/></radialGradient>
-          <radialGradient id="rgs" cx="30%" cy="25%" r="80%"><stop offset="0%" stop-color="#3a7a3a"/><stop offset="100%" stop-color="#1a4a1a"/></radialGradient>
-          <filter id="rfg" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        </defs>
-        <circle cx="220" cy="180" r="162" fill="none" stroke="rgba(168,86,54,.25)" stroke-width="2"/>
-        <circle cx="220" cy="180" r="148" fill="none" stroke="rgba(168,86,54,.10)" stroke-width="4"/>
-        <g id="rlg">
-          <line id="RL0" x1="220" y1="180" x2="220" y2="28" stroke="rgba(168,86,54,.2)" stroke-width="1.5" stroke-dasharray="4 6"/>
-          <line id="RL1" x1="220" y1="180" x2="327" y2="63" stroke="rgba(168,86,54,.2)" stroke-width="1.5" stroke-dasharray="4 6"/>
-          <line id="RL2" x1="220" y1="180" x2="372" y2="180" stroke="rgba(168,86,54,.2)" stroke-width="1.5" stroke-dasharray="4 6"/>
-          <line id="RL3" x1="220" y1="180" x2="327" y2="297" stroke="rgba(168,86,54,.2)" stroke-width="1.5" stroke-dasharray="4 6"/>
-          <line id="RL4" x1="220" y1="180" x2="220" y2="332" stroke="rgba(168,86,54,.2)" stroke-width="1.5" stroke-dasharray="4 6"/>
-          <line id="RL5" x1="220" y1="180" x2="113" y2="297" stroke="rgba(168,86,54,.2)" stroke-width="1.5" stroke-dasharray="4 6"/>
-          <line id="RL6" x1="220" y1="180" x2="68" y2="180" stroke="rgba(168,86,54,.2)" stroke-width="1.5" stroke-dasharray="4 6"/>
-          <line id="RL7" x1="220" y1="180" x2="113" y2="63" stroke="rgba(168,86,54,.2)" stroke-width="1.5" stroke-dasharray="4 6"/>
-        </g>
-        <circle cx="220" cy="180" r="56" fill="#12121f" stroke="rgba(168,86,54,.4)" stroke-width="2"/>
-        <circle cx="220" cy="180" r="44" fill="none" stroke="rgba(168,86,54,.10)" stroke-width="9"/>
-        <g id="rci">
-          <text x="220" y="176" font-family="Georgia,serif" font-size="10" fill="rgba(255,255,255,.22)" text-anchor="middle" font-style="italic">método</text>
-          <text x="220" y="190" font-family="Georgia,serif" font-size="10" fill="rgba(255,255,255,.22)" text-anchor="middle" font-style="italic">fermento</text>
-        </g>
-        <g id="rca" opacity="0">
-          <text id="rcnum" x="220" y="188" font-family="Georgia,serif" font-size="38" font-weight="700" fill="#A85636" text-anchor="middle">—</text>
-        </g>
-        <g id="rng">
-          <g id="RN0" class="rnd" style="cursor:pointer" pointer-events="all" transform="translate(220,28)" data-i="0"><circle class="rnc" pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">1</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">Concepción</text><text id="RCK0" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
-          <g id="RN1" class="rnd" style="cursor:pointer" pointer-events="all" transform="translate(327,63)" data-i="1"><circle class="rnc" pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">2</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">Marketing</text><text id="RCK1" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
-          <g id="RN2" class="rnd" style="cursor:pointer" pointer-events="all" transform="translate(372,180)" data-i="2"><circle class="rnc" pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">3</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">Costeo</text><text id="RCK2" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
-          <g id="RN3" class="rnd" style="cursor:pointer" pointer-events="all" transform="translate(327,297)" data-i="3"><circle class="rnc" pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">4</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">Operativo</text><text id="RCK3" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
-          <g id="RN4" class="rnd" style="cursor:pointer" pointer-events="all" transform="translate(220,332)" data-i="4"><circle class="rnc" pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">5</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">RR.HH.</text><text id="RCK4" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
-          <g id="RN5" class="rnd" style="cursor:pointer" pointer-events="all" transform="translate(113,297)" data-i="5"><circle class="rnc" pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">6</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">Finanzas</text><text id="RCK5" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
-          <g id="RN6" class="rnd" style="cursor:pointer" pointer-events="all" transform="translate(68,180)" data-i="6"><circle class="rnc" pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">7</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">Tecnología</text><text id="RCK6" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
-          <g id="RN7" class="rnd" style="cursor:pointer" pointer-events="all" transform="translate(113,63)" data-i="7"><circle class="rnc" pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">8</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">Arquitectura</text><text id="RCK7" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
-        </g>
-      </svg>
+    <!-- RUEDA + PANEL: grid desktop -->
+    <div class="scale-in rueda-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;max-width:1040px;margin:0 auto">
+
+      <!-- RUEDA -->
+      <div style="background:#12121f;border-radius:24px;overflow:hidden;padding:1.5rem 1rem 1.5rem;display:flex;flex-direction:column;align-items:center">
+        <svg viewBox="0 0 440 380" style="width:100%;height:auto;display:block;overflow:visible">
+          <defs>
+            <radialGradient id="rgi" cx="35%" cy="30%" r="80%"><stop offset="0%" stop-color="#2e2e50"/><stop offset="100%" stop-color="#1a1a30"/></radialGradient>
+            <radialGradient id="rga" cx="30%" cy="25%" r="80%"><stop offset="0%" stop-color="#d4754a"/><stop offset="100%" stop-color="#7F3A22"/></radialGradient>
+            <radialGradient id="rgs" cx="30%" cy="25%" r="80%"><stop offset="0%" stop-color="#3a7a3a"/><stop offset="100%" stop-color="#1a4a1a"/></radialGradient>
+            <filter id="rfg" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+
+          <!-- Anillo exterior decorativo -->
+          <circle cx="220" cy="190" r="162" fill="none" stroke="rgba(168,86,54,.15)" stroke-width="2"/>
+
+          <!-- Anillo de presupuesto: track (fondo) -->
+          <circle cx="220" cy="190" r="148" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="6"/>
+          <!-- Anillo de presupuesto: progreso (se anima con JS) -->
+          <!-- circunferencia = 2*π*148 ≈ 929.9 -->
+          <circle id="Rbudget-ring" cx="220" cy="190" r="148" fill="none"
+            stroke="#A85636" stroke-width="6" stroke-linecap="round"
+            stroke-dasharray="0 929.9"
+            transform="rotate(-90 220 190)"
+            style="transition:stroke-dasharray .6s cubic-bezier(.16,1,.3,1)"/>
+
+          <g id="rlg">
+            <line id="RL0" x1="220" y1="190" x2="220" y2="38" stroke="rgba(168,86,54,.2)" stroke-width="1.5" stroke-dasharray="4 6"/>
+            <line id="RL1" x1="220" y1="190" x2="327" y2="73" stroke="rgba(168,86,54,.2)" stroke-width="1.5" stroke-dasharray="4 6"/>
+            <line id="RL2" x1="220" y1="190" x2="372" y2="190" stroke="rgba(168,86,54,.2)" stroke-width="1.5" stroke-dasharray="4 6"/>
+            <line id="RL3" x1="220" y1="190" x2="327" y2="307" stroke="rgba(168,86,54,.2)" stroke-width="1.5" stroke-dasharray="4 6"/>
+            <line id="RL4" x1="220" y1="190" x2="220" y2="342" stroke="rgba(168,86,54,.2)" stroke-width="1.5" stroke-dasharray="4 6"/>
+            <line id="RL5" x1="220" y1="190" x2="113" y2="307" stroke="rgba(168,86,54,.2)" stroke-width="1.5" stroke-dasharray="4 6"/>
+            <line id="RL6" x1="220" y1="190" x2="68" y2="190" stroke="rgba(168,86,54,.2)" stroke-width="1.5" stroke-dasharray="4 6"/>
+            <line id="RL7" x1="220" y1="190" x2="113" y2="73" stroke="rgba(168,86,54,.2)" stroke-width="1.5" stroke-dasharray="4 6"/>
+          </g>
+
+          <!-- Centro -->
+          <circle cx="220" cy="190" r="58" fill="#12121f" stroke="rgba(168,86,54,.4)" stroke-width="2"/>
+          <circle cx="220" cy="190" r="46" fill="none" stroke="rgba(168,86,54,.08)" stroke-width="10"/>
+
+          <g id="rci">
+            <text x="220" y="183" font-family="Georgia,serif" font-size="10" fill="rgba(255,255,255,.22)" text-anchor="middle" font-style="italic">método</text>
+            <text x="220" y="197" font-family="Georgia,serif" font-size="10" fill="rgba(255,255,255,.22)" text-anchor="middle" font-style="italic">fermento</text>
+          </g>
+          <g id="rca" opacity="0">
+            <text id="rcnum" x="220" y="195" font-family="Georgia,serif" font-size="38" font-weight="700" fill="#A85636" text-anchor="middle">—</text>
+          </g>
+
+          <g id="rng">
+            <g id="RN0" style="cursor:pointer" pointer-events="all" transform="translate(220,38)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">1</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">Concepción</text><text id="RCK0" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
+            <g id="RN1" style="cursor:pointer" pointer-events="all" transform="translate(327,73)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">2</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">Marketing</text><text id="RCK1" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
+            <g id="RN2" style="cursor:pointer" pointer-events="all" transform="translate(372,190)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">3</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">Costeo</text><text id="RCK2" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
+            <g id="RN3" style="cursor:pointer" pointer-events="all" transform="translate(327,307)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">4</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">Operativo</text><text id="RCK3" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
+            <g id="RN4" style="cursor:pointer" pointer-events="all" transform="translate(220,342)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">5</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">RR.HH.</text><text id="RCK4" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
+            <g id="RN5" style="cursor:pointer" pointer-events="all" transform="translate(113,307)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">6</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">Finanzas</text><text id="RCK5" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
+            <g id="RN6" style="cursor:pointer" pointer-events="all" transform="translate(68,190)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">7</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">Tecnología</text><text id="RCK6" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
+            <g id="RN7" style="cursor:pointer" pointer-events="all" transform="translate(113,73)"><circle pointer-events="all" r="28" fill="url(#rgi)" stroke="rgba(168,86,54,.5)" stroke-width="1.5"/><text x="0" y="-6" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#c4914a" text-anchor="middle" pointer-events="none">8</text><text x="0" y="11" font-family="system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" pointer-events="none">Arquitectura</text><text id="RCK7" x="16" y="-20" font-size="11" fill="#6c6" display="none" pointer-events="none">✓</text></g>
+          </g>
+        </svg>
+
+        <!-- Total presupuesto bajo la rueda -->
+        <div id="Rbudget-display" style="width:100%;background:rgba(168,86,54,.08);border:1px solid rgba(168,86,54,.2);border-radius:14px;padding:14px 20px;margin-top:.5rem;display:flex;align-items:center;justify-content:space-between;gap:12px">
+          <span style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35)">Estimado seleccionado</span>
+          <div style="text-align:right">
+            <div id="Rbudget-ars" style="font-family:var(--serif);font-size:1.4rem;font-weight:700;color:#A85636;line-height:1;font-optical-sizing:auto">$ 0</div>
+            <div id="Rbudget-usd" style="font-size:11px;color:rgba(255,255,255,.3);margin-top:3px">≈ USD 0</div>
+          </div>
+        </div>
       </div>
 
-      <!-- Panel integrado -->
-      <div style="width:100%;background:#1a1a2e;border-top:1px solid rgba(168,86,54,.25);padding:1.25rem;margin-top:.75rem">
-        <div id="RD0" style="display:flex;align-items:center;justify-content:center;min-height:80px;gap:.5rem">
-          <div style="width:5px;height:5px;border-radius:50%;background:rgba(168,86,54,.35)"></div>
-          <span style="font-family:var(--serif);font-style:italic;font-size:13px;color:rgba(255,255,255,.22)">Seleccioná un módulo · elegí los temas · cotizá</span>
-          <div style="width:5px;height:5px;border-radius:50%;background:rgba(168,86,54,.35)"></div>
+      <!-- PANEL derecho -->
+      <div style="background:#1a1a2e;border-radius:24px;overflow:hidden;min-height:480px;display:flex;flex-direction:column">
+        <div id="RD0" style="display:flex;align-items:center;justify-content:center;flex:1;gap:.5rem;padding:2rem">
+          <div style="text-align:center">
+            <div style="width:48px;height:48px;border-radius:50%;border:1px solid rgba(168,86,54,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:20px">←</div>
+            <p style="font-family:var(--serif);font-style:italic;font-size:14px;color:rgba(255,255,255,.22)">Seleccioná un módulo<br>para ver el detalle</p>
+          </div>
         </div>
-        <!-- Módulo detail -->
-        <div id="RD1" style="display:none;flex-direction:column;gap:.8rem">
+
+        <div id="RD1" style="display:none;flex-direction:column;gap:.8rem;padding:1.5rem;flex:1">
           <div style="display:flex;align-items:center;gap:.75rem">
             <div id="RBn" style="width:46px;height:46px;flex-shrink:0;border-radius:13px;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.4rem;font-weight:700;color:#fff;background:linear-gradient(135deg,#c4683e,#7F3A22)"></div>
             <div id="RBt" style="font-family:var(--serif);font-size:1.1rem;color:#fff;line-height:1.2"></div>
@@ -536,42 +567,42 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
           <div style="height:1px;background:rgba(255,255,255,.07)"></div>
           <div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3)">¿Qué necesitás de este módulo?</div>
           <div id="RBc"></div>
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap;padding-top:.25rem">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap;padding-top:.25rem;margin-top:auto">
             <span style="font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3)">Seleccionados: <b id="RBk" style="color:#A85636">0</b></span>
-            <button id="RBadd" disabled onclick="" style="display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.25rem;background:#fff;color:#12121f;border:1.5px solid #fff;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;font-family:var(--sans);transition:all .2s;flex-shrink:0">Agregar →</button>
+            <button id="RBadd" disabled style="display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.25rem;background:#fff;color:#12121f;border:1.5px solid #fff;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;font-family:var(--sans);transition:all .2s;flex-shrink:0">Agregar →</button>
           </div>
         </div>
-        <!-- Resumen -->
-        <div id="RD2" style="display:none;flex-direction:column;gap:.8rem">
+
+        <div id="RD2" style="display:none;flex-direction:column;gap:.8rem;padding:1.5rem;flex:1">
           <div style="font-family:var(--serif);font-size:1rem;color:#fff">Tu selección de módulos</div>
-          <div id="RBl"></div>
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap;padding-top:.25rem">
+          <div id="RBl" style="flex:1"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap;padding-top:.5rem;border-top:1px solid rgba(255,255,255,.07)">
             <button id="RBb1" style="display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.25rem;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4);border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;font-family:var(--sans)">← Seguir eligiendo</button>
             <button id="RBc1" style="display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.25rem;background:#fff;color:#12121f;border:1.5px solid #fff;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;font-family:var(--sans)">Continuar →</button>
           </div>
         </div>
-        <!-- Form -->
-        <div id="RD3" style="display:none;flex-direction:column;gap:.8rem">
+
+        <div id="RD3" style="display:none;flex-direction:column;gap:.8rem;padding:1.5rem;flex:1">
           <div style="font-family:var(--serif);font-size:1rem;color:#fff">Tus datos para recibir el presupuesto</div>
           <div style="font-size:12px;color:rgba(255,255,255,.35)">Te enviamos el estimativo por email en minutos.</div>
           <input id="RFn" type="text" placeholder="Nombre completo *" style="width:100%;padding:.7rem .9rem;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:10px;color:#fff;font-size:14px;font-family:var(--sans);outline:none">
           <input id="RFe" type="email" placeholder="Email *" style="width:100%;padding:.7rem .9rem;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:10px;color:#fff;font-size:14px;font-family:var(--sans);outline:none">
           <input id="RFt" type="text" placeholder="Teléfono (opcional)" style="width:100%;padding:.7rem .9rem;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:10px;color:#fff;font-size:14px;font-family:var(--sans);outline:none">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap;padding-top:.25rem">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap;padding-top:.25rem;margin-top:auto">
             <button id="RBb2" style="display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.25rem;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4);border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;font-family:var(--sans)">← Volver</button>
             <button id="RBsend" style="display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.25rem;background:#fff;color:#12121f;border:1.5px solid #fff;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;font-family:var(--sans)">Enviar cotización ✓</button>
           </div>
         </div>
-        <!-- Success -->
-        <div id="RD4" style="display:none;flex-direction:column;align-items:center;gap:.75rem;padding:1rem 0;text-align:center">
+
+        <div id="RD4" style="display:none;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;padding:2rem;flex:1;text-align:center">
           <div style="width:52px;height:52px;border-radius:50%;background:rgba(168,86,54,.15);border:1.5px solid rgba(168,86,54,.4);display:flex;align-items:center;justify-content:center;font-size:22px;color:#A85636">✓</div>
           <div style="font-family:var(--serif);font-size:1.2rem;color:#fff">Cotización enviada</div>
-          <div style="font-size:13px;color:rgba(255,255,255,.45);max-width:36ch">Te enviamos el presupuesto por email y te contactamos a la brevedad.</div>
+          <div style="font-size:13px;color:rgba(255,255,255,.45);max-width:32ch">Te enviamos el presupuesto por email y te contactamos a la brevedad.</div>
           <button id="RBres" style="display:inline-flex;align-items:center;padding:.6rem 1.25rem;background:#fff;color:#12121f;border:1.5px solid #fff;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;font-family:var(--sans)">Volver a la rueda</button>
         </div>
       </div>
-    </div>
-    </div><!-- /scale-in wrap -->
+
+    </div><!-- /grid -->
 
     <div style="text-align:center;margin-top:32px" class="reveal">
       <p style="font-size:13px;color:var(--muted)">Los valores son referenciales y pueden variar según alcance y complejidad.</p>
@@ -579,10 +610,7 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
   </div>
 </section>
 
-<!-- placeholder for old mods-list close + cotizador — removed, rueda handles it -->
 <div id="cotizador" style="display:none"></div>
-<!-- ═══ CONTACTO ═══ -->
-<!-- ═══ CONTACTO ═══ -->
 <section id="contacto">
   <div class="cta-inner">
     <span class="eyebrow">Empezá hoy</span>
@@ -861,6 +889,44 @@ function wizShowSuccess() {
 <script>
 /* ── RUEDA COTIZADOR ── */
 document.addEventListener('DOMContentLoaded', function() {
+
+/* Precios por ítem (ARS) */
+var PRECIOS = {
+  '1-0':190000,'1-1':180000,'1-2':180000,
+  '2-0':200000,'2-1':200000,'2-2':200000,
+  '3-0':240000,'3-1':230000,'3-2':230000,
+  '4-0':190000,'4-1':180000,'4-2':180000,
+  '5-0':160000,'5-1':160000,'5-2':160000,
+  '6-0':260000,'6-1':270000,'6-2':270000,
+  '7-0':170000,'7-1':165000,'7-2':165000,
+  '8-0':450000,'8-1':400000,'8-2':350000
+};
+var EXCHANGE_RATE = 1400;
+var MAX_TOTAL = Object.values(PRECIOS).reduce(function(s,v){return s+v;},0);
+var RING_CIRC = 2 * Math.PI * 148; // 929.9
+
+function fmtARS(n){return '$\u00a0'+n.toLocaleString('es-AR');}
+function fmtUSD(n){return 'USD\u00a0'+Math.round(n/EXCHANGE_RATE).toLocaleString('es-AR');}
+
+function RupdBudget(){
+  var total=0;
+  Object.keys(Rsel).forEach(function(mi){
+    (Rsel[mi]||[]).forEach(function(val){
+      var m=RM[Number(mi)];
+      var ci2=m.c.indexOf(val);
+      if(ci2>=0){var key=(m.n)+'-'+ci2;total+=PRECIOS[key]||0;}
+    });
+  });
+  var pct=MAX_TOTAL>0?total/MAX_TOTAL:0;
+  var fill=pct*RING_CIRC;
+  var ring=document.getElementById('Rbudget-ring');
+  if(ring)ring.setAttribute('stroke-dasharray',fill.toFixed(1)+' '+(RING_CIRC-fill).toFixed(1));
+  var ars=document.getElementById('Rbudget-ars');
+  if(ars)ars.textContent=fmtARS(total);
+  var usd=document.getElementById('Rbudget-usd');
+  if(usd)usd.textContent='\u2248 '+fmtUSD(total);
+}
+
 var RM=[
   {n:1,t:'Concepción & Diagnóstico',c:['Concepto y público objetivo','Ubicación o zonas candidatas','Factibilidad (competencia/demografía)'],d:['Validamos idea, público y ubicación antes de invertir','Análisis de competencia y demografía con datos reales'],r:'✓ Concepto validado antes de firmar contrato'},
   {n:2,t:'Marketing & Marca',c:['Nombre, identidad y lineamientos','Plan de lanzamiento (4P) + calendario','FODA propio vs competidores'],d:['Identidad, estrategia 4P y calendario de lanzamiento','Google Profile, pauta geolocalizada y fachada'],r:'✓ 1.200 clics y 4,6★ en 30 días'},
@@ -948,6 +1014,7 @@ window._Rtc=function(mi,ci2,inp){
   var lbl=document.getElementById('Rck-'+mi+'-'+ci2);
   if(lbl)lbl.className=(lbl.className.replace(' Ron',''))+(inp.checked?' Ron':'');
   RupdCnt(mi);
+  RupdBudget();
 };
 
 function RshowMod(i){
@@ -961,7 +1028,9 @@ function RshowMod(i){
   var bc=document.getElementById('RBc');
   if(bc)bc.innerHTML=m.c.map(function(c,ci2){
     var on=sv.indexOf(c)>-1;
-    return'<label id="Rck-'+i+'-'+ci2+'" style="display:flex;align-items:center;gap:.6rem;padding:.5rem .7rem;border:1px solid rgba(255,255,255,'+(on?'.35':'.08')+');border-radius:9px;cursor:pointer;margin-bottom:.3rem;background:'+(on?'rgba(168,86,54,.1)':'transparent')+'"><input type="checkbox"'+(on?' checked':'')+' onchange="window._Rtc('+i+','+ci2+',this)" style="accent-color:#A85636;width:15px;height:15px;flex-shrink:0;cursor:pointer"><span style="font-size:12.5px;color:'+(on?'#fff':'rgba(255,255,255,.65)')+';line-height:1.3">'+c+'</span></label>';
+    var precio=PRECIOS[m.n+'-'+ci2]||0;
+    var pstr=precio?'<span style="margin-left:auto;font-size:11px;font-weight:600;color:#A85636;white-space:nowrap">+$'+Math.round(precio/1000)+'k</span>':'';
+    return'<label id="Rck-'+i+'-'+ci2+'" style="display:flex;align-items:center;gap:.6rem;padding:.5rem .7rem;border:1px solid rgba(255,255,255,'+(on?'.35':'.08')+');border-radius:9px;cursor:pointer;margin-bottom:.3rem;background:'+(on?'rgba(168,86,54,.1)':'transparent')+'"><input type="checkbox"'+(on?' checked':'')+' onchange="window._Rtc('+i+','+ci2+',this)" style="accent-color:#A85636;width:15px;height:15px;flex-shrink:0;cursor:pointer"><span style="font-size:12.5px;color:'+(on?'#fff':'rgba(255,255,255,.65)')+';line-height:1.3;flex:1">'+c+'</span>'+pstr+'</label>';
   }).join('');
   RupdCnt(i);
   var ba=document.getElementById('RBadd');
@@ -1022,6 +1091,7 @@ if(RBres)RBres.onclick=function(){
   var cn=document.getElementById('rcnum');if(cn)cn.textContent='—';
   var rci=document.getElementById('rci');if(rci)rci.setAttribute('opacity','1');
   var rca=document.getElementById('rca');if(rca)rca.setAttribute('opacity','0');
+  RupdBudget();
   Rshow('RD0');
 };
 
