@@ -348,6 +348,20 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
   .rueda-grid{grid-template-columns:1fr!important}
   .rueda-grid > div:first-child{border-right:none!important;border-bottom:1px solid rgba(255,255,255,.06)}
 }
+/* ── PERFILES ── */
+.ptab{flex:1;padding:9px 8px;border-radius:999px;border:none;background:transparent;color:rgba(255,255,255,.4);font-size:12px;font-weight:600;cursor:pointer;font-family:var(--sans);transition:all .25s;text-align:center;line-height:1.3}
+.ptab.active{background:#A85636;color:#fff}
+.pmod-card{display:flex;align-items:center;gap:12px;padding:11px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;opacity:0;transform:translateX(-14px);transition:opacity .35s,transform .35s,background .2s,border-color .2s}
+.pmod-card:hover{background:rgba(255,255,255,.07);border-color:rgba(168,86,54,.3)}
+.pmod-card.pin{opacity:1;transform:translateX(0)}
+.pmod-num{width:32px;height:32px;border-radius:10px;background:rgba(168,86,54,.12);border:1px solid rgba(168,86,54,.25);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:13px;font-weight:700;color:var(--terra);flex-shrink:0;font-optical-sizing:auto}
+.pmod-price{font-size:12px;font-weight:700;color:var(--terra);white-space:nowrap;flex-shrink:0}
+@media(max-width:700px){
+  .pcontenido{grid-template-columns:1fr!important}
+  #ptabs{flex-direction:column;border-radius:16px}
+  .ptab{border-radius:12px!important;padding:11px}
+  #ptabs .ptab.active{border-radius:12px}
+}
 </style>
 </head>
 <body>
@@ -421,13 +435,6 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
       </div>
     </div>
 
-    <!-- 4 diferenciadores como chips compactos -->
-    <div class="hero-bottom stagger" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px">
-      <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:999px;font-size:12px;color:rgba(255,255,255,.7)"><span style="font-size:14px">📊</span> Modelo antes que obra</div>
-      <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:999px;font-size:12px;color:rgba(255,255,255,.7)"><span style="font-size:14px">🧭</span> Acompañamiento real</div>
-      <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:999px;font-size:12px;color:rgba(255,255,255,.7)"><span style="font-size:14px">🏗️</span> Arq. + Gastronomía</div>
-      <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:999px;font-size:12px;color:rgba(255,255,255,.7)"><span style="font-size:14px">💸</span> Inversión dimensionada</div>
-    </div>
   </div>
 
   <!-- Ticker -->
@@ -449,6 +456,58 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
       <span class="ticker-item">Marketing gastronómico<span class="ticker-dot">·</span></span>
       <span class="ticker-item">Legal & Finanzas<span class="ticker-dot">·</span></span>
       <span class="ticker-item">Tecnología & Datos<span class="ticker-dot">·</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PERFILES ═══ -->
+<section id="perfiles" style="background:var(--sand);padding:80px 0 0">
+  <div class="wrap">
+    <div class="scale-in" style="background:#12121f;border-radius:24px;overflow:hidden;padding:40px 32px">
+
+      <!-- Header -->
+      <div style="text-align:center;margin-bottom:32px">
+        <span class="eyebrow">¿Para quién es?</span>
+        <h2 style="font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:900;color:#fff;margin-top:10px;letter-spacing:-.03em;font-optical-sizing:auto;line-height:1.08">Desde la primera idea<br>hasta <em style="color:var(--terra);font-weight:700">la rentabilidad<br>que buscás.</em></h2>
+        <p style="font-size:14px;color:rgba(255,255,255,.35);margin-top:14px;max-width:40ch;margin-left:auto;margin-right:auto;line-height:1.6">Trabajamos con vos en cualquier etapa. Seleccioná tu momento y mirá qué módulos tienen sentido.</p>
+      </div>
+
+      <!-- Tabs -->
+      <div id="ptabs" style="display:flex;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:999px;padding:4px;gap:4px;margin-bottom:28px">
+        <button class="ptab active" onclick="setPerfil(0)">Tengo una idea</button>
+        <button class="ptab" onclick="setPerfil(1)">Estoy abriendo</button>
+        <button class="ptab" onclick="setPerfil(2)">Existe pero no rinde</button>
+      </div>
+
+      <!-- Content grid -->
+      <div style="display:grid;grid-template-columns:1fr 180px;gap:20px;align-items:start" class="pcontenido">
+
+        <!-- Module cards -->
+        <div id="pmods" style="display:flex;flex-direction:column;gap:8px"></div>
+
+        <!-- Gauge -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+          <span style="font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3)">Inversión estimada</span>
+          <svg viewBox="0 0 160 160" style="width:160px;height:160px">
+            <circle cx="80" cy="80" r="64" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="12"/>
+            <circle cx="80" cy="80" r="64" fill="none" stroke="rgba(168,86,54,.12)" stroke-width="12"/>
+            <circle id="pgauge" cx="80" cy="80" r="64" fill="none" stroke="#A85636" stroke-width="12"
+              stroke-linecap="round" stroke-dasharray="0 402.1"
+              transform="rotate(-90 80 80)" style="transition:stroke-dasharray .9s cubic-bezier(.16,1,.3,1)"/>
+            <text x="80" y="68" font-family="Georgia,serif" font-size="10" fill="rgba(255,255,255,.28)" text-anchor="middle" font-style="italic">desde</text>
+            <text id="pgnum" x="80" y="92" font-family="Georgia,serif" font-size="20" font-weight="700" fill="#A85636" text-anchor="middle">$0</text>
+            <text id="pgusd" x="80" y="109" font-family="system-ui,sans-serif" font-size="10" fill="rgba(255,255,255,.25)" text-anchor="middle">≈ USD 0</text>
+          </svg>
+          <p style="font-size:10px;color:rgba(255,255,255,.2);text-align:center;line-height:1.5;max-width:130px">Estimado orientativo. Varía según alcance.</p>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div style="display:flex;gap:10px;justify-content:center;margin-top:28px;flex-wrap:wrap">
+        <a href="#sistema" class="btn btn-p" style="font-size:12px">Ver los 8 módulos →</a>
+        <a href="#contacto" class="btn btn-g" style="font-size:12px">Consulta gratis</a>
+      </div>
+
     </div>
   </div>
 </section>
@@ -879,7 +938,73 @@ function wizShowSuccess() {
 </script>
 
 <script>
-/* ── RUEDA COTIZADOR ── */
+/* ── PERFILES ── */
+var PDATA=[
+  {mods:[
+    {n:1,name:'Concepción & Diagnóstico',desc:'Validación de idea, público y ubicación',price:550000},
+    {n:3,name:'Oferta & Costeo',desc:'Carta, fichas técnicas y food cost',price:700000},
+    {n:6,name:'Legal & Finanzas',desc:'Factibilidad económica y equilibrio',price:800000}
+  ]},
+  {mods:[
+    {n:1,name:'Concepción & Diagnóstico',desc:'Concepto y validación antes de la obra',price:550000},
+    {n:2,name:'Marketing & Marca',desc:'Identidad y plan de lanzamiento',price:600000},
+    {n:3,name:'Oferta & Costeo',desc:'Carta, recetas y márgenes',price:700000},
+    {n:4,name:'Diseño Operativo',desc:'Layout, flujos y equipamiento',price:550000},
+    {n:5,name:'RR.HH. & Operación',desc:'Equipo, roles y protocolos',price:480000},
+    {n:8,name:'Diseño & Arquitectura',desc:'Proyecto y dirección de obra',price:1200000}
+  ]},
+  {mods:[
+    {n:3,name:'Oferta & Costeo',desc:'Ingeniería de menú y food cost real',price:700000},
+    {n:4,name:'Diseño Operativo',desc:'Optimización de tiempos y flujos',price:550000},
+    {n:6,name:'Legal & Finanzas',desc:'P&L y modelo de recupero',price:800000},
+    {n:7,name:'Tecnología & Datos',desc:'Dashboards y métricas de gestión',price:500000}
+  ]}
+];
+var PMAX=3200000,PCIRC=402.1,PTC=1400,PCT=-1,PRAF=null;
+
+function pfmtK(n){return n>=1000000?'$'+(Math.round(n/100000)/10)+'M':'$'+Math.round(n/1000)+'k';}
+
+function pAnimCounter(to,cb){
+  if(PRAF)clearInterval(PRAF);
+  var t0=performance.now();
+  PRAF=setInterval(function(){
+    var t=Math.min((performance.now()-t0)/900,1),e=1-Math.pow(1-t,3);
+    cb(Math.round(to*e));
+    if(t>=1)clearInterval(PRAF);
+  },16);
+}
+
+function setPerfil(i){
+  if(i===PCT)return;
+  PCT=i;
+  document.querySelectorAll('.ptab').forEach(function(t,j){t.classList.toggle('active',j===i);});
+  var p=PDATA[i];
+  var total=p.mods.reduce(function(s,m){return s+m.price;},0);
+  var pct=total/PMAX;
+  document.getElementById('pgauge').setAttribute('stroke-dasharray',(pct*PCIRC).toFixed(1)+' '+((1-pct)*PCIRC).toFixed(1));
+  pAnimCounter(total,function(v){
+    document.getElementById('pgnum').textContent=pfmtK(v);
+    document.getElementById('pgusd').textContent='≈ USD '+Math.round(v/PTC).toLocaleString('es-AR');
+  });
+  var el=document.getElementById('pmods');
+  el.innerHTML=p.mods.map(function(m,j){
+    return'<div class="pmod-card" id="pm'+j+'" style="transition-delay:'+j*65+'ms">'+
+      '<div class="pmod-num">'+m.n+'</div>'+
+      '<div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:2px">'+m.name+'</div>'+
+      '<div style="font-size:11.5px;color:rgba(255,255,255,.4)">'+m.desc+'</div></div>'+
+      '<div class="pmod-price">$'+Math.round(m.price/1000)+'k</div></div>';
+  }).join('');
+  requestAnimationFrame(function(){
+    p.mods.forEach(function(_,j){
+      setTimeout(function(){var c=document.getElementById('pm'+j);if(c)c.classList.add('pin');},j*70);
+    });
+  });
+}
+
+setPerfil(0);
+</script>
+
+<script>
 document.addEventListener('DOMContentLoaded', function() {
 
 /* Precios por ítem (ARS) */
