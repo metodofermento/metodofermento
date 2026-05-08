@@ -25,7 +25,11 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-body{font-family:var(--sans);color:var(--ink);background:var(--white);overflow-x:hidden;line-height:1.6}
+body{font-family:var(--sans);color:var(--ink);background:#12121f;overflow-x:hidden;line-height:1.6}
+/* Orbs globales fijos detrás de toda la página */
+body::before{content:'';position:fixed;top:-20%;right:-15%;width:70vw;height:70vw;border-radius:50%;background:radial-gradient(circle,rgba(168,86,54,.18),transparent 65%);filter:blur(90px);pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;bottom:-20%;left:-10%;width:55vw;height:55vw;border-radius:50%;background:radial-gradient(circle,rgba(168,86,54,.11),transparent 60%);filter:blur(90px);pointer-events:none;z-index:0}
+section,nav,footer{position:relative;z-index:1}
 a{color:inherit;text-decoration:none}
 button{cursor:pointer;border:none;background:none;font:inherit}
 p{color:var(--muted);line-height:1.75;font-weight:300}
@@ -118,10 +122,10 @@ nav.scrolled .nav-burger span{background:var(--ink)}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ── MÓDULOS ── */
-#sistema{background:var(--sand);padding:96px 0}
+#sistema{background:transparent;padding:96px 0}
 .sistema-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:56px;flex-wrap:wrap}
-.sistema-head-left h2{font-family:var(--serif);font-size:clamp(2rem,3.8vw,3rem);font-weight:700;font-optical-sizing:auto;color:var(--navy);letter-spacing:-.02em;margin-top:8px}
-.sistema-head-left p{font-size:15px;max-width:48ch;margin-top:10px}
+.sistema-head-left h2{font-family:var(--serif);font-size:clamp(2.4rem,4.5vw,3.6rem);font-weight:900;font-optical-sizing:auto;color:#fff;letter-spacing:-.03em;margin-top:8px;line-height:1.05}
+.sistema-head-left p{font-size:15px;max-width:48ch;margin-top:10px;color:rgba(255,255,255,.45)}
 
 /* grid interactivo */
 .mods-list{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line);border:1px solid var(--line);border-radius:24px;overflow:hidden}
@@ -358,9 +362,9 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
 .pmod-price{font-size:12px;font-weight:700;color:var(--terra);white-space:nowrap;flex-shrink:0}
 @media(max-width:700px){
   .pcontenido{grid-template-columns:1fr!important}
-  #ptabs{flex-direction:column;border-radius:16px}
-  .ptab{border-radius:12px!important;padding:11px}
-  #ptabs .ptab.active{border-radius:12px}
+  #ptabs{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;flex-wrap:nowrap;border-radius:14px}
+  #ptabs::-webkit-scrollbar{display:none}
+  .ptab{flex-shrink:0;min-width:120px;font-size:11px;padding:9px 14px}
 }
 </style>
 </head>
@@ -461,9 +465,9 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
 </section>
 
 <!-- ═══ PERFILES ═══ -->
-<section id="perfiles" style="background:var(--sand);padding:80px 0 0">
+<section id="perfiles" style="background:transparent;padding:80px 0 0">
   <div class="wrap">
-    <div class="scale-in" style="background:#12121f;border-radius:24px;overflow:hidden;padding:40px 32px">
+    <div class="scale-in" style="background:rgba(18,18,31,.75);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.06);border-radius:24px;overflow:hidden;padding:40px 32px">
 
       <!-- Header -->
       <div style="text-align:center;margin-bottom:32px">
@@ -518,13 +522,13 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
     <div class="sistema-head">
       <div class="sistema-head-left slide-l">
         <span class="eyebrow">El sistema</span>
-        <h2>8 módulos.<br>Tu proyecto, a medida.</h2>
+        <h2><em style="font-style:normal;color:var(--terra)">8</em> módulos.<br>Tu proyecto, a medida.</h2>
         <p>Seleccioná un módulo, tildá los temas y armá tu presupuesto estimativo en tiempo real.</p>
       </div>
     </div>
 
     <!-- RUEDA + PANEL: un solo bloque unificado -->
-    <div class="scale-in rueda-grid" style="background:#12121f;border-radius:24px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;max-width:1040px;margin:0 auto">
+    <div class="scale-in rueda-grid" style="background:rgba(18,18,31,.75);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.06);border-radius:24px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;max-width:1040px;margin:0 auto">
 
       <!-- RUEDA (izquierda) -->
       <div style="padding:1.75rem 1rem 1.25rem;display:flex;flex-direction:column;align-items:center;border-right:1px solid rgba(255,255,255,.06)">
@@ -561,7 +565,7 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
           </g>
 
           <!-- Centro -->
-          <circle cx="220" cy="190" r="58" fill="#12121f" stroke="rgba(168,86,54,.4)" stroke-width="2"/>
+          <circle cx="220" cy="190" r="58" fill="#0e0e1a" stroke="rgba(168,86,54,.4)" stroke-width="2"/>
           <circle cx="220" cy="190" r="46" fill="none" stroke="rgba(168,86,54,.08)" stroke-width="10"/>
 
           <g id="rci">
@@ -1234,6 +1238,24 @@ function Rpick(i){
 }
 
 Rshow('RD0');
+
+/* Spin de entrada al hacer scroll */
+var Rspun=false;
+var RspinIO=new IntersectionObserver(function(entries){
+  if(entries[0].isIntersecting&&!Rspun){
+    Rspun=true;RspinIO.disconnect();
+    var dur=1400,t0=performance.now(),to=135;
+    function spinStep(now){
+      var t=Math.min((now-t0)/dur,1),e=1-Math.pow(1-t,4);
+      Rrot=to*e;RupdPos();
+      if(t<1)requestAnimationFrame(spinStep);else Rrot=to;
+    }
+    requestAnimationFrame(spinStep);
+  }
+},{threshold:0.25});
+var rsec=document.getElementById('sistema');
+if(rsec)RspinIO.observe(rsec);
+
 }); // end DOMContentLoaded
 </script>
 </body>
