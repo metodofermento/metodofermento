@@ -515,6 +515,63 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
   </div>
 </section>
 
+<!-- ═══ ALCANCE ═══ -->
+<section id="alcance" style="background:transparent;padding:40px 0">
+  <div class="wrap">
+    <div class="scale-in" style="background:rgba(18,18,31,.75);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.06);border-radius:24px;overflow:hidden;padding:32px 28px;position:relative">
+      <div style="position:absolute;top:-40%;right:-10%;width:55vw;height:55vw;border-radius:50%;background:radial-gradient(circle,rgba(168,86,54,.1),transparent 65%);filter:blur(70px);pointer-events:none"></div>
+      <div style="position:relative;z-index:1">
+
+        <!-- Top -->
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px;flex-wrap:wrap">
+          <div style="display:inline-flex;align-items:center;gap:7px;padding:5px 13px;background:rgba(168,86,54,.12);border:1px solid rgba(168,86,54,.25);border-radius:999px;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#c4683e">
+            <div style="width:5px;height:5px;border-radius:50%;background:#A85636;animation:pulse 2.5s ease-in-out infinite"></div>
+            Alcance del servicio
+          </div>
+          <span style="font-family:var(--serif);font-size:.95rem;color:rgba(255,255,255,.45);font-style:italic;text-align:right">El marco que define tu proyecto.<br><strong style="font-style:normal;color:#fff">La ejecución, el paso siguiente.</strong></span>
+        </div>
+
+        <!-- Letters -->
+        <div id="alcLetters" style="display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid rgba(255,255,255,.07)">
+          <div class="alc-btn alc-active" data-i="0" onclick="alcGoTo(0,true)" style="display:flex;flex-direction:column;align-items:center;padding:16px 8px 0;cursor:pointer;gap:6px;opacity:1">
+            <div class="alc-char" style="font-family:var(--serif);font-size:clamp(2.4rem,5vw,4rem);font-weight:700;color:#A85636;line-height:1;transition:color .3s">E</div>
+            <div style="font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(168,86,54,.8);margin-bottom:12px;text-align:center;line-height:1.3">Estrategia</div>
+          </div>
+          <div class="alc-btn" data-i="1" onclick="alcGoTo(1,true)" style="display:flex;flex-direction:column;align-items:center;padding:16px 8px 0;cursor:pointer;gap:6px;opacity:.35">
+            <div class="alc-char" style="font-family:var(--serif);font-size:clamp(2.4rem,5vw,4rem);font-weight:700;color:#fff;line-height:1;transition:color .3s">A</div>
+            <div style="font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:12px;text-align:center;line-height:1.3">Anteproyecto</div>
+          </div>
+          <div class="alc-btn" data-i="2" onclick="alcGoTo(2,true)" style="display:flex;flex-direction:column;align-items:center;padding:16px 8px 0;cursor:pointer;gap:6px;opacity:.35">
+            <div class="alc-char" style="font-family:var(--serif);font-size:clamp(2.4rem,5vw,4rem);font-weight:700;color:#fff;line-height:1;transition:color .3s">O</div>
+            <div style="font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:12px;text-align:center;line-height:1.3">Oferta & Costeo</div>
+          </div>
+          <div class="alc-btn" data-i="3" onclick="alcGoTo(3,true)" style="display:flex;flex-direction:column;align-items:center;padding:16px 8px 0;cursor:pointer;gap:6px;opacity:.35">
+            <div class="alc-char" style="font-family:var(--serif);font-size:clamp(2.4rem,5vw,4rem);font-weight:700;color:#fff;line-height:1;transition:color .3s">R</div>
+            <div style="font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:12px;text-align:center;line-height:1.3">Ruta Operativa</div>
+          </div>
+        </div>
+
+        <!-- Progress bar -->
+        <div style="height:2px;background:rgba(255,255,255,.06);position:relative">
+          <div id="alcBar" style="position:absolute;top:0;left:0;height:100%;background:#A85636;width:0%;border-radius:999px"></div>
+        </div>
+
+        <!-- Panel -->
+        <div style="padding:24px 4px 8px;min-height:110px">
+          <div id="alcPanel" style="opacity:0;transform:translateY(8px);transition:opacity .35s,transform .35s"></div>
+        </div>
+
+        <!-- Nota -->
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;background:rgba(168,86,54,.06);border:1px solid rgba(168,86,54,.14);border-radius:12px">
+          <span style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#A85636;white-space:nowrap;flex-shrink:0;padding-top:1px">Nota</span>
+          <span style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.55">Todo lo que entregamos es <strong style="color:rgba(255,255,255,.7)">conceptual, estratégico y ejecutable</strong> — el punto de partida desde donde tu proyecto toma forma real. La construcción, la cocina en marcha y el equipo contratado son la etapa siguiente.</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ MÓDULOS + COTIZADOR RUEDA ═══ -->
 <section id="sistema">
   <div class="wrap">
@@ -1005,6 +1062,54 @@ function setPerfil(i){
 }
 
 setPerfil(0);
+</script>
+
+<script>
+/* ── ALCANCE SLIDER ── */
+var ALC_DATA=[
+  {title:'Estrategia & Concepto',desc:'El diagnóstico que define si tu proyecto tiene sentido antes de invertir un peso.',detail:'Viabilidad con datos reales · Modelo económico · Punto de equilibrio · Plan de lanzamiento'},
+  {title:'Anteproyecto Arquitectónico',desc:'La definición del espacio: cómo se ve, cómo circula, cómo opera. Base para el proyecto ejecutivo.',detail:'Planos conceptuales · Renders · Layout operativo · Flujos de cocina y salón'},
+  {title:'Oferta & Costeo',desc:'La carta existe como documento técnico antes de encender el fuego.',detail:'Fichas técnicas · Recetas estándar · Food cost por plato · Precios con margen objetivo'},
+  {title:'Ruta Operativa',desc:'El manual que hace que el negocio funcione sin que estés presente en cada decisión.',detail:'Protocolos y roles · Capacitación inicial · Cronograma por etapas · Hoja de ruta ejecutable'}
+];
+var ALC_DUR=4000,alcCur=0,alcElapsed=0,alcRaf=null,alcT0=null;
+
+function alcGoTo(i){
+  alcCur=i;alcElapsed=0;alcT0=null;
+  document.querySelectorAll('.alc-btn').forEach(function(b,j){
+    var on=j===i;
+    b.style.opacity=on?'1':'0.35';
+    var ch=b.querySelector('.alc-char');
+    if(ch)ch.style.color=on?'#A85636':'#fff';
+    var lb=b.querySelectorAll('div')[1];
+    if(lb)lb.style.color=on?'rgba(168,86,54,.8)':'rgba(255,255,255,.4)';
+  });
+  var p=document.getElementById('alcPanel');
+  if(!p)return;
+  p.style.opacity='0';p.style.transform='translateY(8px)';
+  setTimeout(function(){
+    var d=ALC_DATA[i];
+    p.innerHTML='<div style="font-family:var(--serif);font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:8px">'+d.title+'</div>'+
+      '<div style="font-size:13.5px;color:rgba(255,255,255,.5);line-height:1.65;max-width:58ch;margin-bottom:6px">'+d.desc+'</div>'+
+      '<div style="font-size:12px;color:rgba(255,255,255,.3);line-height:1.6">'+d.detail+'</div>';
+    p.style.transition='opacity .35s,transform .35s';
+    p.style.opacity='1';p.style.transform='translateY(0)';
+  },180);
+}
+
+function alcTick(ts){
+  if(!alcT0)alcT0=ts;
+  alcElapsed+=(ts-alcT0);
+  alcT0=ts;
+  var pct=Math.min(alcElapsed/ALC_DUR,1);
+  var bar=document.getElementById('alcBar');
+  if(bar)bar.style.width=((alcCur/4+pct/4)*100)+'%';
+  if(pct>=1)alcGoTo((alcCur+1)%4);
+  alcRaf=requestAnimationFrame(alcTick);
+}
+
+alcGoTo(0);
+requestAnimationFrame(alcTick);
 </script>
 
 <script>
