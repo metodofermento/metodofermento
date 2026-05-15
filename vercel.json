@@ -1,10 +1,14 @@
 {
   "version": 2,
   "rewrites": [
-    { "source": "/api/leads", "destination": "/api/leads.js" },
-    { "source": "/api/admin-leads", "destination": "/api/admin-leads.js" },
-    { "source": "/api/precios", "destination": "/api/precios.js" },
-    { "source": "/admin", "destination": "/public/admin.html" },
-    { "source": "/", "destination": "/public/index.html" }
+    { "source": "/api/leads",               "destination": "/api/leads.js" },
+    { "source": "/api/admin-leads",         "destination": "/api/admin-leads.js" },
+    { "source": "/api/precios",             "destination": "/api/precios.js" },
+    { "source": "/api/crear-preferencia",   "destination": "/api/crear-preferencia.js" },
+    { "source": "/api/webhook-mp",          "destination": "/api/webhook-mp.js" },
+    { "source": "/admin",                   "destination": "/public/admin.html" },
+    { "source": "/",                        "destination": "/public/index.html" },
+    { "source": "/guia",                    "destination": "/public/guia.html" },
+    { "source": "/guia/gracias",            "destination": "/public/guia-gracias.html" }
   ]
 }

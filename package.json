@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@supabase/supabase-js": "^2.45.0",
+    "mercadopago": "^2.0.15",
     "nodemailer": "^6.9.14",
     "ws": "^8.18.0"
   },
