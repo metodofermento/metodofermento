@@ -8,7 +8,6 @@ const mp = new MercadoPagoConfig({
   accessToken: process.env.MP_ACCESS_TOKEN,
 });
 
-// Mismo patrón que leads.js: SUPABASE_URL + SUPABASE_SERVICE_KEY
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_KEY,
@@ -18,26 +17,23 @@ const supabase = createClient(
 const transporter = nodemailer.createTransport({
   host:   process.env.SMTP_HOST || 'smtp.gmail.com',
   port:   Number(process.env.SMTP_PORT || 465),
-  secure: true, // igual que leads.js
+  secure: true,
   auth: {
     user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASS,
   },
 });
 
-// ─── Extraer email del pago (3 fuentes con fallback) ─────────────────────────
+// ── Extraer email del pago (3 fuentes con fallback) ──────────────────────────
 function extractEmail(payment) {
-  // 1. Metadata enviada en la preferencia
   if (payment.metadata?.buyer_email) return payment.metadata.buyer_email;
 
-  // 2. Email del pagador (filtramos emails de sandbox de MP)
   if (payment.payer?.email &&
       !payment.payer.email.includes('@mailinator') &&
       !payment.payer.email.includes('test_user')) {
     return payment.payer.email;
   }
 
-  // 3. external_reference: "guia-EMAIL_ENCODED-TIMESTAMP"
   if (payment.external_reference) {
     const ref = payment.external_reference;
     const firstDash = ref.indexOf('-');
@@ -53,7 +49,7 @@ function extractEmail(payment) {
   return null;
 }
 
-// ─── Idempotencia: verificar si ya procesamos este pago ──────────────────────
+// ── Idempotencia ─────────────────────────────────────────────────────────────
 async function pagoYaProcesado(paymentId) {
   const { data, error } = await supabase
     .from('compras')
@@ -63,14 +59,14 @@ async function pagoYaProcesado(paymentId) {
 
   if (error) {
     console.error('[webhook-mp] Error verificando idempotencia:', error);
-    return false; // ante la duda, procesamos
+    return false;
   }
   return data !== null;
 }
 
-// ─── Generar URL firmada de Supabase Storage (30 días) ───────────────────────
+// ── Generar URL firmada de Supabase Storage (30 días) ────────────────────────
 async function getDownloadUrl(filePath) {
-  const EXPIRES = 60 * 60 * 24 * 30; // 30 días en segundos
+  const EXPIRES = 60 * 60 * 24 * 30;
   const bucket = process.env.SUPABASE_STORAGE_BUCKET || 'productos';
 
   const { data, error } = await supabase.storage
@@ -79,32 +75,31 @@ async function getDownloadUrl(filePath) {
 
   if (error) {
     console.error('[webhook-mp] Error generando URL firmada:', error);
-    throw new Error('No se pudo generar el link de descarga');
+    throw new Error('No se pudo generar el link de descarga: ' + filePath);
   }
 
   return data.signedUrl;
 }
 
-// ─── Registrar compra en Supabase DB ─────────────────────────────────────────
+// ── Registrar compra en Supabase DB ─────────────────────────────────────────
 async function registrarCompra({ email, paymentId, externalRef, amount }) {
   const { error } = await supabase.from('compras').insert([{
     email,
     payment_id:         String(paymentId),
     external_reference: externalRef,
     monto:              amount,
-    producto:           'guia-fermento-v1',
+    producto:           'guia-costeo-v1',
     estado:             'aprobado',
     created_at:         new Date().toISOString(),
   }]);
 
   if (error) {
-    // No bloqueamos el flujo; el email tiene prioridad
     console.error('[webhook-mp] Error registrando en DB:', error);
   }
 }
 
-// ─── Enviar email con link de descarga ───────────────────────────────────────
-async function enviarEmailDescarga({ email, downloadUrl }) {
+// ── Enviar email con dos links de descarga ───────────────────────────────────
+async function enviarEmailDescarga({ email, downloadUrlPdf, downloadUrlXlsx }) {
   const html = `
 <!DOCTYPE html>
 <html lang="es">
@@ -122,36 +117,40 @@ async function enviarEmailDescarga({ email, downloadUrl }) {
       <tr><td style="background:#1A1A2E;border-radius:16px 16px 0 0;padding:28px 32px">
         <p style="margin:0 0 8px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5)">Método Fermento</p>
         <h1 style="margin:0;font-size:26px;font-weight:400;color:#f5f0e8;line-height:1.3;font-family:Georgia,serif">
-          Tu guía ya está lista 🌾
+          Tu material ya está listo 🧮
         </h1>
       </td></tr>
 
       <!-- Body -->
       <tr><td style="background:#fff;border-left:1px solid #e2ddd6;border-right:1px solid #e2ddd6;padding:32px">
         <p style="margin:0 0 16px;font-size:15px;color:#1c1917;line-height:1.7">
-          ¡Gracias por tu compra! Tu pago fue aprobado y la guía está lista para descargar.
+          ¡Gracias por tu compra! Tu pago fue aprobado. Encontrás los dos archivos abajo.
         </p>
         <p style="margin:0 0 28px;font-size:14px;color:#6b6560;line-height:1.7">
-          Hacé clic en el botón de abajo. El link es personal y estará disponible durante 30 días.
+          Los links son personales y están disponibles durante 30 días.
         </p>
 
-        <!-- CTA -->
-        <table cellpadding="0" cellspacing="0" style="margin:0 auto 28px">
+        <!-- CTA PDF -->
+        <table cellpadding="0" cellspacing="0" style="margin:0 auto 12px">
           <tr><td style="background:#A85636;border-radius:8px">
-            <a href="${downloadUrl}"
-               style="display:inline-block;padding:16px 40px;font-family:Georgia,serif;font-size:16px;color:#fff;text-decoration:none;letter-spacing:.02em">
-              Descargar material – Guía de Costeo & Food Cost →
+            <a href="${downloadUrlPdf}"
+               style="display:inline-block;padding:15px 36px;font-family:Georgia,serif;font-size:15px;color:#fff;text-decoration:none">
+              Descargar Guía PDF →
             </a>
           </td></tr>
         </table>
+        <p style="margin:0 0 24px;font-size:11px;color:#A85636;text-align:center;word-break:break-all">${downloadUrlPdf}</p>
 
-        <!-- Link de respaldo -->
-        <p style="margin:0 0 6px;font-size:12px;color:#9c9490;text-align:center">
-          Si el botón no funciona, copiá este link:
-        </p>
-        <p style="margin:0 0 28px;font-size:11px;color:#A85636;text-align:center;word-break:break-all">
-          ${downloadUrl}
-        </p>
+        <!-- CTA Planilla -->
+        <table cellpadding="0" cellspacing="0" style="margin:0 auto 12px">
+          <tr><td style="background:#1A1A2E;border-radius:8px">
+            <a href="${downloadUrlXlsx}"
+               style="display:inline-block;padding:15px 36px;font-family:Georgia,serif;font-size:15px;color:#fff;text-decoration:none">
+              Descargar Planilla Excel →
+            </a>
+          </td></tr>
+        </table>
+        <p style="margin:0 0 28px;font-size:11px;color:#A85636;text-align:center;word-break:break-all">${downloadUrlXlsx}</p>
 
         <hr style="border:none;border-top:1px solid #f0ece6;margin:0 0 20px">
 
@@ -178,19 +177,17 @@ async function enviarEmailDescarga({ email, downloadUrl }) {
     from:    `"Método Fermento" <${process.env.SMTP_USER}>`,
     to:      email,
     replyTo: process.env.ADMIN_EMAIL,
-    subject: '🌾 🧮 Tu Guía de Costeo & Food Cost – Links de descarga',
+    subject: '🧮 Tu Guía de Costeo & Food Cost – Links de descarga',
     html,
-    text: `Tu compra fue aprobada. Descargá tu guía en: ${downloadUrl}`,
+    text: `Tu compra fue aprobada.\n\nGuía PDF: ${downloadUrlPdf}\n\nPlanilla Excel: ${downloadUrlXlsx}`,
   });
 
   console.log(`[webhook-mp] Email enviado a ${email}`);
 }
 
-// ─── Handler principal ────────────────────────────────────────────────────────
+// ── Handler principal ────────────────────────────────────────────────────────
 export default async function handler(req, res) {
-  // MP hace GET para verificar que el endpoint existe
   if (req.method === 'GET') return res.status(200).json({ ok: true });
-
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
@@ -199,7 +196,6 @@ export default async function handler(req, res) {
 
     const { type, data } = body;
 
-    // Solo procesamos eventos de tipo "payment"
     if (type !== 'payment') {
       return res.status(200).json({ received: true, skipped: type });
     }
@@ -209,14 +205,14 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Sin payment id' });
     }
 
-    // ── Idempotencia ──
+    // Idempotencia
     const duplicado = await pagoYaProcesado(paymentId);
     if (duplicado) {
       console.log(`[webhook-mp] Pago ${paymentId} ya procesado, ignorando.`);
       return res.status(200).json({ received: true, duplicate: true });
     }
 
-    // ── Verificar el pago contra la API de MP ──
+    // Verificar pago contra API de MP
     const paymentClient = new Payment(mp);
     const payment = await paymentClient.get({ id: paymentId });
 
@@ -226,7 +222,7 @@ export default async function handler(req, res) {
       return res.status(200).json({ received: true, status: payment.status });
     }
 
-    // ── Extraer email ──
+    // Extraer email
     const email = extractEmail(payment);
     if (!email) {
       console.error('[webhook-mp] Email no encontrado:', {
@@ -237,10 +233,11 @@ export default async function handler(req, res) {
       return res.status(422).json({ error: 'Email no encontrado' });
     }
 
-    // ── URL firmada desde Supabase Storage ──
-    const downloadUrl = await getDownloadUrl('guias/guia-fermento-v1.pdf');
+    // Generar URLs firmadas
+    const downloadUrlPdf  = await getDownloadUrl('guias/guia-foodcost-mf.pdf');
+    const downloadUrlXlsx = await getDownloadUrl('guias/planillas-mf.xlsx');
 
-    // ── Registrar en DB (best effort) ──
+    // Registrar en DB (best effort)
     await registrarCompra({
       email,
       paymentId,
@@ -248,14 +245,13 @@ export default async function handler(req, res) {
       amount:      payment.transaction_amount,
     });
 
-    // ── Enviar email ──
-    await enviarEmailDescarga({ email, downloadUrl });
+    // Enviar email
+    await enviarEmailDescarga({ email, downloadUrlPdf, downloadUrlXlsx });
 
     return res.status(200).json({ success: true });
 
   } catch (error) {
     console.error('[webhook-mp] Error crítico:', error.message);
-    // Retornamos 200 para que MP no reintente indefinidamente
     return res.status(200).json({ received: true, error: error.message });
   }
 }
