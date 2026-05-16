@@ -45,7 +45,7 @@ export default async function handler(req, res) {
           product_id: 'guia-fermento-v1',
         },
         back_urls: {
-          success: `${baseUrl}/guia/gracias.html`,
+          success: `${baseUrl}/guia-gracias.html`,
           failure: `${baseUrl}/guia.html?pago=error`,
           pending: `${baseUrl}/guia/pendiente`,
         },
