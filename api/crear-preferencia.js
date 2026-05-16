@@ -36,7 +36,7 @@ export default async function handler(req, res) {
             description: 'Guía de Costeo & Food Cost para negocios gastronómicos. PDF + planilla profesional.',
             quantity: 1,
             currency_id: 'ARS',
-            unit_price: 27550,
+            unit_price: 1,
           },
         ],
         payer: { email },
