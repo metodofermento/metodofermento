@@ -157,13 +157,13 @@
     .band-inc-dot { width: 5px; height: 5px; background: var(--terra); border-radius: 50%; flex-shrink: 0; }
     .btn-band {
       display: inline-flex; align-items: center; gap: 7px;
-      background: transparent; color: var(--terra);
+      background: #009ee3; color: #fff;
       padding: 11px 24px; border-radius: 8px;
       font-family: var(--sans); font-size: 13px; font-weight: 500;
-      border: 1.5px solid var(--terra); cursor: pointer; flex-shrink: 0;
-      transition: background .2s, color .2s, transform .15s;
+      border: none; cursor: pointer; flex-shrink: 0;
+      transition: background .2s, transform .15s;
     }
-    .btn-band:hover { background: var(--terra); color: #fff; transform: translateY(-1px); }
+    .btn-band:hover { background: #0088cc; transform: translateY(-1px); }
 
     /* ── BODY ── */
     .body-wrap { background: var(--sand); }
@@ -349,6 +349,8 @@
       .footer-inner { flex-direction: column; gap: 14px; }
     }
     @media (max-width: 480px) {
+      .nav-back { display: none; }
+      .btn-nav { font-size: 11px; padding: 8px 14px; }
       .hero { padding: 88px 20px 0; }
       .incluye, .aprende, .faq { padding: 56px 20px; }
       .para-quien { padding: 56px 20px; }
@@ -416,7 +418,7 @@
       </div>
       <button class="btn-band" onclick="scrollToCompra()">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-        Comprar ahora
+        Ver precio →
       </button>
     </div>
   </div>
