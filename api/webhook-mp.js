@@ -1,6 +1,7 @@
 // api/webhook-mp.js
 import { MercadoPagoConfig, Payment } from 'mercadopago';
 import { createClient } from '@supabase/supabase-js';
+import ws from 'ws';
 import nodemailer from 'nodemailer';
 
 const mp = new MercadoPagoConfig({
@@ -10,7 +11,8 @@ const mp = new MercadoPagoConfig({
 // Mismo patrón que leads.js: SUPABASE_URL + SUPABASE_SERVICE_KEY
 const supabase = createClient(
   process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_KEY
+  process.env.SUPABASE_SERVICE_KEY,
+  { realtime: { transport: ws } }
 );
 
 const transporter = nodemailer.createTransport({
