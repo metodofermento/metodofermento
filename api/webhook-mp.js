@@ -139,7 +139,7 @@ async function enviarEmailDescarga({ email, downloadUrlPdf, downloadUrlXlsx }) {
             </a>
           </td></tr>
         </table>
-        <p style="margin:0 0 24px;font-size:11px;color:#A85636;text-align:center;word-break:break-all">${downloadUrlPdf}</p>
+        
 
         <!-- CTA Planilla -->
         <table cellpadding="0" cellspacing="0" style="margin:0 auto 12px">
@@ -150,8 +150,7 @@ async function enviarEmailDescarga({ email, downloadUrlPdf, downloadUrlXlsx }) {
             </a>
           </td></tr>
         </table>
-        <p style="margin:0 0 28px;font-size:11px;color:#A85636;text-align:center;word-break:break-all">${downloadUrlXlsx}</p>
-
+        
         <hr style="border:none;border-top:1px solid #f0ece6;margin:0 0 20px">
 
         <p style="margin:0;font-size:13px;color:#9c9490;line-height:1.6">
