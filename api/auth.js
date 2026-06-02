@@ -6,12 +6,11 @@
 
 import { createClient } from '@supabase/supabase-js';
 import crypto from 'crypto';
-import ws from 'ws';
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_KEY,
-  { realtime: { transport: ws } }
+{}
 );
 
 // Simple pero seguro: PBKDF2 con 100k iteraciones (no necesita bcrypt extra dep)
