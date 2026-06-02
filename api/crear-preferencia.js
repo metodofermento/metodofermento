@@ -57,11 +57,12 @@ export default async function handler(req, res) {
     if (!curso)
       return res.status(400).json({ error: 'Producto no reconocido' });
 
-    const baseUrl  = process.env.BASE_URL || 'https://www.metodofermento.com.ar';
+    const baseUrl     = process.env.BASE_URL || 'https://www.metodofermento.com.ar';
+    const webhookBase = process.env.WEBHOOK_BASE_URL || 'https://metodofermento.vercel.app';
     const emailEnc = encodeURIComponent(email);
     const nomEnc   = encodeURIComponent(nombre.trim());
     const extRef   = `${curso.slug}-${emailEnc}-${nomEnc}-${Date.now()}`;
-    console.log('[crear-preferencia] notification_url:', `${baseUrl}/api/webhook-mp`);
+    console.log('[crear-preferencia] notification_url:', `${webhookBase}/api/webhook-mp`);
 
     const preference = new Preference(client);
     const result = await preference.create({
@@ -88,7 +89,7 @@ export default async function handler(req, res) {
           pending: `${baseUrl}/?pago=pendiente`,
         },
         auto_return:      'approved',
-        notification_url: `${baseUrl}/api/webhook-mp`,
+        notification_url: `${webhookBase}/api/webhook-mp`,
         external_reference: extRef,
         expires: true,
         expiration_date_to: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
