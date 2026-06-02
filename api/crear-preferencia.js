@@ -57,10 +57,11 @@ export default async function handler(req, res) {
     if (!curso)
       return res.status(400).json({ error: 'Producto no reconocido' });
 
-    const baseUrl  = process.env.BASE_URL || 'https://metodofermento.com.ar';
+    const baseUrl  = process.env.BASE_URL || 'https://www.metodofermento.com.ar';
     const emailEnc = encodeURIComponent(email);
     const nomEnc   = encodeURIComponent(nombre.trim());
     const extRef   = `${curso.slug}-${emailEnc}-${nomEnc}-${Date.now()}`;
+    console.log('[crear-preferencia] notification_url:', `${baseUrl}/api/webhook-mp`);
 
     const preference = new Preference(client);
     const result = await preference.create({

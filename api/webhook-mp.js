@@ -239,6 +239,7 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
+    console.log('[webhook-mp] Body recibido:', JSON.stringify(req.body));
     const { type, data } = req.body;
     if (type !== 'payment') return res.status(200).json({ received: true, skipped: type });
 
