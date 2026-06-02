@@ -25,6 +25,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+html,body{overflow-x:hidden}
 body{font-family:var(--sans);color:var(--ink);background:#12121f;overflow-x:hidden;line-height:1.6}
 /* Orbs globales fijos detrás de toda la página */
 body::before{content:'';position:fixed;top:-20%;right:-15%;width:70vw;height:70vw;border-radius:50%;background:radial-gradient(circle,rgba(168,86,54,.18),transparent 65%);filter:blur(90px);pointer-events:none;z-index:0}
@@ -326,6 +327,8 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
   .hero-badge{font-size:10px;margin-bottom:20px}
   .hero-sub{font-size:15px;margin-bottom:28px}
   .hero-actions{flex-direction:column;align-items:stretch}
+  .btn-full{display:none}
+  .btn-short{display:inline !important}
   .hero-actions .btn{width:100%}
   .hero-bottom{grid-template-columns:1fr}
   .hero-stats{grid-template-columns:repeat(3,1fr)}
@@ -422,7 +425,7 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
         <div class="hero-actions">
           <a href="#sistema" class="btn btn-p">Ver los 8 módulos</a>
           <a href="#contacto" class="btn btn-g">Consulta gratis</a>
-          <a href="/guia.html" class="btn btn-g" style="border-color:rgba(168,86,54,.5);color:var(--terra)">Bajate la guía · solo $9.990</a>
+          <a href="/guia.html" class="btn btn-g" style="border-color:rgba(168,86,54,.5);color:var(--terra)"><span class="btn-full">Bajate la guía · solo $9.990</span><span class="btn-short" style="display:none">Guía · $9.990</span></a>
         </div>
         <p class="hero-note">Primera consulta sin costo ni compromiso</p>
       </div>

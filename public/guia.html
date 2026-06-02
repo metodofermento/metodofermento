@@ -73,6 +73,7 @@
       flex-shrink: 0;
     }
     .btn-nav:hover { background: var(--terra-d); transform: translateY(-1px); }
+    .btn-nav-short { display: none; }
 
     /* ── HERO ── */
     .hero {
@@ -350,7 +351,9 @@
     }
     @media (max-width: 480px) {
       .nav-back { display: none; }
-      .btn-nav { font-size: 11px; padding: 8px 14px; }
+      .btn-nav { font-size: 11px; padding: 8px 12px; }
+      .btn-nav-full { display: none; }
+      .btn-nav-short { display: inline; }
       .hero { padding: 88px 20px 0; }
       .incluye, .aprende, .faq { padding: 56px 20px; }
       .para-quien { padding: 56px 20px; }
@@ -365,7 +368,7 @@
     <div class="nav-inner">
       <a href="/" class="nav-logo"><span class="nav-logo-dot"></span>Método Fermento</a>
       <a href="/" class="nav-back">← Volver al sitio</a>
-      <a href="#comprar" class="btn-nav">Bajate la guía · solo $9.990</a>
+      <a href="#comprar" class="btn-nav"><span class="btn-nav-full">Bajate la guía · solo $9.990</span><span class="btn-nav-short">$9.990 →</span></a>
     </div>
   </nav>
 
