@@ -1,15 +1,20 @@
 {
   "version": 2,
   "routes": [
-    { "src": "/api/leads", "dest": "/api/leads.js" },
-    { "src": "/api/admin-leads", "dest": "/api/admin-leads.js" },
-    { "src": "/api/precios", "dest": "/api/precios.js" },
-    { "src": "/api/crear-preferencia", "dest": "/api/crear-preferencia.js" },
-    { "src": "/api/webhook-mp", "dest": "/api/webhook-mp.js" },
-    { "src": "/admin", "dest": "/public/admin.html" },
-    { "src": "/guia/gracias", "dest": "/public/guia-gracias.html" },
-    { "src": "/guia", "dest": "/public/guia.html" },
-    { "src": "/", "dest": "/public/index.html" },
-    { "src": "/", "dest": "/public/index.html" }
+    { "src": "/api/auth",             "dest": "/api/auth.js" },
+    { "src": "/api/leads",            "dest": "/api/leads.js" },
+    { "src": "/api/admin-leads",      "dest": "/api/admin-leads.js" },
+    { "src": "/api/precios",          "dest": "/api/precios.js" },
+    { "src": "/api/crear-preferencia","dest": "/api/crear-preferencia.js" },
+    { "src": "/api/webhook-mp",       "dest": "/api/webhook-mp.js" },
+    { "src": "/admin",                "dest": "/public/admin.html" },
+    { "src": "/login",                "dest": "/public/login.html" },
+    { "src": "/cursos",               "dest": "/public/cursos.html" },
+    { "src": "/curso01",              "dest": "/public/curso01.html" },
+    { "src": "/curso02",              "dest": "/public/curso02.html" },
+    { "src": "/curso03",              "dest": "/public/curso03.html" },
+    { "src": "/guia/gracias",         "dest": "/public/guia-gracias.html" },
+    { "src": "/guia",                 "dest": "/public/guia.html" },
+    { "src": "/",                     "dest": "/public/index.html" }
   ]
 }

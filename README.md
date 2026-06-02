@@ -116,3 +116,32 @@ Cada vez que alguien completa el wizard, recibís un email con:
 - El panel admin está protegido por `ADMIN_SECRET` — nunca la expongas en el código
 - Supabase tiene RLS activado — la base de datos solo es accesible desde el server
 - La `anon key` de Supabase **no** tiene acceso a la tabla de leads
+
+---
+
+## Plataforma Educativa — Setup adicional
+
+### Nuevas rutas
+| URL | Archivo |
+|-----|---------|
+| `/login` | `public/login.html` |
+| `/cursos` | `public/cursos.html` — landing de cursos (requiere login) |
+| `/curso01` | `public/curso01.html` — Marketing |
+| `/curso02` | `public/curso02.html` — Emprendimiento |
+| `/curso03` | `public/curso03.html` — Administración |
+| `/api/auth` | `api/auth.js` — login / register / verify / logout |
+
+### Variables de entorno adicionales en Vercel
+```
+PASSWORD_SALT=una-cadena-secreta-larga-unica    # para hashear passwords
+```
+
+### Crear alumnos (POST al endpoint con tu ADMIN_SECRET)
+```bash
+curl -X POST https://tu-sitio.vercel.app/api/auth?action=register \
+  -H "Content-Type: application/json" \
+  -d '{"email":"alumno@email.com","nombre":"Nombre","password":"clave123","cursos":["todos"],"secret":"TU_ADMIN_SECRET"}'
+```
+
+### Supabase — ejecutar la migración de usuarios
+Correr el contenido de `supabase-migration.sql` (ya incluye la parte de `users` y `sessions`).

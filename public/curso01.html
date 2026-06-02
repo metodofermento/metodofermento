@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Método Fermento · Plataforma Educativa</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--terra:#A85636;--terra-d:#7F3A22;--terra-l:rgba(168,86,54,.13);--terra-b:rgba(168,86,54,.25);--navy:#1A1A2E;--ink:#1C1917;--muted:#6B6560;--muted-l:#9C9490;--sand:#F7F4EF;--sand-d:#EDE8E0;--line:#E2DDD6;--white:#fff}
+body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--sand);min-height:100vh;overflow-x:hidden}
+.view{display:none;min-height:100vh}.view.active{display:block}#courseView.active{display:flex}
+#landing{background:radial-gradient(ellipse 70% 40% at 85% 5%,rgba(168,86,54,.09) 0%,transparent 65%),radial-gradient(ellipse 50% 30% at 10% 90%,rgba(168,86,54,.06) 0%,transparent 60%),var(--ink);padding-bottom:60px}
+.land-head{padding:36px 22px 0;max-width:1200px;margin:0 auto}
+.mf-wordmark{font-family:'Playfair Display',serif;font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-l);display:flex;align-items:center;gap:8px;margin-bottom:44px}
+.mf-dot{width:7px;height:7px;border-radius:50%;background:var(--terra);flex-shrink:0}
+.land-eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:5px 14px 5px 10px;margin-bottom:22px}
+.ey-dot{width:5px;height:5px;border-radius:50%;background:var(--terra)}
+.land-title{font-family:'Playfair Display',serif;font-size:40px;font-weight:900;line-height:1.06;letter-spacing:-.02em;color:var(--white);margin-bottom:18px}
+.land-title em{font-style:italic;color:var(--terra)}
+.land-sub{font-size:14px;color:var(--muted-l);line-height:1.75;margin-bottom:42px;max-width:340px}
+@media(min-width:900px){.land-head{padding:48px 48px 0}.land-hero{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-bottom:48px}.land-title{font-size:52px;margin-bottom:0;max-width:560px}.land-sub{margin-bottom:0;max-width:280px;font-size:15px}}
+.divider{display:flex;align-items:center;gap:10px;margin:0 22px 32px;max-width:1200px}
+.div-line{flex:1;height:1px;background:rgba(255,255,255,.06)}.div-dot{width:4px;height:4px;border-radius:50%;background:var(--terra);opacity:.5}
+@media(min-width:900px){.divider{margin:0 auto 40px;padding:0 48px}}
+.cards{padding:0 16px;display:flex;flex-direction:column;gap:14px;max-width:1200px;margin:0 auto}
+@media(min-width:900px){.cards{flex-direction:row;gap:20px;padding:0 48px;align-items:stretch}.curso-card{flex:1;display:flex;flex-direction:column}.card-body{flex:1;display:flex;flex-direction:column}.card-cta{margin-top:auto}}
+.curso-card{border-radius:16px;overflow:hidden;cursor:pointer;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.03);transition:transform .25s,border-color .25s;position:relative}
+.curso-card:hover{transform:translateY(-4px);border-color:var(--terra-b)}.curso-card:active{transform:scale(.99)}
+.card-stripe{height:3px;width:100%}.s0{background:var(--terra)}.s1{background:linear-gradient(90deg,var(--terra),rgba(168,86,54,.5))}.s2{background:linear-gradient(90deg,var(--navy),#3a4a7a)}
+.card-body{padding:22px}.card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.card-num{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.card-pills{display:flex;gap:6px}.pill{font-size:10px;padding:3px 9px;border-radius:20px;font-weight:500;background:var(--terra-l);color:var(--terra);border:1px solid var(--terra-b)}
+.pill-navy{background:rgba(26,26,46,.4);color:#8a9cc0;border:1px solid rgba(26,26,46,.6)}
+.card-icon{font-size:28px;margin-bottom:10px;display:block}
+.card-title{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--white);line-height:1.15;margin-bottom:6px}
+.card-meta{font-size:11px;color:var(--muted);margin-bottom:14px}
+.card-desc{font-size:13.5px;color:var(--muted-l);line-height:1.78;margin-bottom:16px}
+.card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:20px}.tag{font-size:10.5px;padding:4px 10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;color:var(--muted-l)}
+.card-cta{width:100%;padding:14px 18px;border-radius:10px;border:none;font-family:'Playfair Display',serif;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:all .2s}
+.cta-solid{background:var(--terra);color:var(--white)}.cta-solid:hover{background:var(--terra-d)}
+.cta-ghost{background:var(--terra-l);color:var(--terra);border:1px solid var(--terra-b)}.cta-ghost:hover{background:var(--terra-b)}
+.cta-navy{background:rgba(26,26,46,.5);color:#8a9cc0;border:1px solid rgba(26,26,46,.8)}.cta-navy:hover{background:rgba(26,26,46,.7)}
+.cta-arrow{font-size:18px;transition:transform .2s}.curso-card:hover .cta-arrow{transform:translateX(5px)}
+.land-foot{text-align:center;padding:36px 24px 0;font-size:10px;color:var(--muted);opacity:.4;letter-spacing:.08em}
+#courseView{background:var(--ink);display:flex;flex-direction:column}
+@media(min-width:900px){#courseView{flex-direction:row;height:100vh;overflow:hidden}.cv-sidebar{width:300px;flex-shrink:0;background:rgba(255,255,255,.02);border-right:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;overflow:hidden;height:100vh}.cv-main{flex:1;display:flex;flex-direction:column;overflow:hidden}.cv-header{position:relative;top:auto}.cv-content{padding:36px 48px 120px}.ch-main-title{font-size:32px}.cv-footer{position:sticky;bottom:0;left:auto;right:auto;width:100%}}
+.cv-header{background:rgba(28,25,23,.96);border-bottom:1px solid rgba(255,255,255,.06);position:sticky;top:0;z-index:100}
+.cv-topbar{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid rgba(255,255,255,.05)}
+.back-btn{display:flex;align-items:center;gap:6px;background:none;border:1px solid rgba(255,255,255,.1);border-radius:8px;color:var(--muted-l);font-family:'DM Sans',sans-serif;font-size:12px;padding:7px 12px;cursor:pointer;transition:all .2s}.back-btn:hover{background:rgba(255,255,255,.05)}
+.cv-badge{font-size:10px;color:var(--terra);background:var(--terra-l);border:1px solid var(--terra-b);border-radius:20px;padding:4px 12px;font-weight:500;max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cv-sidebar-list{flex:1;overflow-y:auto;padding:8px}.cv-sidebar-list::-webkit-scrollbar{width:3px}.cv-sidebar-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);border-radius:2px}
+.cv-prog{padding:10px 16px 0}.prog-bar{height:2px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;margin-bottom:4px}
+.prog-fill{height:100%;background:var(--terra);border-radius:2px;transition:width .5s}.prog-row{display:flex;justify-content:space-between;margin-bottom:10px}
+.prog-lbl{font-size:10px;color:var(--muted)}.prog-pct{font-size:10px;color:var(--terra)}
+.idx-btn{margin:0 16px 10px;padding:9px 14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:9px;color:var(--muted-l);font-family:'DM Sans',sans-serif;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;width:calc(100% - 32px);transition:all .2s}.idx-btn:hover{background:rgba(255,255,255,.06)}
+@media(min-width:900px){.idx-btn{display:none}}
+.ch-drawer{display:none;border-top:1px solid rgba(255,255,255,.05);max-height:250px;overflow-y:auto;padding:6px}.ch-drawer.open{display:block}
+@media(min-width:900px){.ch-drawer{display:none !important}}
+.ch-row{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer;border:1px solid transparent;transition:all .18s}.ch-row:hover{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.06)}
+.ch-row.ach{background:var(--terra-l);border-color:var(--terra-b)}.ch-row.lkd{opacity:.25;cursor:not-allowed}.ch-row.lkd:hover{background:transparent;border-color:transparent}
+.ch-b{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;color:var(--muted-l);flex-shrink:0}
+.ch-row.dch .ch-b{background:var(--terra);color:var(--white)}.ch-row.ach .ch-b{background:var(--terra);color:var(--white)}
+.ch-rt{font-size:12px;color:var(--sand-d);line-height:1.3}
+.cv-content{flex:1;overflow-y:auto;padding:26px 18px 110px}.cv-content::-webkit-scrollbar{width:3px}.cv-content::-webkit-scrollbar-thumb{background:rgba(255,255,255,.07);border-radius:2px}
+.ch-eyebrow{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);opacity:.8;margin-bottom:8px}
+.ch-main-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--white);line-height:1.12;margin-bottom:8px}
+.ch-info{font-size:11px;color:var(--muted);margin-bottom:22px}
+.mode-row{display:flex;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:3px;margin-bottom:24px}
+.md-btn{flex:1;padding:8px;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;color:var(--muted);background:transparent;transition:all .2s}.md-btn.active{background:rgba(168,86,54,.15);color:var(--terra)}
+.intro-card{background:var(--terra-l);border:1px solid var(--terra-b);border-radius:12px;padding:18px;margin-bottom:22px}
+.intro-lbl{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);margin-bottom:7px}
+.intro-txt{font-size:14px;color:var(--sand-d);line-height:1.85}
+.sec-block{margin-bottom:26px}
+.sec-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--white);margin-bottom:10px;padding-bottom:9px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:8px}
+.sec-ico{width:26px;height:26px;background:var(--terra-l);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.sec-body{font-size:14px;color:var(--muted-l);line-height:1.85}.sec-body p{margin-bottom:10px}
+.highlight{background:rgba(255,255,255,.03);border-left:3px solid var(--terra);border-radius:0 8px 8px 0;padding:14px 16px;margin:12px 0;font-size:13.5px;color:var(--sand-d);font-style:italic;line-height:1.75}
+.kc-grid{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+@media(min-width:900px){.kc-grid{display:grid;grid-template-columns:1fr 1fr}}
+.kc-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:9px;padding:13px 15px}
+.kc-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--terra);margin-bottom:5px}.kc-txt{font-size:13px;color:var(--muted-l);line-height:1.6}
+.ph{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:280px;gap:12px;text-align:center}.ph-ico{font-size:38px;opacity:.15}.ph-txt{font-size:13px;color:var(--muted);line-height:1.6;max-width:240px}
+.exam-head{background:var(--terra-l);border:1px solid var(--terra-b);border-radius:12px;padding:16px;margin-bottom:18px;display:flex;align-items:flex-start;gap:12px}
+.exam-ico{font-size:22px}.exam-h2{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--white);margin-bottom:3px}.exam-p{font-size:12px;color:var(--muted-l);line-height:1.6}
+.q-block{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:16px;margin-bottom:12px}
+.q-num{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--terra);margin-bottom:6px}
+.q-txt{font-size:14px;color:var(--white);font-weight:500;margin-bottom:12px;line-height:1.5}
+.opts{display:flex;flex-direction:column;gap:7px}
+.opt{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:11px 13px;text-align:left;color:var(--sand-d);font-size:13px;cursor:pointer;transition:all .18s;font-family:'DM Sans',sans-serif;line-height:1.45;width:100%}
+.opt:hover:not(:disabled){background:var(--terra-l);border-color:var(--terra-b)}.opt.sel{background:var(--terra-l);border-color:var(--terra);color:var(--terra)}
+.opt.correct{background:rgba(30,120,60,.14);border-color:#4caf7d;color:#8de0af}.opt.wrong{background:rgba(180,50,50,.14);border-color:#e06060;color:#f0a0a0}
+.fb{font-size:12px;margin-top:8px;padding:8px 12px;border-radius:6px;line-height:1.5;display:none}
+.fb.ok{background:rgba(30,120,60,.1);color:#8de0af;border:1px solid rgba(76,175,125,.18)}.fb.err{background:rgba(180,50,50,.1);color:#f0a0a0;border:1px solid rgba(224,96,96,.18)}
+.score-card{background:var(--terra-l);border:1px solid var(--terra-b);border-radius:14px;padding:28px 20px;text-align:center;margin-bottom:18px}
+.score-n{font-family:'Playfair Display',serif;font-size:52px;font-weight:900;color:var(--terra);line-height:1;margin-bottom:6px}.score-l{font-size:15px;color:var(--white);margin-bottom:10px}.score-s{font-size:12px;color:var(--muted-l);line-height:1.6}
+.cv-footer{background:linear-gradient(to top,var(--ink) 65%,transparent);padding:14px 16px 20px;display:flex;gap:8px}
+@media(min-width:900px){.cv-footer{padding:14px 48px 20px}}
+@media(max-width:899px){.cv-footer{position:fixed;bottom:0;left:0;right:0}}
+.btn{padding:13px 16px;border-radius:10px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;border:none;flex:1;text-align:center}
+.btn-out{background:transparent;border:1px solid rgba(255,255,255,.1);color:var(--muted-l)}.btn-out:hover{background:rgba(255,255,255,.05)}
+.btn-terra{background:var(--terra);color:var(--white);font-weight:600;font-family:'Playfair Display',serif}.btn-terra:hover{background:var(--terra-d)}.btn-terra:disabled{opacity:.3;cursor:not-allowed}
+.btn-ghost{background:var(--terra-l);color:var(--terra);border:1px solid var(--terra-b);font-weight:600}.btn-ghost:hover{background:var(--terra-b)}.btn-ghost:disabled{opacity:.3;cursor:not-allowed}
+</style>
+</head>
+<body>
+<script>
+(function(){
+  var token = localStorage.getItem("mf_token");
+  if (!token) { window.location.href = "/login?next=" + encodeURIComponent(window.location.pathname); return; }
+  fetch("/api/auth?action=verify", { headers: { "Authorization": "Bearer " + token } })
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if (!d.user) { localStorage.removeItem("mf_token"); localStorage.removeItem("mf_user"); window.location.href = "/login?next=" + encodeURIComponent(window.location.pathname); }
+    })
+    .catch(function(){ });
+})();
+</script>
+<div id="landing" class="view" style="display:none">
+  <div class="land-head">
+    <div class="mf-wordmark"><div class="mf-dot"></div>Método Fermento</div>
+    <div class="land-hero">
+      <div>
+        <div class="land-eyebrow"><div class="ey-dot"></div>Plataforma Educativa &middot; Buenos Aires</div>
+        <h1 class="land-title">Formacion<br>para negocios<br><em>gastronomicos rentables.</em></h1>
+      </div>
+      <p class="land-sub">Tres cursos completos con material de lectura y evaluacion por modulo. Avanzas cuando aprobas.</p>
+    </div>
+  </div>
+  <div class="divider"><div class="div-line"></div><div class="div-dot"></div><div class="div-dot"></div><div class="div-dot"></div><div class="div-line"></div></div>
+  <div class="cards">
+    <div class="curso-card" onclick="openCurso(0)">
+      <div class="card-stripe s0"></div>
+      <div class="card-body">
+        <div class="card-top"><span class="card-num">Curso 01</span><div class="card-pills"><span class="pill">24 hs</span><span class="pill">14 modulos</span></div></div>
+        <span class="card-icon">&#128226;</span>
+        <h2 class="card-title">Marketing Gastronomico y Redes</h2>
+        <div class="card-meta">12 clases &middot; 2 horas cada una</div>
+        <p class="card-desc">Posiciona tu negocio, construi una marca con identidad propia y capta clientes reales con estrategias que funcionan en el mercado argentino.</p>
+        <div class="card-tags"><span class="tag">Branding</span><span class="tag">Carta efectiva</span><span class="tag">Social Media</span><span class="tag">Fidelizacion</span><span class="tag">Plan de marketing</span></div>
+        <button class="card-cta cta-solid">Ingresar al curso <span class="cta-arrow">&#8594;</span></button>
+      </div>
+    </div>
+    <div class="curso-card" onclick="openCurso(1)">
+      <div class="card-stripe s1"></div>
+      <div class="card-body">
+        <div class="card-top"><span class="card-num">Curso 02</span><div class="card-pills"><span class="pill">16 hs</span><span class="pill">14 modulos</span></div></div>
+        <span class="card-icon">&#128640;</span>
+        <h2 class="card-title">Claves para Armar tu Emprendimiento</h2>
+        <div class="card-meta">8 clases &middot; 2 horas cada una</div>
+        <p class="card-desc">Todo lo que necesitas saber antes de abrir: local, equipamiento, proveedores, equipo y plan de negocio concreto.</p>
+        <div class="card-tags"><span class="tag">Plan de negocio</span><span class="tag">Proveedores</span><span class="tag">RRHH</span><span class="tag">Habilitaciones</span><span class="tag">Identidad</span></div>
+        <button class="card-cta cta-ghost">Ingresar al curso <span class="cta-arrow">&#8594;</span></button>
+      </div>
+    </div>
+    <div class="curso-card" onclick="openCurso(2)">
+      <div class="card-stripe s2"></div>
+      <div class="card-body">
+        <div class="card-top"><span class="card-num">Curso 03</span><div class="card-pills"><span class="pill pill-navy">30 hs</span><span class="pill pill-navy">12 modulos</span></div></div>
+        <span class="card-icon">&#128202;</span>
+        <h2 class="card-title">Administracion de Negocios Gastronomico</h2>
+        <div class="card-meta">12 clases &middot; 2,5 horas cada una</div>
+        <p class="card-desc">Maneja los numeros con criterio: costos, food cost, auditoria interna, sistemas de gestion y rentabilidad por plato.</p>
+        <div class="card-tags"><span class="tag">Food cost</span><span class="tag">Prime cost</span><span class="tag">Auditoria</span><span class="tag">Sistemas</span><span class="tag">Rentabilidad</span></div>
+        <button class="card-cta cta-navy">Ingresar al curso <span class="cta-arrow">&#8594;</span></button>
+      </div>
+    </div>
+  </div>
+  <div class="land-foot">metodofermento.com.ar &middot; Consultoria Gastronomica Estrategica</div>
+</div>
+<div id="courseView" class="view active">
+  <div class="cv-sidebar" id="cvSidebar" style="display:none">
+    <div class="cv-header" style="position:relative;top:auto">
+      <div class="cv-topbar">
+        <button class="back-btn" onclick="goLanding()">&#8592; Cursos</button>
+        <div class="cv-badge" id="cvBadgeD">Marketing</div>
+      </div>
+      <div class="cv-prog">
+        <div class="prog-bar"><div class="prog-fill" id="pFillD" style="width:0%"></div></div>
+        <div class="prog-row"><div class="prog-lbl" id="pLblD">0 de 14</div><div class="prog-pct" id="pPctD">0%</div></div>
+      </div>
+    </div>
+    <div class="cv-sidebar-list" id="sidebarList"></div>
+  </div>
+  <div class="cv-main" id="cvMain">
+    <div class="cv-header" id="cvHeaderMobile">
+      <div class="cv-topbar">
+        <button class="back-btn" onclick="goLanding()">&#8592; Cursos</button>
+        <div class="cv-badge" id="cvBadgeM">Marketing</div>
+      </div>
+      <div class="cv-prog">
+        <div class="prog-bar"><div class="prog-fill" id="pFillM" style="width:0%"></div></div>
+        <div class="prog-row"><div class="prog-lbl" id="pLblM">0 de 14 modulos</div><div class="prog-pct" id="pPctM">0%</div></div>
+      </div>
+      <button class="idx-btn" id="idxBtn" onclick="toggleIdx()"><span id="idxLbl">&#128203; Ver todos los modulos</span><span id="idxArr">&#8595;</span></button>
+      <div class="ch-drawer" id="chDrawer"></div>
+    </div>
+    <div class="cv-content" id="cvContent"></div>
+    <div class="cv-footer" id="cvFooter"></div>
+  </div>
+</div>
+<script>
+
+
+const CURSOS=[
+{id:0,nombre:'Marketing Gastronomico',caps:['El nuevo marketing gastronomico','El producto gastronomico: caracteristicas y beneficios','Tendencias y conocimiento del cliente','Que buscan tus clientes y como darselo','Como hacer un plan de marketing efectivo','La competencia: investigacion de mercado','Los elementos del branding gastronomico','Creacion de una carta efectiva','Estrategias de marketing','El personal de salon y su poder de venta','Fidelizacion electronica y manual de la clientela','La comunicacion, promocion y publicidad','Las tendencias del marketing online','Social Media Marketing']},
+{id:1,nombre:'Armar tu Emprendimiento',caps:['Proximamente - Modulo en desarrollo']},
+{id:2,nombre:'Administracion Gastronomica',caps:['Proximamente - Modulo en desarrollo']}
+];
+const TIEMPOS=[8,9,8,10,12,9,10,11,9,8,10,9,8,10];
+
+const CONTENIDO={"0-0":{intro:"El nuevo marketing gastronomico en Argentina atraviesa una transformacion profunda. La digitalizacion, los cambios en los habitos de consumo post-pandemia y la saturacion de propuestas en grandes centros urbanos obligan a los operadores a repensar sus estrategias desde la raiz. Ya no alcanza con tener buena comida: la experiencia, la narrativa de marca y la presencia digital son variables determinantes para la supervivencia y el crecimiento de cualquier negocio gastronomico.",secciones:[{titulo:"Del producto a la experiencia",ico:'&#127869;',cuerpo:"Durante decadas el marketing gastronomico se limito a publicar el menu en la vidriera y confiar en el boca a boca. Ese modelo sobrevive pero ya no es suficiente. El cliente contemporaneo no solo evalua que come sino como se siente durante y despues de la experiencia. Las resenas en Google, las fotos en Instagram y los videos en TikTok son el nuevo boca a boca con una diferencia crucial: su alcance es exponencial y su permanencia es indefinida.",dest:"El cliente ya no compra comida: compra una experiencia que vale la pena contar."},{titulo:"El nuevo consumidor gastronomico",ico:'&#127869;',cuerpo:"El comensal de hoy investiga antes de elegir. El 72% de los argentinos consulta resenas online antes de decidir donde comer. Busca autenticidad, coherencia entre lo que el negocio promete y lo que entrega, y una relacion precio-valor que justifique la salida. La generacion millennial y la Gen Z priorizan propuestas con identidad clara, compromiso con la sustentabilidad y presencia digital activa.",dest:"Conocer profundamente a tu cliente antes de comunicar es la diferencia entre invertir y gastar en marketing."},{titulo:"Marketing integrado: online y offline",ico:'&#127869;',cuerpo:"El error mas frecuente en la gastronomia argentina es separar el marketing digital del tradicional. Una estrategia efectiva los integra. El menu fisico comunica marca. La atencion del personal es marketing. La decoracion del local es marketing. Todo eso debe ser coherente con lo que se publica en redes sociales y como se responde a las resenas.",dest:"Cada punto de contacto con el cliente es una pieza del mismo mensaje de marca."}],conceptos:[{lbl:"Marketing gastronomico",def:"Conjunto de estrategias orientadas a atraer, fidelizar y comunicar valor a los clientes de un negocio de alimentacion, integrando canales digitales y presenciales."},{lbl:"Experiencia de marca",def:"Suma de percepciones que genera un negocio en cada interaccion con el cliente, desde la comunicacion digital hasta la atencion en el salon."},{lbl:"Propuesta de valor",def:"Razon concreta y diferencial por la cual un cliente elige un negocio gastronomico sobre otro; incluye experiencia, precio y emocion."},{lbl:"Puntos de contacto",def:"Todos los momentos en que un cliente interactua con el negocio: redes, menu, personal, local, resenas, delivery, packaging."}]},"0-1":{intro:"En marketing gastronomico el producto va mucho mas alla de lo que se sirve en el plato. Todo lo que el cliente percibe, el ambiente, la presentacion, el tiempo de espera, el trato y el packaging, forma parte del producto total. Comprender esta dimension ampliada es el punto de partida para construir una estrategia de marketing solida y diferenciada.",secciones:[{titulo:"El producto gastronomico ampliado",ico:'&#127869;',cuerpo:"El producto gastronomico tiene tres capas. El nucleo es la comida en si: el plato, la bebida, el sabor. La segunda capa es el producto real: presentacion, vajilla, temperatura, velocidad de entrega. La tercera es el producto ampliado: el ambiente, la musica, la historia del lugar, la actitud del personal, la experiencia post-visita. Los negocios que solo trabajan el nucleo son facilmente reemplazables. Los que dominan las tres capas construyen fidelidad.",dest:"Un producto gastronomico memorable no se come solo: se vive, se huele, se escucha y se recuerda."},{titulo:"Caracteristicas que comunican valor",ico:'&#127869;',cuerpo:"Las caracteristicas de un producto tienen valor en la medida en que el cliente las percibe como beneficios. Usamos harina organica de molienda local es una caracteristica. Cada bocado cuida tu salud y apoya a productores de tu region es un beneficio. El marketing efectivo siempre traduce caracteristicas en beneficios concretos y emocionales.",dest:"Una caracteristica sin beneficio comunicado es una oportunidad perdida de conectar con tu cliente."},{titulo:"Diferenciacion sostenible",ico:'&#127869;',cuerpo:"En un mercado saturado la diferenciacion no es opcional: es la condicion de existencia. El diferencial puede ser el producto (tecnica unica, ingrediente exclusivo), la experiencia (servicio personalizado, ambiente particular), el modelo de negocio o la historia. Lo clave es que sea real, sostenible en el tiempo y comunicable de manera simple y autentica.",dest:"Tu diferencial tiene que poder explicarse en una frase y sentirse en cada visita."}],conceptos:[{lbl:"Producto ampliado",def:"Dimension del producto que incluye todos los elementos intangibles de la experiencia: ambiente, atencion, historia, emocion y servicio post-venta."},{lbl:"Caracteristica vs. beneficio",def:"La caracteristica describe el producto; el beneficio describe lo que ese atributo hace por el cliente. El marketing eficaz siempre comunica beneficios."},{lbl:"Diferenciacion",def:"Estrategia de posicionamiento que hace que un negocio sea percibido como unico o superior en uno o mas atributos relevantes para su publico objetivo."},{lbl:"Valor percibido",def:"Evaluacion subjetiva que hace el cliente sobre la relacion entre lo que recibe (beneficios) y lo que entrega (precio, tiempo, esfuerzo)."}]},"0-2":{intro:"El negocio que no conoce a su cliente trabaja a ciegas. Conocer las tendencias del mercado gastronomico y construir un perfil preciso del cliente objetivo no es una tarea exclusiva de las grandes cadenas: es el punto de partida de cualquier negocio que quiera crecer de forma sostenida.",secciones:[{titulo:"Tendencias actuales en gastronomia",ico:'&#127869;',cuerpo:"Las principales tendencias del mercado gastronomico argentino incluyen: la demanda creciente de opciones saludables y plant-based, el auge del delivery y el take-away como canales permanentes, la valorizacion de la trazabilidad y el origen de los productos, la experiencializacion del consumo como cenas privadas, talleres y maridajes, y la busqueda de propuestas con identidad local fuerte. Ninguna de estas tendencias es una moda: son cambios estructurales.",dest:"Las tendencias no se siguen: se interpretan y se adaptan a la identidad propia de cada negocio."},{titulo:"Herramientas para conocer al cliente",ico:'&#127869;',cuerpo:"Herramientas concretas para construir el perfil de tu cliente: encuestas en el local o por WhatsApp, analisis de las resenas de Google Maps, observacion directa del comportamiento en el salon, analisis de las metricas de redes sociales y entrevistas informales con clientes recurrentes. El cruce de todas ellas da un panorama preciso y util para tomar decisiones.",dest:"Tu cliente ya te esta diciendo lo que quiere. El desafio es aprender a escucharlo en todos los canales donde habla."},{titulo:"El mapa de empatia gastronomico",ico:'&#127869;',cuerpo:"El mapa de empatia estructura lo que sabemos del cliente en seis dimensiones: que piensa y siente, que ve, que escucha, que dice y hace, cuales son sus dolores y cuales sus aspiraciones. Aplicado a la gastronomia, permite anticipar objeciones, disenar mensajes mas efectivos y crear experiencias que resuenen emocionalmente con cada perfil de cliente.",dest:"Empatia no es intuicion: es un proceso sistematico de ponerse en el lugar del cliente con datos reales."}],conceptos:[{lbl:"Tendencia de mercado",def:"Direccion sostenida en los habitos de consumo de un segmento de clientes que persiste durante al menos dos o tres anos y representa una oportunidad o amenaza para el negocio."},{lbl:"Buyer persona",def:"Representacion semi-ficticia y detallada del cliente ideal de un negocio, construida a partir de datos reales sobre comportamiento, motivaciones y objetivos."},{lbl:"Mapa de empatia",def:"Herramienta visual que estructura el conocimiento sobre el cliente en seis dimensiones para disenar comunicaciones y experiencias mas efectivas."},{lbl:"Escucha activa del mercado",def:"Proceso continuo de recoleccion y analisis de senales del cliente a traves de multiples fuentes: resenas, redes, metricas, observacion directa."}]},"0-3":{intro:"Saber que busca el cliente es el primer paso. Traducir ese conocimiento en decisiones concretas del negocio, desde el menu hasta la ambientacion, el horario y la comunicacion, es el trabajo real del marketing gastronomico.",secciones:[{titulo:"Las motivaciones de compra gastronomica",ico:'&#127869;',cuerpo:"Los clientes eligen un restaurante por motivos racionales como precio, ubicacion, velocidad y calidad, y por motivos emocionales como pertenencia, expresion de identidad, busqueda de experiencias nuevas, nostalgia y celebracion. Los negocios mas exitosos apelan a ambos tipos de motivaciones simultaneamente.",dest:"El cliente decide con la emocion y justifica con la razon. Tu marketing debe hablarle a ambas."},{titulo:"Disenar la experiencia a medida",ico:'&#127869;',cuerpo:"Una vez conocidas las motivaciones del cliente se puede disenar la experiencia. Si tu cliente valora la velocidad: optimiza tiempos de entrega y simplifica el proceso de pedido. Si valora la autenticidad: cuenta la historia detras de los platos y usa nombres de proveedores en el menu. Si valora la socializacion: disena el salon con mesas comunales o zonas de conversacion.",dest:"Un negocio gastronomico bien disenado no improvisa la experiencia: la anticipa y la construye a proposito."},{titulo:"Coherencia entre promesa y entrega",ico:'&#127869;',cuerpo:"El mayor error de marketing en gastronomia no es comunicar poco: es prometer mas de lo que se puede entregar. Una foto de Instagram que no se condice con el plato real genera decepcion y resenas negativas. La coherencia entre lo que se comunica y lo que se vive en el local es el activo mas valioso de un negocio gastronomico.",dest:"La promesa que no se cumple no solo pierde un cliente: crea un detractor que comunica su decepcion."}],conceptos:[{lbl:"Motivacion de compra",def:"Razon subyacente, racional o emocional, que impulsa al cliente a elegir un negocio gastronomico determinado sobre otros."},{lbl:"Diseno de experiencia",def:"Proceso intencional de construir cada punto de contacto del cliente con el negocio para generar una percepcion positiva y coherente."},{lbl:"Coherencia de marca",def:"Alineacion entre lo que el negocio promete en su comunicacion y lo que el cliente efectivamente experimenta en cada visita."},{lbl:"Detractor",def:"Cliente que tuvo una experiencia negativa y la comunica activamente a otros, generando impacto negativo en la reputacion del negocio."}]},"0-4":{intro:"Un plan de marketing no es un documento para guardar en cajon: es una hoja de ruta operativa que define que queremos lograr, a quien nos dirigimos, que vamos a comunicar, por que canales y con que presupuesto.",secciones:[{titulo:"Estructura de un plan de marketing gastronomico",ico:'&#127869;',cuerpo:"Un plan de marketing efectivo incluye: diagnostico de situacion actual (FODA), definicion de objetivos concretos y medibles (SMART), identificacion del publico objetivo, estrategia de posicionamiento, plan de acciones por canal, presupuesto asignado y cronograma, y sistema de metricas para evaluar resultados. Un plan de dos paginas bien ejecutado supera a un documento de 30 paginas que nunca se implementa.",dest:"Un plan de marketing vale por lo que se ejecuta, no por lo que se escribe."},{titulo:"Objetivos SMART en gastronomia",ico:'&#127869;',cuerpo:"Los objetivos SMART son Especificos, Medibles, Alcanzables, Relevantes y con Tiempo definido. Ejemplo: Aumentar el ticket promedio en un 15% durante julio mediante la comunicacion de combos en redes sociales. Captar 200 nuevos seguidores en Instagram en 60 dias publicando contenido de cocina cuatro veces por semana. Cada objetivo debe poder responderse con un numero que indique si se logro o no.",dest:"Si no podes medir si lo lograste, no es un objetivo: es un deseo."},{titulo:"Presupuesto de marketing para PyMEs gastronomicas",ico:'&#127869;',cuerpo:"La regla general para PyMEs gastronomicas en Argentina es destinar entre el 3% y el 8% de la facturacion mensual a marketing. Ese presupuesto se distribuye entre produccion de contenido, pauta publicitaria, materiales fisicos y acciones de fidelizacion. En etapas iniciales el foco debe estar en construir base organica antes de invertir en pauta pagada.",dest:"El marketing de bajo presupuesto bien ejecutado supera al de alto presupuesto mal pensado."}],conceptos:[{lbl:"Plan de marketing",def:"Documento operativo que define objetivos, publico, estrategia, acciones, presupuesto y metricas para guiar las actividades de comunicacion y ventas del negocio."},{lbl:"Analisis FODA",def:"Herramienta de diagnostico que identifica Fortalezas, Oportunidades, Debilidades y Amenazas de un negocio en relacion con su mercado."},{lbl:"Objetivos SMART",def:"Objetivos que son Especificos, Medibles, Alcanzables, Relevantes y definidos en el Tiempo, para facilitar su planificacion y evaluacion."},{lbl:"Presupuesto de marketing",def:"Monto asignado para financiar acciones de comunicacion, publicidad y fidelizacion, usualmente expresado como porcentaje de la facturacion."}]},"0-5":{intro:"El analisis de la competencia es una practica sistematica, no una actividad ocasional. Conocer que hacen bien y mal los competidores directos e indirectos permite identificar oportunidades de diferenciacion, aprender de los errores ajenos y anticiparse a movimientos del mercado.",secciones:[{titulo:"Competidores directos e indirectos",ico:'&#127869;',cuerpo:"Los competidores directos son los negocios que ofrecen propuestas similares al mismo publico. Los indirectos son aquellos que compiten por el mismo momento de consumo sin ofrecer lo mismo. Cuando un cliente decide donde ir a comer evalua todas las opciones simultaneamente. Entender ambos tipos de competencia es fundamental para disenar una propuesta verdaderamente diferenciada.",dest:"Tu competencia no es solo quien vende lo mismo que vos: es cualquier alternativa que el cliente considera cuando elige."},{titulo:"Herramientas de investigacion de mercado",ico:'&#127869;',cuerpo:"Herramientas disponibles para analizar a la competencia: visitas presenciales como cliente misterioso, analisis de menus y precios publicados, revision de resenas en Google Maps y TripAdvisor, analisis del contenido y engagement en redes sociales, consulta de plataformas de delivery para ver posicionamiento y calificaciones, y entrevistas con clientes que tambien frecuentan locales competidores.",dest:"La informacion competitiva que no se organiza y actualiza regularmente pierde valor rapidamente."},{titulo:"El mapa de posicionamiento competitivo",ico:'&#127869;',cuerpo:"Un mapa de posicionamiento competitivo ubica a los competidores en un plano de dos ejes relevantes para el mercado: por ejemplo, precio versus experiencia, o rapidez versus calidad percibida. Este mapa permite identificar espacios vacios en el mercado y zonas de alta competencia que conviene evitar. Se actualiza al menos una vez por ano.",dest:"Ver el mercado desde afuera permite encontrar el lugar que nadie ocupa y que tu cliente ya esta buscando."}],conceptos:[{lbl:"Competidor directo",def:"Negocio que ofrece productos o servicios similares al mismo segmento de clientes en el mismo mercado geografico."},{lbl:"Competidor indirecto",def:"Negocio que satisface la misma necesidad del cliente con una propuesta diferente, compitiendo por el mismo momento de consumo o presupuesto."},{lbl:"Cliente misterioso",def:"Tecnica de investigacion en la que un observador actua como cliente real para evaluar la experiencia en un local competidor de manera objetiva."},{lbl:"Mapa de posicionamiento",def:"Herramienta visual que representa a los competidores en funcion de dos atributos clave para identificar espacios de diferenciacion disponibles."}]},"0-6":{intro:"El branding gastronomico es la construccion deliberada de una identidad de marca que sea reconocible, coherente y memorable. No se limita al logotipo: abarca el nombre, los colores, la tipografia, el tono de comunicacion, la estetica visual, la historia y los valores que el negocio encarna. Un branding solido genera diferenciacion y permite cobrar precios premium.",secciones:[{titulo:"Los pilares del branding gastronomico",ico:'&#127869;',cuerpo:"El branding se construye sobre cuatro pilares: identidad visual (logotipo, paleta de colores, tipografias, estetica fotografica), identidad verbal (nombre, tagline, tono de comunicacion, vocabulario propio), identidad experiencial (como se siente estar en el local, como atiende el personal, como es el packaging) e identidad narrativa (historia del negocio, por que existe, que valores representa).",dest:"Una marca no es lo que vos decis que sos: es lo que el cliente siente que sos en cada interaccion."},{titulo:"Naming y diseno para gastronomia",ico:'&#127869;',cuerpo:"El nombre de un negocio gastronomico es su primer acto de comunicacion. Un buen nombre debe ser facil de pronunciar y recordar, tener disponibilidad de dominio web y usuario en redes, evocar algo relacionado con la propuesta o con una emocion buscada, y ser registrable. El diseno visual debe funcionar en formatos muy diferentes: letrero del local, tarjeta, Instagram, packaging de delivery.",dest:"El nombre y el logotipo son la cara que el mundo ve primero. Disenalos para que duren."},{titulo:"Coherencia visual en todos los canales",ico:'&#127869;',cuerpo:"La coherencia visual significa que todas las piezas del negocio tienen un hilo conductor reconocible. La foto del plato en Instagram, el menu fisico, la bolsa de packaging, la remera del personal y la decoracion del local deben hablar el mismo idioma estetico. Esta coherencia hace que un cliente reconozca la marca incluso sin ver el logotipo. Se documenta en un manual de marca, aunque sea minimo.",dest:"La marca coherente se reconoce antes de que el cliente lea el nombre."}],conceptos:[{lbl:"Branding",def:"Proceso de construccion y gestion de la identidad de una marca, que incluye todos los elementos visuales, verbales y experienciales que la hacen reconocible y diferenciada."},{lbl:"Identidad visual",def:"Sistema de elementos graficos que definen la apariencia consistente de una marca: logotipo, paleta, tipografias, estetica fotografica."},{lbl:"Tono de comunicacion",def:"Forma caracteristica en que una marca se expresa en sus mensajes: puede ser formal, cercano, desafiante, poetico, tecnico o humoristico."},{lbl:"Brandbook",def:"Documento que establece las reglas de uso de la identidad de marca para garantizar coherencia en todos los materiales y canales."}]},"0-7":{intro:"La carta es el principal instrumento de venta de un negocio gastronomico. Su diseno, extension, lenguaje y organizacion influyen directamente en el ticket promedio, en la satisfaccion del cliente y en la operacion de la cocina. Una carta efectiva no es la que tiene mas opciones: es la que guia al cliente hacia los platos que el negocio quiere vender.",secciones:[{titulo:"Psicologia del menu: como lee el cliente",ico:'&#127869;',cuerpo:"Los estudios de eyetracking muestran que cuando un cliente recibe una carta sus ojos van primero a la zona superior derecha, luego recorren el centro y finalmente miran los extremos. Los platos ubicados en esas posiciones tienen mayor probabilidad de ser pedidos. Ademas el cliente tiende a pedir el segundo precio mas barato o el segundo mas caro de cada categoria, evitando los extremos. Conocer estos patrones permite disenar la carta para potenciar la rentabilidad.",dest:"El orden en que aparecen los platos en la carta no es decorativo: es una decision de marketing y rentabilidad."},{titulo:"Diseno linguistico de los platos",ico:'&#127869;',cuerpo:"El nombre y la descripcion de un plato tienen impacto directo en la percepcion de valor y en la decision de compra. Pollo con salsa vende menos que Suprema de pollo de campo, demi-glace de hierbas frescas y limon de Tucuman. No se trata de mentir ni de exagerar: se trata de dar contexto, de contar que hace especial a ese plato. Las descripciones que mencionan origen, tecnica o historia tienen mayor impacto en la percepcion de calidad.",dest:"Cada plato de la carta tiene una historia. Contarla vale entre un 15% y un 25% mas de ticket promedio."},{titulo:"Extension y estructura de la carta",ico:'&#127869;',cuerpo:"Las cartas largas tienen un efecto negativo comprobado: generan paralisis por analisis en el cliente, aumentan los tiempos de pedido y complican la operacion de la cocina. La cantidad optima de platos por categoria es entre 4 y 7. Una carta corta bien ejecutada comunica confianza, especializacion y calidad. Ademas facilita el control de stock y reduce el desperdicio.",dest:"Una carta corta no es una carta pobre: es una carta que sabe exactamente quien es."}],conceptos:[{lbl:"Ingenieria de menu",def:"Metodologia que analiza los platos de la carta segun su popularidad y rentabilidad para optimizar la oferta y maximizar el margen del negocio."},{lbl:"Eyetracking",def:"Tecnica de investigacion que registra el movimiento visual del cliente sobre una carta para identificar zonas de alta y baja atencion."},{lbl:"Plato estrella",def:"En la matriz de ingenieria de menu, el plato estrella tiene alta popularidad y alta rentabilidad: es la categoria mas valiosa de la carta."},{lbl:"Paralisis por analisis",def:"Efecto psicologico que ocurre cuando el exceso de opciones dificulta la toma de decision, generando frustracion y reduciendo el ticket promedio."}]},"0-8":{intro:"Las estrategias de marketing son el conjunto de acciones coordinadas que permiten al negocio alcanzar sus objetivos comerciales. No existe una estrategia universal: cada negocio debe seleccionar y combinar las que mejor se adapten a su publico, su identidad, sus recursos y su momento de desarrollo.",secciones:[{titulo:"Estrategia de contenidos para gastronomia",ico:'&#127869;',cuerpo:"La estrategia de contenidos define que se publica, cuando, en que formato y con que objetivo. Para un negocio gastronomico los pilares de contenido mas efectivos son: contenido de producto (fotos y videos de platos), contenido de proceso (detras de escena en la cocina), contenido humano (equipo, historia, valores), contenido educativo (tips, recetas, informacion nutricional) y contenido de comunidad (clientes satisfechos, resenas, interacciones). La mezcla equilibrada de estos pilares construye una comunidad fiel.",dest:"Una cuenta de redes que solo publica fotos de platos es un catalogo. Una cuenta que cuenta historias construye una comunidad."},{titulo:"Marketing de referencia y alianzas",ico:'&#127869;',cuerpo:"El marketing de referencia es una de las estrategias mas costo-eficientes para gastronomia. Se activa con programas de referidos, alianzas con negocios complementarios (vinoteca mas restaurante, floristeria mas local de desayunos, gimnasio mas dietetica) y participacion en eventos gastronomicos. Las alianzas permiten acceder a audiencias nuevas sin el costo de una campana publicitaria.",dest:"Tu comunidad de clientes satisfechos es el equipo de ventas mas efectivo que tenes. Activalos."},{titulo:"Estrategias de lanzamiento y temporada",ico:'&#127869;',cuerpo:"Los momentos de lanzamiento y las temporadas son oportunidades de marketing de alto impacto. Una estrategia de lanzamiento efectiva incluye: anticipacion con contenido de intriga antes del evento, evento de apertura para influencers y clientes VIP, campana de comunicacion en redes y medios locales, y seguimiento post-lanzamiento con contenido de impacto. Las temporadas se planifican con al menos tres semanas de anticipacion.",dest:"Un lanzamiento sin estrategia es ruido. Un lanzamiento planificado construye expectativa y base de clientes."}],conceptos:[{lbl:"Estrategia de contenidos",def:"Plan que define que tipo de contenido publicar, con que frecuencia, en que canales y con que objetivo para construir audiencia y comunidad."},{lbl:"Marketing de referencia",def:"Estrategia que incentiva a los clientes actuales a recomendar el negocio a nuevos clientes, generalmente a traves de beneficios mutuos."},{lbl:"Alianza estrategica",def:"Acuerdo de colaboracion entre dos o mas negocios complementarios para beneficiarse mutuamente del acceso a las audiencias del otro."},{lbl:"Calendario de marketing",def:"Planificacion anual de las acciones de comunicacion del negocio, organizada por fechas clave, temporadas y lanzamientos previstos."}]},"0-9":{intro:"El personal de salon no es solo quien sirve la comida: es el eslabon mas poderoso de la cadena de ventas de un negocio gastronomico. Un mozo o barista bien capacitado puede aumentar el ticket promedio, generar recomendaciones efectivas y transformar una visita ordinaria en una experiencia memorable. Invertir en el equipo de salon es una decision de marketing.",secciones:[{titulo:"El mozo como vendedor",ico:'&#127869;',cuerpo:"En los mercados mas desarrollados los mejores mozos se especializan en la venta consultiva: no solo toman el pedido sino que hacen preguntas para entender las preferencias del cliente y hacen recomendaciones genuinas y personalizadas. Este tipo de interaccion, cuando es autentica y no forzada, genera ventas adicionales y una experiencia de atencion superior que el cliente recuerda y recomienda.",dest:"Un mozo que vende bien no vende: recomienda. La diferencia la siente el cliente y la ve la caja."},{titulo:"Tecnicas de venta en el salon",ico:'&#127869;',cuerpo:"Las tecnicas mas efectivas incluyen: el upselling (ofrecer una version mejorada del pedido: el lomo tambien lo tenemos en version premium con reduccion de Malbec), el cross-selling (ofrecer complementos: los crocantes de panceta van muy bien con esa ensalada), la recomendacion del plato del dia con argumentos concretos, y el cierre de postre o digestivo al final de la comida.",dest:"El momento mas rentable de una mesa es cuando el cliente ya dijo si una vez. Ese si abre la puerta al siguiente."},{titulo:"Capacitacion continua del equipo de salon",ico:'&#127869;',cuerpo:"La capacitacion del personal de salon debe ser continua y estructurada. Cada vez que cambia la carta el equipo debe conocer en profundidad los nuevos platos: ingredientes, tecnica de elaboracion, maridajes sugeridos y restricciones alimentarias que contemplan. Las degustaciones internas son una herramienta invaluable: quien probo un plato lo puede recomendar con conviccion y detalle.",dest:"Un equipo que no conoce la carta en profundidad no puede venderla. El conocimiento es la base de toda recomendacion."}],conceptos:[{lbl:"Venta consultiva",def:"Enfoque de ventas centrado en entender las necesidades del cliente y hacer recomendaciones personalizadas, en lugar de ofrecer productos de manera generica."},{lbl:"Upselling",def:"Tecnica de venta que consiste en ofrecer al cliente una version mejorada o de mayor valor de lo que ya eligio."},{lbl:"Cross-selling",def:"Tecnica de venta que consiste en ofrecer productos complementarios al pedido principal del cliente."},{lbl:"Ticket promedio",def:"Monto promedio que gasta cada cliente por visita; se calcula dividiendo la facturacion total por el numero de clientes atendidos en el periodo."}]},"0-10":{intro:"Fidelizar a un cliente cuesta entre 5 y 7 veces menos que conseguir uno nuevo. Sin embargo la mayoria de los negocios gastronomicos invierte el 90% de su presupuesto de marketing en captacion y casi nada en retencion. Un programa de fidelizacion bien disenado transforma a los clientes ocasionales en embajadores activos del negocio.",secciones:[{titulo:"Fidelizacion manual: programas simples y efectivos",ico:'&#127869;',cuerpo:"Los programas de fidelizacion no requieren tecnologia sofisticada. Un sello en una tarjeta fisica, un registro manual de clientes frecuentes con sus preferencias, una lista de WhatsApp de comunicacion exclusiva, o simplemente recordar el nombre y los gustos del cliente habitual son formas poderosas de fidelizacion. La fidelizacion manual tiene una ventaja sobre la digital: genera una conexion emocional mas profunda.",dest:"El cliente que siente que lo conocen no solo vuelve: trae a otros."},{titulo:"Fidelizacion digital: CRM y automatizacion",ico:'&#127869;',cuerpo:"Las herramientas digitales de fidelizacion permiten escalar el programa sin perder personalizacion. Un CRM basico puede ser tan simple como una planilla de Google Sheets con nombre, contacto, fecha de ultima visita y preferencias. Una lista de WhatsApp Business bien segmentada permite comunicar lanzamientos y novedades con altisimas tasas de apertura y sin pagar pauta.",dest:"Un cliente que no recibio ninguna comunicacion del negocio en 30 dias ya empezo a olvidarlo."},{titulo:"El cliente VIP: el trato diferencial",ico:'&#127869;',cuerpo:"Identificar y tratar de forma diferencial a los clientes mas valiosos es una practica de alto impacto y bajo costo. Los beneficios para clientes VIP pueden incluir: acceso anticipado a nuevos platos, invitacion a eventos especiales, descuentos exclusivos en fechas clave, posibilidad de hacer reservas prioritarias. Lo que mas valora un cliente VIP no es el descuento: es ser reconocido y tratado como especial.",dest:"Un cliente VIP bien tratado vale mas que diez clientes nuevos. Invertir en ellos es la estrategia de marketing mas rentable."}],conceptos:[{lbl:"Fidelizacion",def:"Conjunto de acciones orientadas a mantener la relacion con los clientes actuales para que sigan eligiendo el negocio de manera regular y lo recomienden."},{lbl:"CRM",def:"Customer Relationship Management: sistema para gestionar la informacion y el historial de cada cliente para personalizar la comunicacion y los servicios."},{lbl:"Tasa de retencion",def:"Porcentaje de clientes que regresan al negocio en un periodo determinado; mide la efectividad de los programas de fidelizacion."},{lbl:"Cliente VIP",def:"Cliente de alto valor para el negocio, que combina frecuencia de visita, ticket promedio elevado y capacidad de recomendacion activa."}]},"0-11":{intro:"La comunicacion, la promocion y la publicidad son herramientas distintas con objetivos distintos. La comunicacion construye marca y relacion; la promocion genera accion a corto plazo; la publicidad amplifica el alcance. Un plan de marketing efectivo utiliza las tres de manera coordinada y en el momento oportuno.",secciones:[{titulo:"Comunicacion de marca vs. publicidad de respuesta",ico:'&#127869;',cuerpo:"La comunicacion de marca construye posicionamiento y reconocimiento a largo plazo. La publicidad de respuesta directa busca generar una accion inmediata: una reserva, un pedido, una visita. Ambas son necesarias y se complementan. Un negocio que solo hace publicidad de respuesta sin construir marca quema presupuesto. Un negocio que solo construye marca sin activar ventas no cierra el mes.",dest:"La marca construye el contexto en el que la publicidad funciona. Sin marca, la publicidad grita en el vacio."},{titulo:"Tipos de promociones para gastronomia",ico:'&#127869;',cuerpo:"Las promociones mas efectivas incluyen: de precio (2x1, descuento en segundo pedido, precio especial en horario valle), de producto (agrandado sin cargo, postre de regalo en fecha especial), de fidelidad (regalo en el cumpleanios, beneficio por X visitas) y de urgencia (oferta valida solo hoy, menu especial para el fin de semana). Las promociones deben tener fecha de inicio y fin clara, objetivo definido y control de su impacto en el margen.",dest:"Una promocion mal disenada puede generar volumen y al mismo tiempo destruir rentabilidad. Siempre calcula el margen antes de lanzarla."},{titulo:"Medios y canales de publicidad gastronomica",ico:'&#127869;',cuerpo:"Los canales publicitarios mas relevantes para negocios gastronomicos en Argentina son: Instagram y Facebook Ads con segmentacion precisa por zona, edad e intereses; Google My Business y Google Ads para captura de intencion de busqueda; plataformas de delivery para posicionamiento pagado; email marketing para base propia; y medios locales como flyers en el barrio o medios digitales zonales. La eleccion del canal debe basarse en donde esta el cliente objetivo.",dest:"El canal correcto es donde esta tu cliente, no donde estas vos."}],conceptos:[{lbl:"Comunicacion de marca",def:"Conjunto de mensajes y acciones orientados a construir el posicionamiento y el reconocimiento de una marca en el largo plazo."},{lbl:"Promocion",def:"Accion de marketing que ofrece un beneficio temporal al cliente para estimular una conducta de compra a corto plazo."},{lbl:"Mix de medios",def:"Combinacion de canales y soportes publicitarios que se utilizan de manera coordinada para llegar al publico objetivo de la manera mas eficiente."},{lbl:"ROI publicitario",def:"Retorno sobre la inversion publicitaria: relacion entre el resultado generado en ventas o clientes nuevos y el costo de la campana publicitaria."}]},"0-12":{intro:"El marketing online para gastronomia en Argentina evoluciona rapidamente. Mantenerse actualizado no significa correr detras de cada novedad, sino entender las tendencias estructurales que estan redefiniendo como los negocios gastronomicos conectan con sus clientes en digital.",secciones:[{titulo:"El poder del video corto en gastronomia",ico:'&#127869;',cuerpo:"El video corto (Reels, TikTok, YouTube Shorts) se ha consolidado como el formato de mayor alcance organico en todas las plataformas. Para gastronomia los formatos mas efectivos son: el proceso de elaboracion de un plato en 30 segundos, el first bite o primera reaccion al probar un producto, el tour por el local o la cocina, y los contenidos de detras de escena. No se necesita produccion sofisticada: la autenticidad y la buena iluminacion son suficientes para generar alcance.",dest:"El video que muestra el vapor de una pizza recien salida del horno vale mas que mil fotos del plato terminado."},{titulo:"Google como plataforma de marketing gastronomico",ico:'&#127869;',cuerpo:"Google My Business es el activo digital mas subutilizado en gastronomia argentina. Un perfil completo y activo con fotos actualizadas, horarios correctos, menu cargado, respuesta a todas las resenas y publicaciones regulares tiene impacto directo en el posicionamiento local. El 46% de las busquedas en Google tienen intencion local. Aparecer primero cuando alguien busca comida cerca de tu local es un activo de alto valor.",dest:"Aparecer primero en Google cuando alguien busca comida cerca de tu local es el activo de marketing online mas valioso que podes construir."},{titulo:"Email marketing y WhatsApp para gastronomia",ico:'&#127869;',cuerpo:"La base de contactos propia, tanto emails como WhatsApp de clientes, es el activo digital mas estable que puede tener un negocio gastronomico. A diferencia de los seguidores en redes sociales, la base propia es un canal directo del negocio, independiente de los algoritmos. Una lista de WhatsApp Business bien segmentada permite comunicar lanzamientos, promociones y novedades con altisimas tasas de apertura.",dest:"Construir tu base de contactos propia es construir independencia digital. No dependes de ningun algoritmo."}],conceptos:[{lbl:"Alcance organico",def:"Cantidad de personas que ven un contenido sin que el negocio pague por su distribucion, a traves de los algoritmos de las plataformas."},{lbl:"Google My Business",def:"Plataforma gratuita de Google que permite a los negocios gestionar su presencia en las busquedas locales y en Google Maps."},{lbl:"Intencion de busqueda",def:"Objetivo que persigue el usuario al realizar una busqueda en Google; puede ser informacional, navegacional o transaccional."},{lbl:"Base de contactos propia",def:"Lista de emails, telefonos o contactos de clientes que el negocio posee directamente, sin intermediarios de plataformas externas."}]},"0-13":{intro:"Las redes sociales son hoy el canal principal de comunicacion, ventas y construccion de comunidad para los negocios gastronomicos. Pero tener redes activas no equivale a tener una estrategia. En este modulo final del Curso 01 integramos todos los conceptos anteriores en una estrategia de Social Media Marketing concreta y ejecutable.",secciones:[{titulo:"Definir la estrategia de redes para gastronomia",ico:'&#127869;',cuerpo:"Una estrategia de redes sociales debe definir: que plataformas usar (no es necesario estar en todas), que objetivo tiene cada una, que tipo de contenido publicar en cada plataforma, con que frecuencia y quien lo produce. Instagram es para comunidad y marca; Google para busqueda local; TikTok para alcance masivo; WhatsApp para comunicacion directa. La estrategia se plasma en un calendario de contenidos mensual que se planifica con anticipacion.",dest:"Publicar sin estrategia es ruido. Publicar con estrategia es conversacion."},{titulo:"Metricas que importan en gastronomia",ico:'&#127869;',cuerpo:"Las metricas de redes sociales que tienen impacto real en el negocio son: el alcance (cuantas personas vieron el contenido), la tasa de interaccion o engagement (likes, comentarios, guardados, compartidos), el trafico generado hacia Google Maps o el sitio web, el crecimiento de seguidores locales, y las conversiones directas como mensajes de consulta, reservas o pedidos derivados de una publicacion. Los seguidores en si mismos no son una metrica de negocio.",dest:"No publiques para tener mas seguidores. Publica para generar mas visitas, pedidos y clientes."},{titulo:"Hacer mas con menos: el creador de contenido gastronomico",ico:'&#127869;',cuerpo:"La mayoria de los negocios gastronomicos no tiene presupuesto para contratar un equipo de marketing. Pero si tiene acceso al mejor estudio de produccion disponible: la propia cocina. Con un buen telefono, luz natural o un aro de luz, un fondo simple y los cinco minutos que tarda un plato en prepararse, es posible generar contenido de alto impacto. La autenticidad del proceso real de un cocinero supera en engagement a la produccion profesional fria.",dest:"El mejor creador de contenido para tu negocio ya trabaja en el. Solo necesita aprender a mirar su trabajo como una historia."}],conceptos:[{lbl:"Calendario de contenidos",def:"Planificacion mensual de publicaciones en redes sociales que define que publicar, cuando, en que formato y con que objetivo."},{lbl:"Engagement",def:"Nivel de interaccion de la audiencia con el contenido publicado, medido a traves de likes, comentarios, guardados y compartidos."},{lbl:"Contenido organico",def:"Publicaciones no pagadas que se distribuyen a traves de los algoritmos de las plataformas sociales segun su relevancia y calidad."},{lbl:"Conversion en redes",def:"Accion concreta que realiza un usuario como resultado de ver contenido en redes: reservar, pedir, visitar, consultar o recomendar."}]}};
+const EXAMEN={"0-0":{ps:[{t:"Cual es el principal cambio que plantea el nuevo marketing gastronomico?",os:["Reducir costos de publicidad impresa", "Pasar del producto a construir una experiencia narrable y compartible", "Eliminar el boca a boca como estrategia", "Concentrarse solo en la calidad de la comida"],ok:1,ex:"El nuevo marketing centra su foco en la experiencia completa, memorable y compartible, superando el modelo centrado unicamente en el producto."},{t:"Que porcentaje de argentinos consulta resenas online antes de elegir donde comer?",os:["45%", "58%", "72%", "80%"],ok:2,ex:"El 72% consulta resenas online, confirmando el peso del marketing digital en la decision de compra."},{t:"Que significa que el marketing gastronomico sea integrado?",os:["Que solo usa redes sociales", "Que menu, atencion, decoracion y presencia digital son coherentes entre si", "Que tiene un departamento exclusivo", "Que invierte igual en todos los canales"],ok:1,ex:"El marketing integrado implica que todos los puntos de contacto transmiten un mensaje coherente y consistente de marca."},{t:"Que valoran especialmente los millennials y Gen Z al elegir un local gastronomico?",os:["Precio bajo y velocidad", "Variedad ilimitada en el menu", "Identidad clara, sustentabilidad y presencia digital activa", "Atencion personalizada por telefono"],ok:2,ex:"Las generaciones jovenes priorizan identidad definida, sustentabilidad y presencia digital coherente."},{t:"Por que el boca a boca digital es cualitativamente distinto al tradicional?",os:["Porque es mas barato", "Porque tiene alcance exponencial y permanencia indefinida", "Porque solo lo ven personas del barrio", "Porque depende de publicidad pagada"],ok:1,ex:"Las resenas digitales tienen alcance masivo y quedan disponibles indefinidamente, amplificando el impacto de cada experiencia del cliente."}]},"0-1":{ps:[{t:"Cuantas capas tiene el producto gastronomico ampliado?",os:["Una", "Dos", "Tres", "Cuatro"],ok:2,ex:"El producto tiene tres capas: nucleo (la comida), producto real (presentacion, temperatura) y producto ampliado (ambiente, historia, experiencia emocional)."},{t:"Cual es la diferencia entre una caracteristica y un beneficio en marketing gastronomico?",os:["No hay diferencia: son lo mismo", "La caracteristica describe el producto; el beneficio describe que hace por el cliente", "El beneficio es mas tecnico que la caracteristica", "Solo las cadenas trabajan con beneficios"],ok:1,ex:"El marketing eficaz siempre traduce caracteristicas en beneficios concretos y emocionales que el cliente puede valorar."},{t:"Cual es la condicion para que la diferenciacion sea estrategicamente valida?",os:["Que sea tecnologica y sofisticada", "Que sea real, sostenible en el tiempo y comunicable de manera simple", "Que tenga un costo de implementacion bajo", "Que imite a la competencia exitosa"],ok:1,ex:"Un diferencial que no es real, que no se puede sostener o que no se puede comunicar de manera simple pierde su valor competitivo."},{t:"Que es el valor percibido?",os:["El precio de venta del plato", "El costo total de produccion", "La evaluacion subjetiva del cliente sobre la relacion beneficios/precio", "El rating en Google Maps"],ok:2,ex:"El valor percibido es lo que el cliente siente que recibe en relacion a lo que entrega: dinero, tiempo y esfuerzo."},{t:"Cual define mejor la propuesta de valor en gastronomia?",os:["Es solo el precio del menu", "Es la descripcion del plato principal", "Es la razon diferencial por la que el cliente elige un negocio sobre otro", "Es el tamano de las porciones"],ok:2,ex:"La propuesta de valor es la razon concreta y diferencial por la que un cliente elige un negocio: va mas alla del producto e incluye experiencia, precio y emocion."}]},"0-10":{ps:[{t:"Cuantas veces mas caro es conseguir un cliente nuevo que retener uno existente?",os:["2 veces", "3 veces", "Entre 5 y 7 veces", "10 veces"],ok:2,ex:"Fidelizar a un cliente cuesta entre 5 y 7 veces menos que conseguir uno nuevo. Por eso la inversion en retencion es tan rentable."},{t:"Cual es la ventaja de la fidelizacion manual sobre la digital?",os:["Es mas barata de implementar", "Es personalizable y genera una conexion emocional mas profunda", "Funciona mejor con clientes jovenes", "Es mas facil de escalar a muchos clientes"],ok:1,ex:"La fidelizacion manual genera un vinculo emocional que la tecnologia dificilmente puede replicar."},{t:"Que es un CRM en el contexto de la fidelizacion gastronomica?",os:["Un sistema de comandas digital", "Un sistema para gestionar la relacion con los clientes y personalizar la comunicacion", "Una plataforma de delivery", "Un software de costeo de recetas"],ok:1,ex:"CRM permite registrar datos de clientes, historial de visitas y preferencias para personalizar la comunicacion y las ofertas."},{t:"Que es lo que mas valora un cliente VIP de su trato diferencial?",os:["Los descuentos economicos principalmente", "El reconocimiento y el sentido de ser tratado como especial", "El acceso a la carta exclusiva del chef", "Las mesas mas grandes del local"],ok:1,ex:"Los clientes VIP no buscan solo descuentos: buscan ser reconocidos como especiales. Ese reconocimiento tiene alto impacto en la lealtad y bajo costo para el negocio."},{t:"Que riesgo implica no comunicarse con un cliente por mas de 30 dias?",os:["Ningun riesgo si el cliente es frecuente", "El negocio puede recibir una resena negativa", "El cliente comienza a olvidar el negocio y puede dejar de venir", "Es una senal de que el cliente esta satisfecho"],ok:2,ex:"La falta de comunicacion genera distanciamiento. Sin contacto el cliente pierde el habito de visita y puede no regresar aunque su experiencia anterior haya sido positiva."}]},"0-11":{ps:[{t:"Cual es la diferencia entre comunicacion de marca y publicidad de respuesta directa?",os:["El costo de cada una", "La comunicacion construye posicionamiento a largo plazo; la publicidad genera accion a corto plazo", "La comunicacion usa medios digitales; la publicidad usa medios fisicos", "Solo la frecuencia de publicacion"],ok:1,ex:"La comunicacion de marca construye en el tiempo. La publicidad de respuesta directa activa ventas inmediatas. Ambas son necesarias y se complementan."},{t:"Cual de estas es una promocion de urgencia?",os:["El 10% de descuento todos los lunes", "El postre de regalo en el cumpleanios", "Oferta valida solo hoy en el dia del cliente", "El programa de sello en tarjeta"],ok:2,ex:"Las promociones de urgencia tienen fecha limite y generan un sentido de escasez que acelera la decision de compra."},{t:"Que riesgo tiene una promocion mal disenada?",os:["Atraer demasiados clientes", "Generar volumen y al mismo tiempo destruir rentabilidad", "Mejorar la imagen del negocio sin generar ventas", "Solo funcionar en temporada alta"],ok:1,ex:"Una promocion que no considera el impacto en el margen puede traer clientes pero destruir rentabilidad. Siempre calcular el margen antes de lanzarla."},{t:"Cual es el criterio correcto para elegir los canales publicitarios de un negocio gastronomico?",os:["Donde el dueno del negocio pasa mas tiempo", "Donde esta el publico objetivo del negocio", "El canal mas economico disponible", "El canal que usa la competencia directa"],ok:1,ex:"El canal correcto es donde esta el cliente al que queremos llegar, independientemente de las preferencias del dueno del negocio."},{t:"Que significa ROI publicitario?",os:["El numero de personas que vieron la publicidad", "La relacion entre el resultado generado y el costo de la campana publicitaria", "El costo total de produccion del contenido publicitario", "El numero de likes en la publicacion de Instagram"],ok:1,ex:"El ROI publicitario mide cuanto genero el negocio como resultado de lo que invirtio en publicidad."}]},"0-12":{ps:[{t:"Cual es el formato de contenido con mayor alcance organico en redes sociales para gastronomia?",os:["Fotos estaticas de producto", "El video corto: Reels, TikTok, YouTube Shorts", "Textos largos con recetas", "Historias de texto con preguntas"],ok:1,ex:"El video corto se ha consolidado como el formato de mayor alcance organico en todas las plataformas sociales actuales."},{t:"Que porcentaje de las busquedas en Google tienen intencion local?",os:["El 12%", "El 25%", "El 46%", "El 72%"],ok:2,ex:"El 46% de las busquedas en Google tienen intencion local. Esto hace de Google My Business un activo de marketing de alto impacto para los negocios gastronomicos locales."},{t:"Cual es la ventaja principal de la base de contactos propia sobre los seguidores en redes?",os:["Llega a mas personas", "Es propiedad del negocio, no depende de algoritmos y tiene altisimas tasas de apertura", "Es completamente gratuita", "Es mas facil de hacer crecer"],ok:1,ex:"Los seguidores en redes son propiedad de la plataforma. La base de contactos propia es un activo digital independiente, estable y con altisimas tasas de apertura."},{t:"Que accion de Google My Business tiene mayor impacto en el posicionamiento local?",os:["Tener mas de 1000 resenas", "Responder el 100% de las resenas, tener fotos actualizadas, horarios correctos y publicaciones regulares", "Tener el local fisicamente mas grande", "Solo el precio de los platos"],ok:1,ex:"Un perfil de Google My Business completo, activo y con respuestas a todas las resenas tiene impacto directo en el posicionamiento local y en la tasa de conversion."},{t:"Cual de estos es un ejemplo de alcance organico?",os:["Una publicacion potenciada con Meta Ads", "Una publicacion de Instagram que llega a personas sin pagar por su distribucion", "Un aviso en Google con presupuesto diario", "Un flyer fisico distribuido en el barrio"],ok:1,ex:"El alcance organico es la distribucion gratuita que hace el algoritmo de una plataforma basandose en la calidad y relevancia del contenido."}]},"0-13":{ps:[{t:"Que funcion cumple Instagram en una estrategia de redes sociales gastronomica?",os:["Captacion de busqueda local", "Construccion de comunidad y marca", "Ventas directas a traves de delivery", "Gestion de reservas"],ok:1,ex:"Instagram es principalmente un canal de construccion de comunidad y marca en la estrategia de redes para gastronomia."},{t:"Cual de estas metricas tiene impacto real en el negocio gastronomico?",os:["La cantidad total de seguidores acumulados", "La tasa de interaccion y las conversiones directas (reservas, pedidos, consultas)", "El numero de publicaciones por mes", "El numero de cuentas a las que se sigue"],ok:1,ex:"Las metricas que impactan en el negocio son las que se traducen en acciones concretas: reservas, pedidos, consultas y visitas generadas desde redes."},{t:"Que es un calendario de contenidos?",os:["El horario de atencion del local en redes", "Planificacion mensual de publicaciones que define que, cuando, en que formato y con que objetivo publicar", "El historial de publicaciones pasadas", "La agenda de eventos gastronomicos del anio"],ok:1,ex:"El calendario de contenidos define con anticipacion todas las publicaciones del mes para garantizar consistencia y estrategia."},{t:"Cual es el principal recurso de produccion de contenido que ya tiene cualquier negocio gastronomico?",os:["Un equipo de marketing profesional", "La propia cocina, los platos en preparacion y el proceso real del negocio", "Un estudio de fotografia alquilado", "Software de edicion avanzado"],ok:1,ex:"La cocina real, la preparacion de los platos y el proceso autentico del negocio son el mejor estudio de produccion de contenido disponible para cualquier gastronomia."},{t:"Que diferencia hay entre publicar para tener mas seguidores y publicar con estrategia?",os:["Ninguna diferencia practica", "Publicar con estrategia tiene un objetivo de negocio concreto: visitas, pedidos, reservas o clientes nuevos", "Solo el diseno de las publicaciones", "La frecuencia de publicacion"],ok:1,ex:"El contenido estrategico tiene un objetivo de negocio especifico y medible. El contenido sin estrategia persigue vanity metrics que no impactan en la rentabilidad."}]},"0-2":{ps:[{t:"Cual NO es una tendencia estructural del mercado gastronomico argentino actual?",os:["Auge del delivery como canal permanente", "Valorizacion de la trazabilidad de los productos", "Preferencia por cartas con mas de 50 opciones", "Experiencializacion del consumo gastronomico"],ok:2,ex:"Las cartas extensas son contrarias a la tendencia actual: los consumidores buscan propuestas especializadas y concisas."},{t:"Que herramienta estructura el conocimiento del cliente en seis dimensiones?",os:["El FODA", "El mapa de empatia", "La encuesta NPS", "El analisis de competencia"],ok:1,ex:"El mapa de empatia organiza lo que sabemos del cliente en: piensa/siente, ve, escucha, dice/hace, dolores y aspiraciones."},{t:"Donde se puede obtener informacion sobre el cliente de un negocio gastronomico?",os:["Solo en encuestas formales pagadas", "Solo analizando las ventas del POS", "En resenas de Google, metricas de redes, observacion directa y entrevistas a clientes", "Solo con estudios de mercado externos"],ok:2,ex:"La combinacion de multiples fuentes da el panorama mas completo y preciso del cliente."},{t:"Que es un buyer persona en marketing gastronomico?",os:["El cliente de mayor ticket promedio", "La representacion semi-ficticia del cliente ideal basada en datos reales", "El proveedor principal del negocio", "El perfil del candidato ideal para contratar"],ok:1,ex:"El buyer persona es una representacion detallada del cliente tipo, construida con datos reales sobre comportamiento, motivaciones y objetivos."},{t:"Por que la escucha activa del mercado es un proceso continuo?",os:["Porque requiere mucho dinero", "Porque los gustos del cliente cambian continuamente y hay que estar al tanto", "Porque solo funciona con tecnologia avanzada", "Porque los competidores copian las estrategias rapidamente"],ok:1,ex:"El cliente y el mercado evolucionan de manera continua. Escuchar solo una vez da una foto; escuchar regularmente da una pelicula."}]},"0-3":{ps:[{t:"A que dos tipos de motivaciones apela el marketing gastronomico mas efectivo?",os:["Motivaciones de precio y de calidad", "Motivaciones racionales y emocionales", "Motivaciones de velocidad y comodidad", "Motivaciones visuales y auditivas"],ok:1,ex:"El cliente decide con la emocion y justifica con la razon. El marketing efectivo debe hablarle a ambas dimensiones."},{t:"Si un cliente valora la autenticidad, cual es la accion mas adecuada?",os:["Ofrecer el precio mas bajo del barrio", "Contar la historia detras de los platos y mostrar los productores", "Ampliar la carta con mas opciones", "Mejorar la velocidad de entrega"],ok:1,ex:"Si el cliente valora la autenticidad, hay que construir y comunicar la historia real detras del negocio: origen, proceso, personas."},{t:"Que es un detractor en terminos de marketing gastronomico?",os:["Un cliente que siempre pide lo mismo", "Un competidor directo muy agresivo", "Un cliente con experiencia negativa que la comunica activamente", "Un empleado descontento"],ok:2,ex:"Un detractor es un cliente insatisfecho que comunica su experiencia negativa a otros, generando impacto negativo en la reputacion del negocio."},{t:"Por que la coherencia entre promesa y entrega es el activo mas valioso del negocio gastronomico?",os:["Porque reduce el costo de marketing", "Porque se construye lento y se destruye rapido, generando confianza", "Porque es exigida por el SENASA", "Porque facilita la negociacion con proveedores"],ok:1,ex:"La coherencia genera confianza a lo largo del tiempo. Una sola ruptura de la promesa puede destruir lo que tardo meses en construirse."},{t:"Cual es un ejemplo de diseno intencional de la experiencia?",os:["Bajar el precio del menu un 10%", "Disenar la musica del local para que el cliente quiera quedarse mas tiempo", "Publicar mas seguido en Instagram", "Contratar un chef mas experimentado"],ok:1,ex:"Disenar la musica, la luz, los aromas y el mobiliario para generar una experiencia sensorial especifica es diseno intencional de la experiencia."}]},"0-4":{ps:[{t:"Cual NO forma parte de la estructura de un plan de marketing gastronomico?",os:["Diagnostico FODA", "Definicion de objetivos SMART", "Historia personal del dueno del negocio", "Sistema de metricas para evaluar resultados"],ok:2,ex:"La historia personal del dueno puede ser relevante para el branding, pero no es un componente de la estructura de un plan de marketing."},{t:"Que hace que un objetivo sea SMART?",os:["Que sea ambicioso y motivador", "Que sea Especifico, Medible, Alcanzable, Relevante y con Tiempo definido", "Que lo apruebe todo el equipo", "Que este relacionado con redes sociales"],ok:1,ex:"Un objetivo SMART puede responderse con un numero y tiene un plazo de cumplimiento definido. Sin esas caracteristicas, es un deseo, no un objetivo."},{t:"Que porcentaje de la facturacion mensual suele destinarse a marketing en una PyME gastronomica?",os:["Entre el 1% y el 2%", "Entre el 3% y el 8%", "Entre el 10% y el 15%", "Entre el 20% y el 25%"],ok:1,ex:"La regla general para PyMEs gastronomicas es destinar entre el 3% y el 8% de la facturacion mensual al presupuesto de marketing."},{t:"Cual es el proposito principal de un analisis FODA en el plan de marketing?",os:["Calcular el food cost del negocio", "Diagnosticar la situacion actual del negocio en relacion con su mercado", "Definir el organigrama del equipo", "Establecer los precios de la carta"],ok:1,ex:"El FODA identifica Fortalezas, Oportunidades, Debilidades y Amenazas para informar las decisiones estrategicas."},{t:"Un objetivo de marketing que dice queremos crecer es...",os:["Un objetivo SMART bien formulado", "Un objetivo incompleto porque no es medible ni tiene tiempo definido", "Un objetivo valido si el equipo lo acepta", "Un objetivo relevante para negocios en etapa inicial"],ok:1,ex:"Queremos crecer no especifica cuanto, en que dimension, ni para cuando. Sin esas definiciones, no se puede planificar ni evaluar el resultado."}]},"0-5":{ps:[{t:"Cual es la diferencia entre un competidor directo y uno indirecto?",os:["El directo es local y el indirecto es extranjero", "El directo ofrece propuestas similares; el indirecto satisface la misma necesidad con propuesta diferente", "El directo es mas caro; el indirecto es mas barato", "El directo esta en el mismo barrio; el indirecto esta en otro"],ok:1,ex:"El competidor directo vende lo mismo al mismo publico. El indirecto compite por el mismo momento de consumo con propuesta diferente."},{t:"Que es la tecnica del cliente misterioso?",os:["Un cliente que no deja resenas", "Un observador que actua como cliente real para evaluar la experiencia de la competencia", "Un cliente frecuente que da feedback informal", "Un encuestador externo"],ok:1,ex:"El cliente misterioso evalua la experiencia de un local desde dentro, actuando como cliente real para obtener una vision objetiva."},{t:"Para que sirve el mapa de posicionamiento competitivo?",os:["Para medir el food cost de la competencia", "Para identificar espacios de diferenciacion disponibles en el mercado", "Para calcular el alquiler optimo por zona", "Para determinar el precio justo de cada plato"],ok:1,ex:"El mapa de posicionamiento muestra como estan ubicados los competidores segun atributos clave y permite identificar espacios no ocupados."},{t:"Con que frecuencia deberia actualizarse el analisis de competencia?",os:["Una vez cuando se abre el negocio", "Solo cuando entra un competidor nuevo", "Al menos una vez por anio", "Cada semana"],ok:2,ex:"El mercado cambia continuamente. Una actualizacion anual del analisis de competencia permite detectar cambios de posicionamiento y nuevas oportunidades."},{t:"Cuales son las plataformas de delivery mas relevantes para analizar la competencia en Argentina?",os:["Amazon y eBay", "Instagram y TikTok", "PedidosYa y Rappi", "Google y Facebook"],ok:2,ex:"PedidosYa y Rappi muestran calificaciones, volumen de pedidos y posicionamiento de los competidores dentro del canal de delivery."}]},"0-6":{ps:[{t:"Cuantos pilares tiene el branding gastronomico segun el modulo?",os:["Dos", "Tres", "Cuatro", "Cinco"],ok:2,ex:"Los cuatro pilares son: identidad visual, identidad verbal, identidad experiencial e identidad narrativa."},{t:"Que documento establece las reglas de uso de la identidad de marca?",os:["El plan de negocio", "El brandbook o manual de marca", "La carta de presentacion", "El analisis FODA"],ok:1,ex:"El brandbook establece las reglas de uso de todos los elementos de la identidad para garantizar coherencia en todos los canales."},{t:"Que es el tono de comunicacion en branding?",os:["El volumen de la musica en el local", "La forma caracteristica en que una marca se expresa en sus mensajes", "El precio promedio del menu", "El estilo de decoracion del local"],ok:1,ex:"El tono de comunicacion define si la marca habla de manera formal, cercana, desafiante, poetica o humoristica, y debe ser consistente en todos los canales."},{t:"Por que la coherencia visual es mas poderosa que un buen logotipo aislado?",os:["Porque el logotipo es costoso de disenar", "Porque la coherencia hace que la marca se reconozca incluso sin ver el logotipo", "Porque los clientes no miran los logotipos", "Porque la coherencia reduce costos de impresion"],ok:1,ex:"Cuando todos los elementos visuales hablan el mismo idioma estetico, el cliente reconoce la marca antes de leer el nombre."},{t:"Cual es un ejemplo de identidad experiencial?",os:["El color del logotipo", "El nombre del local", "La musica ambiental y la actitud del personal", "El numero de seguidores en Instagram"],ok:2,ex:"La identidad experiencial es lo que el cliente siente al estar en el local: musica, temperatura, atencion, fragancias y texturas."}]},"0-7":{ps:[{t:"Segun el eyetracking, adonde van los ojos del cliente primero al recibir una carta?",os:["A la zona inferior izquierda", "A la zona superior derecha", "Al centro de la carta", "A los precios mas altos"],ok:1,ex:"Los estudios de eyetracking muestran que la primera zona de atencion es la superior derecha; los platos alli ubicados tienen mayor probabilidad de ser pedidos."},{t:"Cual es el rango optimo de platos por categoria en una carta efectiva?",os:["Entre 1 y 3", "Entre 4 y 7", "Entre 10 y 15", "Mas de 20"],ok:1,ex:"Entre 4 y 7 platos por categoria evita la paralisis por analisis y facilita las decisiones del cliente y la operacion de la cocina."},{t:"Que es la paralisis por analisis en el contexto de una carta gastronomica?",os:["El tiempo que tarda el cocinero en preparar un plato", "La dificultad para tomar decisiones generada por el exceso de opciones", "El costo operativo de mantener una carta extensa", "El tiempo de capacitacion del personal sobre la carta"],ok:1,ex:"El exceso de opciones genera confusion y frustracion en el cliente, que termina pidiendo lo primero que reconoce o lo mas barato."},{t:"Que impacto tiene una descripcion evocadora de un plato en la percepcion del cliente?",os:["Ninguno: el cliente solo mira el precio", "Genera mayor percepcion de valor y puede aumentar el ticket promedio entre un 15% y un 25%", "Complica la lectura y reduce las ventas", "Solo importa en restaurantes de alta gama"],ok:1,ex:"Las descripciones que mencionan origen, tecnica o historia aumentan el valor percibido y el precio que el cliente esta dispuesto a pagar."},{t:"Cual es el enfoque central de la ingenieria de menu?",os:["Disenar la carta con el mejor diseno grafico posible", "Analizar la popularidad y rentabilidad de cada plato para optimizar la oferta", "Reducir la cantidad de platos al minimo posible", "Subir los precios de todos los platos un 20%"],ok:1,ex:"La ingenieria de menu clasifica los platos segun popularidad y rentabilidad para tomar decisiones informadas sobre que mantener, potenciar o eliminar."}]},"0-8":{ps:[{t:"Cuales son los cinco pilares de contenido mas efectivos para redes sociales en gastronomia?",os:["Solo platos y precios", "Producto, proceso, humano, educativo y comunitario", "Solo videos y stories", "Solo fotos de producto con fondo blanco"],ok:1,ex:"La combinacion de contenido de producto, proceso (behind the scenes), humano, educativo y comunitario construye una comunidad fiel y comprometida."},{t:"Que es el marketing de referencia en gastronomia?",os:["La publicidad en revistas gastronomicas", "Estrategia que incentiva a clientes actuales a recomendar el negocio a nuevos clientes", "La presencia en ferias y exposiciones", "El uso de referencias de platos internacionales"],ok:1,ex:"El marketing de referencia activa a los clientes satisfechos como canal de recomendacion, generalmente con beneficios mutuos."},{t:"Con cuanta anticipacion minima deben planificarse las acciones de temporada?",os:["El mismo dia", "Una semana antes", "Al menos 3 semanas antes", "Solo para Navidad y Anio Nuevo"],ok:2,ex:"Las temporadas exitosas requieren planificacion de al menos 3 semanas para producir contenido, coordinarse con el equipo y comunicar con tiempo suficiente."},{t:"Cual es la diferencia entre una cuenta que solo publica fotos de platos y una que cuenta historias?",os:["Ninguna diferencia significativa", "La primera es un catalogo; la segunda construye una comunidad", "La primera vende mas; la segunda tiene mas alcance", "Solo importa la calidad de las fotos"],ok:1,ex:"Una cuenta que solo publica platos es un catalogo digital. Una cuenta que cuenta historias construye conexion emocional y comunidad fiel."},{t:"Que incluye una estrategia de lanzamiento efectiva?",os:["Solo una publicacion en Instagram el dia de apertura", "Anticipacion, evento para clientes VIP o influencers, campana en redes y seguimiento post-lanzamiento", "Solo descuentos en el primer mes", "Solo avisos en el barrio"],ok:1,ex:"Un lanzamiento planificado tiene cuatro fases: intriga previa, evento de apertura selectivo, campana de comunicacion y seguimiento post-lanzamiento."}]},"0-9":{ps:[{t:"Cual es la diferencia entre vender y recomendar en el servicio de salon?",os:["Solo la actitud del cliente", "En la recomendacion genuina el mozo entiende las preferencias del cliente y personaliza la sugerencia; en la venta generica no", "No hay diferencia practica", "El precio: recomendar es mas caro"],ok:1,ex:"La venta consultiva se basa en conocer al cliente y hacerle una recomendacion personalizada y autentica. Eso genera confianza y ventas adicionales."},{t:"Que es el upselling en el contexto de un restaurante?",os:["Ofrecer un producto adicional al pedido principal", "Ofrecer una version mejorada o de mayor valor de lo que el cliente ya eligio", "Reemplazar un plato por uno mas barato", "Insistir hasta que el cliente pide algo extra"],ok:1,ex:"El upselling es ofrecer una version superior de lo que el cliente ya eligio: lomo con guarnicion premium en lugar del estandar."},{t:"Que herramienta de capacitacion es mas efectiva para que el personal conozca los platos de la carta?",os:["Leer la carta antes del turno", "Las degustaciones internas del equipo", "Ver videos de otros restaurantes", "Mirar las fotos de Instagram del local"],ok:1,ex:"Quien probo un plato lo puede recomendar con conviccion y detalle. Las degustaciones internas son la mejor inversion en capacitacion de ventas del salon."},{t:"Que es el cross-selling en el contexto de un restaurante?",os:["Vender la misma comida a precios mas altos", "Ofrecer productos complementarios al pedido principal", "Hacer descuentos cruzados entre platos", "Recomendar el local a otros negocios"],ok:1,ex:"El cross-selling en gastronomia es ofrecer complementos al pedido: los crocantes de panceta van muy bien con esa ensalada."},{t:"Por que invertir en la capacitacion del personal de salon es una decision de marketing?",os:["Porque reduce el gasto en publicidad digital", "Porque el personal de salon es el eslabon de mayor impacto en la experiencia del cliente y en el ticket promedio", "Porque es una exigencia legal del CCT", "Porque el SENASA lo requiere para la habilitacion"],ok:1,ex:"El personal de salon transforma la experiencia del cliente y tiene impacto directo en el ticket promedio y en la fidelizacion. Capacitarlos es invertir en marketing de alto retorno."}]}};
+
+
+let cursoActual=0,capActual=0,modo='reading';
+let progreso={},examAnswers={},examDone=false,idxOpen=false;
+const isDesktop=()=>window.innerWidth>=900;
+
+function openCurso(id){
+  cursoActual=id;capActual=0;modo='reading';
+  document.getElementById('landing').classList.remove('active');
+  document.getElementById('courseView').classList.add('active');
+  const sb=document.getElementById('cvSidebar');
+  const hm=document.getElementById('cvHeaderMobile');
+  if(isDesktop()){sb.style.display='flex';hm.style.display='none';}
+  else{sb.style.display='none';hm.style.display='block';}
+  document.getElementById('cvBadgeD').textContent=CURSOS[id].nombre;
+  document.getElementById('cvBadgeM').textContent=CURSOS[id].nombre;
+  idxOpen=false;
+  document.getElementById('chDrawer').classList.remove('open');
+  renderSidebar();renderDrawer();updateProgress();loadChap();
+}
+
+function goLanding(){ window.location.href='/cursos'; }
+
+function toggleIdx(){
+  idxOpen=!idxOpen;
+  document.getElementById('chDrawer').classList.toggle('open',idxOpen);
+  document.getElementById('idxLbl').textContent=idxOpen?'Cerrar indice':'Ver todos los modulos';
+  document.getElementById('idxArr').textContent=idxOpen?'\u2191':'\u2193';
+}
+
+function makeChRow(cap, i, done, active, unlocked){
+  const d=document.createElement('div');
+  d.className='ch-row'+(done?' dch':'')+(active?' ach':'')+(unlocked?'':' lkd');
+  if(unlocked) d.onclick=function(){goChap(i);};
+  const b=document.createElement('div');
+  b.className='ch-b';
+  b.innerHTML=done&&!active?'&#10003;':String(i+1);
+  const t=document.createElement('div');
+  t.className='ch-rt';
+  t.textContent=cap;
+  d.appendChild(b);d.appendChild(t);
+  return d;
+}
+
+function renderSidebar(){
+  const caps=CURSOS[cursoActual].caps;
+  const el=document.getElementById('sidebarList');
+  el.innerHTML='';
+  caps.forEach((cap,i)=>{
+    const done=!!progreso[cursoActual+'-'+i];
+    const active=i===capActual;
+    const unlocked=i===0||!!progreso[cursoActual+'-'+(i-1)];
+    el.appendChild(makeChRow(cap,i,done,active,unlocked));
+  });
+}
+
+function renderDrawer(){
+  const caps=CURSOS[cursoActual].caps;
+  const el=document.getElementById('chDrawer');
+  el.innerHTML='';
+  caps.forEach((cap,i)=>{
+    const done=!!progreso[cursoActual+'-'+i];
+    const active=i===capActual;
+    const unlocked=i===0||!!progreso[cursoActual+'-'+(i-1)];
+    el.appendChild(makeChRow(cap,i,done,active,unlocked));
+  });
+}
+
+function goChap(i){
+  if(i!==0&&!progreso[cursoActual+'-'+(i-1)])return;
+  capActual=i;modo='reading';idxOpen=false;
+  document.getElementById('chDrawer').classList.remove('open');
+  document.getElementById('idxLbl').textContent='Ver todos los modulos';
+  document.getElementById('idxArr').textContent='\u2193';
+  renderSidebar();renderDrawer();loadChap();
+}
+
+function loadChap(){
+  const curso=CURSOS[cursoActual];
+  const t=TIEMPOS[(cursoActual*14+capActual)%TIEMPOS.length];
+  const el=document.getElementById('cvContent');
+  el.innerHTML='';
+  el.scrollTop=0;
+
+  const eyebrow=document.createElement('div');
+  eyebrow.className='ch-eyebrow';
+  eyebrow.textContent='Modulo '+(capActual+1)+' de '+curso.caps.length;
+
+  const title=document.createElement('h2');
+  title.className='ch-main-title';
+  title.textContent=curso.caps[capActual];
+
+  const info=document.createElement('div');
+  info.className='ch-info';
+  info.textContent='\u23F1 '+t+' min de lectura';
+
+  const modeRow=document.createElement('div');
+  modeRow.className='mode-row';
+  const btnR=document.createElement('button');
+  btnR.className='md-btn active';btnR.id='mdR';
+  btnR.textContent='\uD83D\uDCD6 Lectura';
+  btnR.onclick=function(){setMode('reading');};
+  const btnE=document.createElement('button');
+  btnE.className='md-btn';btnE.id='mdE';
+  btnE.textContent='\u270E Examen';
+  btnE.onclick=function(){setMode('exam');};
+  modeRow.appendChild(btnR);modeRow.appendChild(btnE);
+
+  const mc=document.createElement('div');
+  mc.id='mc';
+
+  el.appendChild(eyebrow);el.appendChild(title);el.appendChild(info);
+  el.appendChild(modeRow);el.appendChild(mc);
+
+  renderModo();renderFooter();
+}
+
+function setMode(m){
+  modo=m;
+  const r=document.getElementById('mdR');
+  const e=document.getElementById('mdE');
+  if(r)r.classList.toggle('active',m==='reading');
+  if(e)e.classList.toggle('active',m==='exam');
+  renderModo();renderFooter();
+  document.getElementById('cvContent').scrollTop=0;
+}
+
+function renderModo(){modo==='reading'?renderLectura():renderExamen();}
+
+function renderLectura(){
+  const key=cursoActual+'-'+capActual;
+  const d=CONTENIDO[key];
+  const el=document.getElementById('mc');
+  if(!d){
+    el.innerHTML='<div class="ph"><div class="ph-ico">\uD83D\uDCC4</div><div class="ph-txt">Contenido disponible proximamente.</div></div>';
+    return;
+  }
+  let h='<div class="intro-card"><div class="intro-lbl">Introduccion</div><div class="intro-txt">'+d.intro+'</div></div>';
+  d.secciones.forEach(function(s){
+    h+='<div class="sec-block">'
+      +'<div class="sec-title"><div class="sec-ico">'+s.ico+'</div>'+s.titulo+'</div>'
+      +'<div class="sec-body"><p>'+s.cuerpo+'</p></div>'
+      +'<div class="highlight">'+s.dest+'</div>'
+      +'</div>';
+  });
+  h+='<div class="sec-block"><div class="sec-title"><div class="sec-ico">&#128273;</div>Conceptos clave</div><div class="kc-grid">';
+  d.conceptos.forEach(function(cv){
+    h+='<div class="kc-card"><div class="kc-lbl">'+cv.lbl+'</div><div class="kc-txt">'+cv.def+'</div></div>';
+  });
+  h+='</div></div>';
+  el.innerHTML=h;
+}
+
+function renderExamen(){
+  const key=cursoActual+'-'+capActual;
+  const ex=EXAMEN[key];
+  const el=document.getElementById('mc');
+  if(!ex){
+    el.innerHTML='<div class="ph"><div class="ph-ico">&#9998;</div><div class="ph-txt">Examen disponible proximamente.</div></div>';
+    renderFooter();return;
+  }
+  examAnswers={};examDone=false;
+  let h='<div class="exam-head"><div class="exam-ico">&#9998;</div>'
+    +'<div><div class="exam-h2">Evaluacion del modulo</div>'
+    +'<div class="exam-p">5 preguntas &middot; necesitas 4 correctas para avanzar</div></div></div>';
+  ex.ps.forEach(function(q,i){
+    h+='<div class="q-block" id="qb'+i+'">'
+      +'<div class="q-num">Pregunta '+(i+1)+' de '+ex.ps.length+'</div>'
+      +'<div class="q-txt">'+q.t+'</div>'
+      +'<div class="opts">';
+    q.os.forEach(function(op,j){
+      h+='<button class="opt" id="o'+i+'_'+j+'" onclick="selOpt('+i+','+j+')">'+op+'</button>';
+    });
+    h+='</div><div class="fb" id="fb'+i+'"></div></div>';
+  });
+  el.innerHTML=h;
+  renderFooter();
+}
+
+function selOpt(q,opt){
+  if(examDone)return;
+  examAnswers[q]=opt;
+  document.querySelectorAll('#qb'+q+' .opt').forEach(function(b,j){b.classList.toggle('sel',j===opt);});
+  const ex=EXAMEN[cursoActual+'-'+capActual];
+  const sb=document.getElementById('submitExBtn');
+  if(sb)sb.disabled=Object.keys(examAnswers).length<ex.ps.length;
+}
+
+function submitEx(){
+  if(examDone)return;examDone=true;
+  const ex=EXAMEN[cursoActual+'-'+capActual];
+  let score=0;
+  ex.ps.forEach(function(q,i){
+    const sel=examAnswers[i],ok=sel===q.ok;
+    if(ok)score++;
+    document.querySelectorAll('#qb'+i+' .opt').forEach(function(b,j){
+      b.disabled=true;
+      if(j===q.ok)b.classList.add('correct');
+      else if(j===sel&&!ok)b.classList.add('wrong');
+    });
+    const fb=document.getElementById('fb'+i);
+    fb.style.display='block';
+    fb.className='fb '+(ok?'ok':'err');
+    fb.textContent=(ok?'\u2713 Correcto: ':'\u2717 Incorrecto: ')+q.ex;
+  });
+  const approved=score>=4;
+  const key=cursoActual+'-'+capActual;
+  const mc=document.getElementById('mc');
+
+  const scoreCard=document.createElement('div');
+  scoreCard.className='score-card';
+  scoreCard.innerHTML='<div class="score-n">'+score+'/'+ex.ps.length+'</div>'
+    +'<div class="score-l">'+(approved?'\uD83C\uDF89 Modulo aprobado':'\uD83D\uDCDA Segui repasando')+'</div>'
+    +'<div class="score-s">'+(approved?'Podes avanzar al siguiente modulo.':'Relee el material y volvé a intentarlo.')+'</div>';
+
+  const actRow=document.createElement('div');
+  actRow.style.cssText='display:flex;gap:8px;margin-bottom:16px';
+  if(approved){
+    const nb=document.createElement('button');
+    nb.className='btn btn-terra';
+    nb.textContent='Siguiente modulo \u2192';
+    nb.onclick=markNext;
+    actRow.appendChild(nb);
+  } else {
+    const rb=document.createElement('button');
+    rb.className='btn btn-out';
+    rb.textContent='Repasar';
+    rb.onclick=function(){setMode('reading');};
+    const ib=document.createElement('button');
+    ib.className='btn btn-ghost';
+    ib.textContent='Reintentar';
+    ib.onclick=function(){renderExamen();renderFooter();};
+    actRow.appendChild(rb);actRow.appendChild(ib);
+  }
+  mc.insertBefore(actRow, mc.firstChild);
+  mc.insertBefore(scoreCard, mc.firstChild);
+  document.getElementById('cvContent').scrollTop=0;
+
+  if(approved){progreso[key]=true;updateProgress();renderSidebar();renderDrawer();}
+  renderFooter();
+}
+
+function markNext(){
+  const caps=CURSOS[cursoActual].caps;
+  if(capActual<caps.length-1){capActual++;modo='reading';renderSidebar();renderDrawer();loadChap();}
+}
+
+function renderFooter(){
+  const key=cursoActual+'-'+capActual;
+  const caps=CURSOS[cursoActual].caps;
+  const foot=document.getElementById('cvFooter');
+  foot.innerHTML='';
+
+  if(modo==='reading'){
+    const prev=document.createElement('button');
+    prev.className='btn btn-out';
+    prev.textContent='\u2190';
+    if(capActual===0)prev.disabled=true;
+    prev.onclick=function(){nav(-1);};
+
+    const go=document.createElement('button');
+    go.className='btn btn-terra';
+    go.style.flex='3';
+    go.textContent='Ir al examen \u270E';
+    if(!CONTENIDO[key])go.disabled=true;
+    go.onclick=function(){setMode('exam');};
+
+    const next=document.createElement('button');
+    next.className='btn btn-out';
+    next.textContent='\u2192';
+    if(!progreso[key]||capActual>=caps.length-1)next.disabled=true;
+    next.onclick=function(){nav(1);};
+
+    foot.appendChild(prev);foot.appendChild(go);foot.appendChild(next);
+
+  } else if(!examDone){
+    const back=document.createElement('button');
+    back.className='btn btn-out';
+    back.textContent='\u2190 Lectura';
+    back.onclick=function(){setMode('reading');};
+
+    const send=document.createElement('button');
+    send.className='btn btn-ghost';
+    send.id='submitExBtn';
+    send.style.flex='2';
+    send.textContent='Enviar respuestas';
+    send.disabled=true;
+    send.onclick=submitEx;
+
+    foot.appendChild(back);foot.appendChild(send);
+  }
+}
+
+function nav(dir){
+  const caps=CURSOS[cursoActual].caps;
+  const ni=capActual+dir;
+  if(ni<0||ni>=caps.length)return;
+  if(ni>0&&!progreso[cursoActual+'-'+(ni-1)])return;
+  capActual=ni;modo='reading';renderSidebar();renderDrawer();loadChap();
+}
+
+function updateProgress(){
+  const caps=CURSOS[cursoActual].caps;
+  const done=caps.filter(function(_,i){return !!progreso[cursoActual+'-'+i];}).length;
+  const pct=Math.round(done/caps.length*100);
+  ['D','M'].forEach(function(s){
+    const f=document.getElementById('pFill'+s);
+    const l=document.getElementById('pLbl'+s);
+    const p=document.getElementById('pPct'+s);
+    if(f)f.style.width=pct+'%';
+    if(l)l.textContent=done+' de '+caps.length+' modulos';
+    if(p)p.textContent=pct+'%';
+  });
+}
+
+window.addEventListener('resize',function(){
+  if(document.getElementById('courseView').classList.contains('active')){
+    const sb=document.getElementById('cvSidebar');
+    const hm=document.getElementById('cvHeaderMobile');
+    if(isDesktop()){sb.style.display='flex';hm.style.display='none';}
+    else{sb.style.display='none';hm.style.display='block';}
+  }
+});
+
+
+window.addEventListener('DOMContentLoaded',function(){ openCurso(0); });
+</script>
+</body>
+</html>
