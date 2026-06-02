@@ -1,19 +1,12 @@
 // api/auth.js
-// POST /api/auth?action=login    → { email, password } → { token, user }
-// POST /api/auth?action=register → { email, nombre, password, secret } → { ok }
-// GET  /api/auth?action=verify   → header Authorization: Bearer <token> → { user }
-// POST /api/auth?action=logout   → header Authorization: Bearer <token> → { ok }
-
 import { createClient } from '@supabase/supabase-js';
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_KEY,
-{}
+  process.env.SUPABASE_SERVICE_KEY
 );
 
-// Simple pero seguro: PBKDF2 con 100k iteraciones (no necesita bcrypt extra dep)
 function hashPassword(password) {
   const salt = process.env.PASSWORD_SALT || 'mf-salt-2025';
   return crypto.pbkdf2Sync(password, salt, 100000, 64, 'sha512').toString('hex');
@@ -36,25 +29,24 @@ export default async function handler(req, res) {
 
   const action = req.query?.action;
 
-  // ── LOGIN ─────────────────────────────────────────────────────────
+  // LOGIN
   if (action === 'login' && req.method === 'POST') {
     const { email, password } = req.body || {};
     if (!email || !password)
-      return res.status(400).json({ error: 'Email y contraseña requeridos.' });
+      return res.status(400).json({ error: 'Email y contrasena requeridos.' });
 
     const { data: user } = await supabase
       .from('users')
       .select('id,email,nombre,cursos,activo,password_hash')
       .eq('email', email.toLowerCase().trim())
-      .single();
+      .maybeSingle();
 
     if (!user || user.password_hash !== hashPassword(password))
-      return res.status(401).json({ error: 'Email o contraseña incorrectos.' });
+      return res.status(401).json({ error: 'Email o contrasena incorrectos.' });
 
     if (!user.activo)
-      return res.status(403).json({ error: 'Tu cuenta está desactivada. Contactá a Método Fermento.' });
+      return res.status(403).json({ error: 'Tu cuenta esta desactivada.' });
 
-    // Crear sesión — expira en 30 días
     const token = generateToken();
     const expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
 
@@ -67,33 +59,30 @@ export default async function handler(req, res) {
     });
   }
 
-  // ── REGISTER (solo con ADMIN_SECRET — vos creás los alumnos) ─────
+  // REGISTER
   if (action === 'register' && req.method === 'POST') {
     const { email, nombre, password, cursos, secret } = req.body || {};
-
     if (secret !== process.env.ADMIN_SECRET)
       return res.status(401).json({ error: 'No autorizado.' });
-
     if (!email || !nombre || !password)
-      return res.status(400).json({ error: 'Email, nombre y contraseña requeridos.' });
+      return res.status(400).json({ error: 'Email, nombre y contrasena requeridos.' });
 
     const { error } = await supabase.from('users').insert({
-      email: email.toLowerCase().trim(),
-      nombre: nombre.trim(),
+      email:         email.toLowerCase().trim(),
+      nombre:        nombre.trim(),
       password_hash: hashPassword(password),
-      cursos: cursos || ['todos'],
+      cursos:        cursos || ['todos'],
     });
 
     if (error) {
       if (error.code === '23505')
-        return res.status(409).json({ error: 'Ese email ya está registrado.' });
+        return res.status(409).json({ error: 'Ese email ya esta registrado.' });
       return res.status(500).json({ error: error.message });
     }
-
-    return res.status(201).json({ ok: true, mensaje: `Usuario ${email} creado.` });
+    return res.status(201).json({ ok: true });
   }
 
-  // ── VERIFY TOKEN ──────────────────────────────────────────────────
+  // VERIFY
   if (action === 'verify' && req.method === 'GET') {
     const token = getToken(req);
     if (!token) return res.status(401).json({ error: 'Token requerido.' });
@@ -102,17 +91,17 @@ export default async function handler(req, res) {
       .from('sessions')
       .select('user_id, expires_at')
       .eq('token', token)
-      .single();
+      .maybeSingle();
 
-    if (!session) return res.status(401).json({ error: 'Sesión inválida.' });
+    if (!session) return res.status(401).json({ error: 'Sesion invalida.' });
     if (new Date(session.expires_at) < new Date())
-      return res.status(401).json({ error: 'Sesión expirada.' });
+      return res.status(401).json({ error: 'Sesion expirada.' });
 
     const { data: user } = await supabase
       .from('users')
       .select('id,email,nombre,cursos,activo')
       .eq('id', session.user_id)
-      .single();
+      .maybeSingle();
 
     if (!user || !user.activo)
       return res.status(403).json({ error: 'Cuenta inactiva.' });
@@ -120,12 +109,12 @@ export default async function handler(req, res) {
     return res.status(200).json({ user });
   }
 
-  // ── LOGOUT ────────────────────────────────────────────────────────
+  // LOGOUT
   if (action === 'logout' && req.method === 'POST') {
     const token = getToken(req);
     if (token) await supabase.from('sessions').delete().eq('token', token);
     return res.status(200).json({ ok: true });
   }
 
-  return res.status(400).json({ error: 'Acción no reconocida.' });
+  return res.status(400).json({ error: 'Accion no reconocida.' });
 }
