@@ -100,7 +100,7 @@ async function procesarCurso({ email, nombre, product }) {
 
   // Ver si ya existe el usuario
   const { data: existing } = await supabase
-    .from('users').select('id, cursos').eq('email', email.toLowerCase()).single();
+    .from('users').select('id, cursos').eq('email', email.toLowerCase()).maybeSingle();
 
   let password = null;
   let esNuevo  = false;
