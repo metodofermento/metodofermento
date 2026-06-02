@@ -1,4 +1,4 @@
-// api/auth.js — usa fetch nativo contra Supabase REST (sin SDK)
+// api/auth.js — fetch nativo, sin SDK Supabase [v2]
 const { pbkdf2Sync, randomBytes, randomUUID } = require('crypto');
 
 const SB_URL = process.env.SUPABASE_URL;
