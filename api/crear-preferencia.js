@@ -5,6 +5,38 @@ const client = new MercadoPagoConfig({
   accessToken: process.env.MP_ACCESS_TOKEN,
 });
 
+const CURSOS = {
+  'curso01': {
+    id:          'curso01-marketing',
+    title:       'Marketing Gastronómico y Redes',
+    description: 'Acceso completo al curso online: 14 módulos con material interactivo y evaluaciones.',
+    price:       69000,
+    slug:        'curso01',
+  },
+  'curso02': {
+    id:          'curso02-emprendimiento',
+    title:       'Claves para Armar tu Emprendimiento Gastronómico',
+    description: 'Acceso completo al curso online: 14 módulos con material interactivo y evaluaciones.',
+    price:       49000,
+    slug:        'curso02',
+  },
+  'curso03': {
+    id:          'curso03-administracion',
+    title:       'Administración de Negocios Gastronómico',
+    description: 'Acceso completo al curso online: 12 módulos con material interactivo y evaluaciones.',
+    price:       79000,
+    slug:        'curso03',
+  },
+  // Producto existente — guía PDF
+  'guia': {
+    id:          'guia-fermento-v1',
+    title:       'Guía de Costeo & Food Cost – Método Fermento',
+    description: 'Guía de Costeo & Food Cost para negocios gastronómicos. PDF + planilla profesional.',
+    price:       9900,
+    slug:        'guia',
+  },
+};
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -13,52 +45,57 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
-    const { email } = req.body;
+    const { email, nombre, producto } = req.body;
 
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
       return res.status(400).json({ error: 'Email inválido' });
-    }
 
-    const baseUrl = process.env.BASE_URL || 'https://metodofermento.com.ar';
+    if (!nombre || nombre.trim().length < 2)
+      return res.status(400).json({ error: 'Nombre requerido' });
 
-    // Email codificado para que no rompa el parseo del external_reference
-    const emailEncoded = encodeURIComponent(email);
-    const externalRef = `guia-${emailEncoded}-${Date.now()}`;
+    const curso = CURSOS[producto];
+    if (!curso)
+      return res.status(400).json({ error: 'Producto no reconocido' });
+
+    const baseUrl  = process.env.BASE_URL || 'https://metodofermento.com.ar';
+    const emailEnc = encodeURIComponent(email);
+    const nomEnc   = encodeURIComponent(nombre.trim());
+    const extRef   = `${curso.slug}-${emailEnc}-${nomEnc}-${Date.now()}`;
 
     const preference = new Preference(client);
-
     const result = await preference.create({
       body: {
-        items: [
-          {
-            id: 'guia-fermento-v1',
-            title: 'Guía de Costeo & Food Cost – Método Fermento',
-            description: 'Guía de Costeo & Food Cost para negocios gastronómicos. PDF + planilla profesional.',
-            quantity: 1,
-            currency_id: 'ARS',
-            unit_price: 9900,
-          },
-        ],
-        payer: { email },
+        items: [{
+          id:          curso.id,
+          title:       curso.title,
+          description: curso.description,
+          quantity:    1,
+          currency_id: 'ARS',
+          unit_price:  curso.price,
+        }],
+        payer: { email, name: nombre.trim() },
         metadata: {
-          buyer_email: email,
-          product_id: 'guia-fermento-v1',
+          buyer_email:  email,
+          buyer_nombre: nombre.trim(),
+          product_id:   curso.slug,
         },
         back_urls: {
-          success: `${baseUrl}/guia-gracias.html`,
-          failure: `${baseUrl}/guia.html?pago=error`,
-          pending: `${baseUrl}/guia/pendiente`,
+          success: curso.slug === 'guia'
+            ? `${baseUrl}/guia-gracias.html`
+            : `${baseUrl}/login?activado=1`,
+          failure: `${baseUrl}/?pago=error`,
+          pending: `${baseUrl}/?pago=pendiente`,
         },
-        auto_return: 'approved',
+        auto_return:      'approved',
         notification_url: `${baseUrl}/api/webhook-mp`,
-        external_reference: externalRef,
+        external_reference: extRef,
         expires: true,
         expiration_date_to: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
       },
     });
 
     return res.status(200).json({
-      init_point: result.init_point,
+      init_point:    result.init_point,
       preference_id: result.id,
     });
 

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Consultoría Gastronómica Argentina | Método Fermento</title>
-<meta name="description" content="Desarrollamos proyectos gastronómicos rentables con estructura, modelo económico y acompañamiento desde el inicio. Consulta gratuita. Buenos Aires, Argentina."/>
+<title>Formación y Consultoría Gastronómica | Método Fermento</title>
+<meta name="description" content="Cursos online de gastronomía y consultoría estratégica para negocios gastronómicos rentables. Buenos Aires, Argentina."/>
 <meta name="keywords" content="consultoría gastronómica, apertura de restaurantes, estrategia gastronómica, rentabilidad gastronómica, arquitectura gastronómica, Buenos Aires, Argentina"/>
 <link rel="canonical" href="https://www.metodofermento.com.ar/"/>
 <meta property="og:title" content="Consultoría Gastronómica Argentina | Método Fermento"/>
@@ -368,6 +368,69 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
   #ptabs{flex-wrap:nowrap}
   .ptab{flex:1;font-size:10.5px;padding:9px 4px;min-width:0;white-space:normal;line-height:1.2}
 }
+
+/* ── CURSOS SECTION ── */
+#cursos{background:transparent;padding:96px 0}
+.cursos-head{text-align:center;margin-bottom:56px}
+.cursos-head h2{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.2rem);font-weight:900;font-optical-sizing:auto;color:#fff;letter-spacing:-.03em;line-height:1.08;margin-top:10px}
+.cursos-head h2 em{font-style:italic;color:var(--terra)}
+.cursos-head p{font-size:15px;color:rgba(255,255,255,.45);max-width:52ch;margin:12px auto 0;line-height:1.7}
+.cursos-grid{display:grid;grid-template-columns:1fr;gap:20px;max-width:1100px;margin:0 auto;padding:0 28px}
+@media(min-width:700px){.cursos-grid{grid-template-columns:repeat(3,1fr)}}
+.curso-card-main{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,border-color .25s,box-shadow .25s;position:relative}
+.curso-card-main:hover{transform:translateY(-5px);border-color:var(--terra-b);box-shadow:0 20px 60px rgba(168,86,54,.15)}
+.curso-stripe{height:3px;width:100%}
+.c-stripe-01{background:var(--terra)}
+.c-stripe-02{background:linear-gradient(90deg,var(--terra),rgba(168,86,54,.4))}
+.c-stripe-03{background:linear-gradient(90deg,#1A1A2E,#3a4a7a)}
+.curso-body{padding:24px;flex:1;display:flex;flex-direction:column}
+.curso-num{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.curso-icon{font-size:26px;margin-bottom:12px}
+.curso-title{font-family:var(--serif);font-size:1.25rem;font-weight:700;font-optical-sizing:auto;color:#fff;line-height:1.2;margin-bottom:8px}
+.curso-meta{font-size:11px;color:var(--muted);margin-bottom:14px}
+.curso-desc{font-size:13.5px;color:rgba(255,255,255,.45);line-height:1.75;margin-bottom:20px;flex:1}
+.curso-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:22px}
+.curso-tag{font-size:10.5px;padding:3px 10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;color:rgba(255,255,255,.4)}
+.curso-price-row{display:flex;align-items:baseline;gap:8px;margin-bottom:16px}
+.curso-price{font-family:var(--serif);font-size:1.8rem;font-weight:900;font-optical-sizing:auto;color:var(--terra)}
+.curso-price-label{font-size:12px;color:var(--muted)}
+.curso-btn{width:100%;padding:13px;border-radius:10px;border:none;font-family:var(--serif);font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;background:var(--terra);color:#fff}
+.curso-btn:hover{background:var(--terra-d)}
+.curso-btn-ghost{background:var(--terra-l);color:var(--terra);border:1px solid var(--terra-b)}
+.curso-btn-ghost:hover{background:var(--terra-b)}
+.curso-btn-navy{background:rgba(26,26,46,.6);color:#8a9cc0;border:1px solid rgba(26,26,46,.9)}
+.curso-btn-navy:hover{background:rgba(26,26,46,.8)}
+.cursos-note{text-align:center;margin-top:28px;font-size:12px;color:var(--muted)}
+.cursos-note a{color:var(--terra)}
+
+/* ── MODAL COMPRA ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex}
+.modal-box{background:#1a1917;border:1px solid rgba(255,255,255,.1);border-radius:18px;width:100%;max-width:440px;overflow:hidden}
+.modal-header{background:#111;padding:20px 24px;display:flex;align-items:center;justify-content:space-between}
+.modal-header h3{font-family:var(--serif);font-size:1.1rem;font-weight:700;font-optical-sizing:auto;color:#fff}
+.modal-close{background:none;border:none;color:rgba(255,255,255,.4);font-size:20px;cursor:pointer;line-height:1;padding:4px}
+.modal-close:hover{color:#fff}
+.modal-body{padding:24px}
+.modal-curso-name{font-size:13px;color:var(--terra);margin-bottom:16px;font-weight:500}
+.modal-field{margin-bottom:14px}
+.modal-field label{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:6px}
+.modal-field input{width:100%;padding:12px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:9px;color:#fff;font-family:var(--sans);font-size:14px;outline:none;transition:border-color .2s}
+.modal-field input:focus{border-color:var(--terra-b)}
+.modal-field input::placeholder{color:rgba(255,255,255,.25)}
+.modal-price-row{background:rgba(168,86,54,.1);border:1px solid rgba(168,86,54,.2);border-radius:9px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.modal-price-label{font-size:12px;color:rgba(255,255,255,.5)}
+.modal-price-val{font-family:var(--serif);font-size:1.4rem;font-weight:900;font-optical-sizing:auto;color:var(--terra)}
+.modal-btn{width:100%;padding:15px;border-radius:10px;border:none;background:var(--terra);color:#fff;font-family:var(--serif);font-size:15px;font-weight:700;cursor:pointer;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.modal-btn:hover{background:var(--terra-d)}
+.modal-btn:disabled{opacity:.5;cursor:not-allowed}
+.modal-btn .modal-spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:mspin .7s linear infinite;display:none}
+.modal-btn.loading .modal-spinner{display:block}
+.modal-btn.loading .modal-btn-text{display:none}
+.modal-error{font-size:12px;color:#f0a0a0;margin-top:8px;display:none}
+.modal-error.show{display:block}
+.modal-note{font-size:11px;color:rgba(255,255,255,.3);text-align:center;margin-top:12px;line-height:1.6}
+@keyframes mspin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
@@ -379,9 +442,11 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
   <div class="nav-inner">
     <a href="/" class="nav-logo"><span class="nav-logo-dot"></span>Método Fermento</a>
     <ul class="nav-links">
-      <li><a href="#sistema">Módulos</a></li>
+      <li><a href="#cursos">Cursos</a></li>
+      <li><a href="#sistema">Consultoría</a></li>
       <li><a href="#contacto">Contacto</a></li>
       <li><a href="/guia.html" style="color:var(--terra)">Guía de Costeo</a></li>
+      <li><a href="/login" style="color:rgba(255,255,255,.5);font-size:12px">Acceso alumnos →</a></li>
     </ul>
     <div class="nav-right">
       <a href="https://wa.me/5491124946818?text=Hola%2C%20quiero%20consultar%20sobre%20el%20servicio" target="_blank" rel="noopener" id="nav-wa" style="font-size:12.5px;color:rgba(255,255,255,.6);transition:color .2s;display:flex;align-items:center;gap:5px" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=document.getElementById('nav').classList.contains('scrolled')?'var(--muted)':'rgba(255,255,255,.6)'">
@@ -400,9 +465,11 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
 <div class="mobile-menu" id="mobileMenu" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="drawer">
     <button class="drawer-close" onclick="document.getElementById('mobileMenu').classList.remove('open')">✕</button>
-    <a href="#sistema" onclick="document.getElementById('mobileMenu').classList.remove('open')">Los 8 Módulos</a>
+    <a href="#cursos" onclick="document.getElementById('mobileMenu').classList.remove('open')">📚 Cursos online</a>
+    <a href="#sistema" onclick="document.getElementById('mobileMenu').classList.remove('open')">Consultoría</a>
     <a href="#contacto" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contacto</a>
-    <a href="/guia.html" style="color:var(--terra);font-weight:500">Bajate la guía · solo $9.990 →</a>
+    <a href="/guia.html" style="color:var(--terra);font-weight:500">Guía de Costeo →</a>
+    <a href="/login" style="color:rgba(255,255,255,.5)">Acceso alumnos →</a>
     <a href="tel:+541124946818">+54 11 2494‑6818</a>
     <a href="#contacto" class="btn btn-p" onclick="document.getElementById('mobileMenu').classList.remove('open')">Consulta gratis</a>
   </div>
@@ -420,24 +487,13 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
     <div class="hero-top">
       <div class="hero-left">
         <div class="hero-badge"><span class="hero-badge-dot"></span>Buenos Aires · Argentina</div>
-        <h1 class="hero-h1">Consultoría <em>estratégica</em> para negocios gastronómicos rentables.</h1>
-        <p class="hero-sub">Antes de que inviertas un peso. Antes de que firmes un contrato. Antes de que abras la puerta.</p>
+        <h1 class="hero-h1">Formación y consultoría<br><em>para negocios gastronómicos</em> rentables.</h1>
+        <p class="hero-sub">Formación online para emprendedores gastronómicos. Consultoría estratégica para proyectos que necesitan más.</p>
         <div class="hero-actions">
-          <a href="#sistema" class="btn btn-p">Ver los 8 módulos</a>
-          <a href="#contacto" class="btn btn-g">Consulta gratis</a>
-          <a href="/guia.html" class="btn btn-g" style="border-color:rgba(168,86,54,.5);color:var(--terra)"><span class="btn-full">Bajate la guía · solo $9.990</span><span class="btn-short" style="display:none">Guía · $9.990</span></a>
+          <a href="#cursos" class="btn btn-p">Ver cursos →</a>
+          <a href="#contacto" class="btn btn-g">Consultoría</a>
         </div>
-        <p class="hero-note">Primera consulta sin costo ni compromiso</p>
-      </div>
-      <div class="hero-right">
-        <div class="hero-quote">
-          <blockquote>
-            "La mayoría de los proyectos gastronómicos fallan antes de abrir. No por falta de pasión. No por falta de diseño. Sino por falta de <strong>estructura</strong>.<br><br>
-            Un restaurante rentable no comienza en la obra. Comienza en el <strong>modelo</strong>."
-          </blockquote>
         </div>
-        <div class="hero-stats">
-          <div class="hstat"><div class="hstat-n">+32%</div><div class="hstat-l">tickets/hora sin ampliar equipo</div></div>
           <div class="hstat"><div class="hstat-n">9 sem</div><div class="hstat-l">promedio a punto de equilibrio</div></div>
           <div class="hstat"><div class="hstat-n">−40%</div><div class="hstat-l">rotación de personal</div></div>
         </div>
@@ -625,6 +681,179 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
 </section>
 
 <!-- ═══ MÓDULOS + COTIZADOR RUEDA ═══ -->
+
+<!-- ═══ CURSOS ═══ -->
+<section id="cursos">
+  <div class="wrap">
+    <div class="cursos-head">
+      <span class="eyebrow">Plataforma Educativa</span>
+      <h2>Aprendé a fondo.<br><em>Pagás una vez, accedés siempre.</em></h2>
+      <p>Cursos online desarrollados por profesionales gastronómicos. Sin estructura de instituto, sin cuotas, sin relleno. Puro contenido accionable.</p>
+    </div>
+  </div>
+  <div class="cursos-grid">
+
+    <!-- Curso 01 -->
+    <div class="curso-card-main">
+      <div class="curso-stripe c-stripe-01"></div>
+      <div class="curso-body">
+        <div class="curso-num">Curso 01</div>
+        <div class="curso-icon">📣</div>
+        <h3 class="curso-title">Marketing Gastronómico y Redes</h3>
+        <div class="curso-meta">14 módulos · 24 horas de contenido</div>
+        <p class="curso-desc">Posicioná tu negocio, construí una marca con identidad propia y captá clientes reales con estrategias que funcionan en el mercado argentino.</p>
+        <div class="curso-tags">
+          <span class="curso-tag">Branding</span>
+          <span class="curso-tag">Carta efectiva</span>
+          <span class="curso-tag">Social Media</span>
+          <span class="curso-tag">Plan de marketing</span>
+        </div>
+        <div class="curso-price-row">
+          <span class="curso-price">$69.000</span>
+          <span class="curso-price-label">pago único · acceso permanente</span>
+        </div>
+        <button class="curso-btn" onclick="abrirModal('curso01','Marketing Gastronómico y Redes','$69.000')">Comprar acceso →</button>
+      </div>
+    </div>
+
+    <!-- Curso 02 -->
+    <div class="curso-card-main">
+      <div class="curso-stripe c-stripe-02"></div>
+      <div class="curso-body">
+        <div class="curso-num">Curso 02</div>
+        <div class="curso-icon">🚀</div>
+        <h3 class="curso-title">Claves para Armar tu Emprendimiento</h3>
+        <div class="curso-meta">14 módulos · 16 horas de contenido</div>
+        <p class="curso-desc">Todo lo que necesitás saber antes de abrir: local, equipamiento, proveedores, equipo y plan de negocio concreto y ejecutable.</p>
+        <div class="curso-tags">
+          <span class="curso-tag">Plan de negocio</span>
+          <span class="curso-tag">Proveedores</span>
+          <span class="curso-tag">RRHH</span>
+          <span class="curso-tag">Habilitaciones</span>
+        </div>
+        <div class="curso-price-row">
+          <span class="curso-price">$49.000</span>
+          <span class="curso-price-label">pago único · acceso permanente</span>
+        </div>
+        <button class="curso-btn curso-btn-ghost" onclick="abrirModal('curso02','Claves para Armar tu Emprendimiento','$49.000')">Comprar acceso →</button>
+      </div>
+    </div>
+
+    <!-- Curso 03 -->
+    <div class="curso-card-main">
+      <div class="curso-stripe c-stripe-03"></div>
+      <div class="curso-body">
+        <div class="curso-num">Curso 03</div>
+        <div class="curso-icon">📊</div>
+        <h3 class="curso-title">Administración de Negocios Gastronómico</h3>
+        <div class="curso-meta">12 módulos · 30 horas de contenido</div>
+        <p class="curso-desc">Manejá los números con criterio: costos, food cost, auditoría interna, sistemas de gestión y rentabilidad por plato.</p>
+        <div class="curso-tags">
+          <span class="curso-tag">Food cost</span>
+          <span class="curso-tag">Prime cost</span>
+          <span class="curso-tag">Auditoría</span>
+          <span class="curso-tag">Rentabilidad</span>
+        </div>
+        <div class="curso-price-row">
+          <span class="curso-price">$79.000</span>
+          <span class="curso-price-label">pago único · acceso permanente</span>
+        </div>
+        <button class="curso-btn curso-btn-navy" onclick="abrirModal('curso03','Administración de Negocios Gastronómico','$79.000')">Comprar acceso →</button>
+      </div>
+    </div>
+
+  </div>
+  <p class="cursos-note">¿Ya compraste un curso? <a href="/login">Ingresá a la plataforma →</a></p>
+</section>
+
+<!-- MODAL COMPRA -->
+<div class="modal-overlay" id="modalCompra" onclick="if(event.target===this)cerrarModal()">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>Completá tu compra</h3>
+      <button class="modal-close" onclick="cerrarModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-curso-name" id="modalCursoNombre"></div>
+      <div class="modal-field">
+        <label>Nombre completo</label>
+        <input type="text" id="modalNombre" placeholder="Tu nombre" autocomplete="name">
+      </div>
+      <div class="modal-field">
+        <label>Email</label>
+        <input type="email" id="modalEmail" placeholder="tu@email.com" autocomplete="email">
+      </div>
+      <div class="modal-price-row">
+        <span class="modal-price-label">Total a pagar</span>
+        <span class="modal-price-val" id="modalPrecio"></span>
+      </div>
+      <button class="modal-btn" id="modalBtn" onclick="procesarCompra()">
+        <div class="modal-spinner"></div>
+        <span class="modal-btn-text">Pagar con MercadoPago →</span>
+      </button>
+      <div class="modal-error" id="modalError"></div>
+      <p class="modal-note">Pago seguro vía MercadoPago. Al aprobar el pago recibís tus credenciales por email de forma automática.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+var _modalProducto = '';
+
+function abrirModal(producto, nombre, precio) {
+  _modalProducto = producto;
+  document.getElementById('modalCursoNombre').textContent = nombre;
+  document.getElementById('modalPrecio').textContent = precio;
+  document.getElementById('modalNombre').value = '';
+  document.getElementById('modalEmail').value = '';
+  document.getElementById('modalError').classList.remove('show');
+  document.getElementById('modalCompra').classList.add('open');
+  setTimeout(function(){ document.getElementById('modalNombre').focus(); }, 100);
+}
+
+function cerrarModal() {
+  document.getElementById('modalCompra').classList.remove('open');
+}
+
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') cerrarModal(); });
+
+async function procesarCompra() {
+  var nombre  = document.getElementById('modalNombre').value.trim();
+  var email   = document.getElementById('modalEmail').value.trim();
+  var btn     = document.getElementById('modalBtn');
+  var errEl   = document.getElementById('modalError');
+
+  if (!nombre) { mostrarErrorModal('Ingresá tu nombre.'); return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { mostrarErrorModal('Ingresá un email válido.'); return; }
+
+  btn.classList.add('loading');
+  btn.disabled = true;
+  errEl.classList.remove('show');
+
+  try {
+    var res = await fetch('/api/crear-preferencia', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, nombre: nombre, producto: _modalProducto })
+    });
+    var data = await res.json();
+    if (!res.ok) { mostrarErrorModal(data.error || 'Error al procesar. Intentá de nuevo.'); return; }
+    window.location.href = data.init_point;
+  } catch(e) {
+    mostrarErrorModal('Error de conexión. Intentá de nuevo.');
+  } finally {
+    btn.classList.remove('loading');
+    btn.disabled = false;
+  }
+}
+
+function mostrarErrorModal(msg) {
+  var el = document.getElementById('modalError');
+  el.textContent = msg;
+  el.classList.add('show');
+}
+</script>
+
 <section id="sistema">
   <div class="wrap">
     <div class="sistema-head">
@@ -796,9 +1025,11 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
   <div class="footer-inner">
     <div class="footer-logo"><span class="footer-dot"></span>Método Fermento</div>
     <ul class="footer-links">
-      <li><a href="#sistema">Módulos</a></li>
+      <li><a href="#cursos">Cursos</a></li>
+      <li><a href="#sistema">Consultoría</a></li>
       <li><a href="#contacto">Contacto</a></li>
       <li><a href="/guia.html">Guía de Costeo</a></li>
+      <li><a href="/login">Plataforma</a></li>
     </ul>
     <div class="footer-copy">© 2026 Método Fermento · Buenos Aires, Argentina</div>
   </div>
