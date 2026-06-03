@@ -56,6 +56,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--sand);mi
 .cta-arrow{font-size:18px;transition:transform .2s}
 .curso-card:hover .cta-arrow{transform:translateX(5px)}
 .land-foot{text-align:center;padding:36px 24px 0;font-size:10px;color:var(--muted);opacity:.4;letter-spacing:.08em}
+
+/* ── CARDS BLOQUEADAS ── */
+.curso-card.locked{opacity:1;cursor:default;pointer-events:none}
+.curso-card.locked .card-stripe{background:rgba(255,255,255,.08)!important}
+.locked-badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:4px 12px;margin-bottom:12px}
+.cta-locked{background:rgba(168,86,54,.12)!important;color:var(--terra)!important;border:1px solid var(--terra-b)!important;cursor:pointer!important;pointer-events:all!important}
+.cta-locked:hover{background:rgba(168,86,54,.2)!important}
 </style>
 </head>
 <body>
@@ -119,49 +126,195 @@ async function doLogout(){
     </div>
   </div>
   <div class="divider"><div class="div-line"></div><div class="div-dot"></div><div class="div-dot"></div><div class="div-dot"></div><div class="div-line"></div></div>
-  <div class="cards">
-
-    <a class="curso-card" href="/curso01">
-      <div class="card-stripe s0"></div>
-      <div class="card-body">
-        <div class="card-top"><span class="card-num">Curso 01</span><div class="card-pills"><span class="pill">24 hs</span><span class="pill">14 modulos</span></div></div>
-        <span class="card-icon">&#128226;</span>
-        <h2 class="card-title">Marketing Gastronomico y Redes</h2>
-        <div class="card-meta">12 clases &middot; 2 horas cada una</div>
-        <p class="card-desc">Posiciona tu negocio, construi una marca con identidad propia y capta clientes reales con estrategias que funcionan en el mercado argentino.</p>
-        <div class="card-tags"><span class="tag">Branding</span><span class="tag">Carta efectiva</span><span class="tag">Social Media</span><span class="tag">Fidelizacion</span><span class="tag">Plan de marketing</span></div>
-        <div class="card-cta cta-solid">Ingresar al curso <span class="cta-arrow">&#8594;</span></div>
-      </div>
-    </a>
-
-    <a class="curso-card" href="/curso02">
-      <div class="card-stripe s1"></div>
-      <div class="card-body">
-        <div class="card-top"><span class="card-num">Curso 02</span><div class="card-pills"><span class="pill">16 hs</span><span class="pill">14 modulos</span></div></div>
-        <span class="card-icon">&#128640;</span>
-        <h2 class="card-title">Claves para Armar tu Emprendimiento</h2>
-        <div class="card-meta">8 clases &middot; 2 horas cada una</div>
-        <p class="card-desc">Todo lo que necesitas saber antes de abrir: local, equipamiento, proveedores, equipo y plan de negocio concreto.</p>
-        <div class="card-tags"><span class="tag">Plan de negocio</span><span class="tag">Proveedores</span><span class="tag">RRHH</span><span class="tag">Habilitaciones</span><span class="tag">Identidad</span></div>
-        <div class="card-cta cta-ghost">Ingresar al curso <span class="cta-arrow">&#8594;</span></div>
-      </div>
-    </a>
-
-    <a class="curso-card" href="/curso03">
-      <div class="card-stripe s2"></div>
-      <div class="card-body">
-        <div class="card-top"><span class="card-num">Curso 03</span><div class="card-pills"><span class="pill pill-navy">30 hs</span><span class="pill pill-navy">12 modulos</span></div></div>
-        <span class="card-icon">&#128202;</span>
-        <h2 class="card-title">Administracion de Negocios Gastronomico</h2>
-        <div class="card-meta">12 clases &middot; 2,5 horas cada una</div>
-        <p class="card-desc">Maneja los numeros con criterio: costos, food cost, auditoria interna, sistemas de gestion y rentabilidad por plato.</p>
-        <div class="card-tags"><span class="tag">Food cost</span><span class="tag">Prime cost</span><span class="tag">Auditoria</span><span class="tag">Sistemas</span><span class="tag">Rentabilidad</span></div>
-        <div class="card-cta cta-navy">Ingresar al curso <span class="cta-arrow">&#8594;</span></div>
-      </div>
-    </a>
-
+  <div class="cards" id="cardsContainer">
+    <!-- Renderizado dinámico por JS según cursos del usuario -->
   </div>
   <div class="land-foot">metodofermento.com.ar &middot; Consultoria Gastronomica Estrategica</div>
+
+<!-- MODAL COMPRA -->
+<div id="modalCompra" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:1000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)">
+  <div style="background:#1a1917;border:1px solid rgba(255,255,255,.1);border-radius:18px;width:100%;max-width:420px;overflow:hidden">
+    <div style="background:#111;padding:20px 24px;display:flex;align-items:center;justify-content:space-between">
+      <h3 style="font-family:Playfair Display,serif;font-size:1.1rem;color:#fff;margin:0" id="modalTitulo">Comprar curso</h3>
+      <button onclick="cerrarModal()" style="background:none;border:none;color:rgba(255,255,255,.4);font-size:22px;cursor:pointer;line-height:1">&#10005;</button>
+    </div>
+    <div style="padding:24px">
+      <p style="font-size:13px;color:var(--terra);margin:0 0 16px;font-weight:500" id="modalNombreCurso"></p>
+      <div style="margin-bottom:14px">
+        <label style="display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:6px">Nombre completo</label>
+        <input id="mNombre" type="text" placeholder="Tu nombre" autocomplete="name"
+          style="width:100%;padding:12px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:9px;color:#fff;font-size:14px;outline:none;font-family:DM Sans,sans-serif">
+      </div>
+      <div style="margin-bottom:16px">
+        <label style="display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:6px">Email</label>
+        <input id="mEmail" type="email" placeholder="tu@email.com" autocomplete="email"
+          style="width:100%;padding:12px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:9px;color:#fff;font-size:14px;outline:none;font-family:DM Sans,sans-serif">
+      </div>
+      <div style="background:rgba(168,86,54,.1);border:1px solid rgba(168,86,54,.2);border-radius:9px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+        <span style="font-size:12px;color:rgba(255,255,255,.5)">Total</span>
+        <span style="font-family:Playfair Display,serif;font-size:1.4rem;font-weight:900;color:var(--terra)" id="modalPrecio"></span>
+      </div>
+      <button id="modalBtn" onclick="procesarCompra()"
+        style="width:100%;padding:15px;border-radius:10px;border:none;background:var(--terra);color:#fff;font-family:Playfair Display,serif;font-size:15px;font-weight:700;cursor:pointer">
+        Pagar con MercadoPago &#8594;
+      </button>
+      <p id="modalError" style="font-size:12px;color:#f0a0a0;margin-top:8px;display:none"></p>
+      <p style="font-size:11px;color:rgba(255,255,255,.3);text-align:center;margin-top:12px;line-height:1.6">
+        Pago seguro via MercadoPago. Al aprobar recibis tus credenciales por email.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+var CURSOS_DEF = [
+  {
+    id: 'curso01', slug: '/curso01', stripe: 's0', cta: 'cta-solid',
+    num: 'Curso 01', icon: '&#128226;',
+    title: 'Marketing Gastronomico y Redes',
+    meta: '12 clases &middot; 2 horas cada una',
+    desc: 'Posiciona tu negocio, construi una marca con identidad propia y capta clientes reales con estrategias que funcionan en el mercado argentino.',
+    tags: ['Branding','Carta efectiva','Social Media','Fidelizacion','Plan de marketing'],
+    pills: ['24 hs','14 modulos'], pillClass: 'pill',
+    precio: '$69.000'
+  },
+  {
+    id: 'curso02', slug: '/curso02', stripe: 's1', cta: 'cta-ghost',
+    num: 'Curso 02', icon: '&#128640;',
+    title: 'Claves para Armar tu Emprendimiento',
+    meta: '8 clases &middot; 2 horas cada una',
+    desc: 'Todo lo que necesitas saber antes de abrir: local, equipamiento, proveedores, equipo y plan de negocio concreto.',
+    tags: ['Plan de negocio','Proveedores','RRHH','Habilitaciones','Identidad'],
+    pills: ['16 hs','14 modulos'], pillClass: 'pill',
+    precio: '$49.000'
+  },
+  {
+    id: 'curso03', slug: '/curso03', stripe: 's2', cta: 'cta-navy',
+    num: 'Curso 03', icon: '&#128202;',
+    title: 'Administracion de Negocios Gastronomico',
+    meta: '12 clases &middot; 2,5 horas cada una',
+    desc: 'Maneja los numeros con criterio: costos, food cost, auditoria interna, sistemas de gestion y rentabilidad por plato.',
+    tags: ['Food cost','Prime cost','Auditoria','Sistemas','Rentabilidad'],
+    pills: ['30 hs','12 modulos'], pillClass: 'pill pill-navy',
+    precio: '$79.000'
+  }
+];
+
+var _modalProducto = '';
+
+function tieneAcceso(user, cursoId) {
+  if (!user || !user.cursos) return false;
+  return user.cursos.includes('todos') || user.cursos.includes(cursoId);
+}
+
+function renderCards() {
+  var user = JSON.parse(localStorage.getItem('mf_user') || 'null');
+  var container = document.getElementById('cardsContainer');
+  container.innerHTML = '';
+
+  CURSOS_DEF.forEach(function(c) {
+    var acceso = tieneAcceso(user, c.id);
+
+    var pills = c.pills.map(function(p){ return '<span class="' + c.pillClass + '">' + p + '</span>'; }).join('');
+    var tags  = c.tags.map(function(t){ return '<span class="tag">' + t + '</span>'; }).join('');
+
+    var ctaHtml = acceso
+      ? '<div class="card-cta ' + c.cta + '">Ingresar al curso <span class="card-arrow">&#8594;</span></div>'
+      : '<div class="locked-badge">&#128274; No disponible</div>'
+        + '<button class="card-cta cta-locked" onclick="abrirModal(event,'' + c.id + '','' + c.title + '','' + c.precio + '')">Comprar acceso &#8594;</button>';
+
+    var cardHtml = '<div class="card-stripe ' + c.stripe + '"></div>'
+      + '<div class="card-body">'
+      + '<div class="card-top"><span class="card-num">' + c.num + '</span><div class="card-pills">' + pills + '</div></div>'
+      + '<span class="card-icon">' + c.icon + '</span>'
+      + '<h2 class="card-title">' + c.title + '</h2>'
+      + '<div class="card-meta">' + c.meta + '</div>'
+      + '<p class="card-desc">' + c.desc + '</p>'
+      + '<div class="card-tags">' + tags + '</div>'
+      + ctaHtml
+      + '</div>';
+
+    if (acceso) {
+      var a = document.createElement('a');
+      a.className = 'curso-card';
+      a.href = c.slug;
+      a.innerHTML = cardHtml;
+      container.appendChild(a);
+    } else {
+      var div = document.createElement('div');
+      div.className = 'curso-card locked';
+      div.innerHTML = cardHtml;
+      container.appendChild(div);
+    }
+  });
+}
+
+function abrirModal(e, producto, nombre, precio) {
+  e.stopPropagation();
+  _modalProducto = producto;
+  document.getElementById('modalTitulo').textContent = 'Comprar acceso';
+  document.getElementById('modalNombreCurso').textContent = nombre;
+  document.getElementById('modalPrecio').textContent = precio;
+  // Pre-fill with logged user data
+  var u = JSON.parse(localStorage.getItem('mf_user') || 'null');
+  if (u) {
+    document.getElementById('mNombre').value = u.nombre || '';
+    document.getElementById('mEmail').value  = u.email  || '';
+  }
+  document.getElementById('modalError').style.display = 'none';
+  var m = document.getElementById('modalCompra');
+  m.style.display = 'flex';
+}
+
+function cerrarModal() {
+  document.getElementById('modalCompra').style.display = 'none';
+}
+
+document.getElementById('modalCompra').addEventListener('click', function(e){
+  if (e.target === this) cerrarModal();
+});
+
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') cerrarModal(); });
+
+async function procesarCompra() {
+  var nombre = document.getElementById('mNombre').value.trim();
+  var email  = document.getElementById('mEmail').value.trim();
+  var errEl  = document.getElementById('modalError');
+  var btn    = document.getElementById('modalBtn');
+
+  if (!nombre) { mostrarError('Ingresa tu nombre.'); return; }
+  if (!email || email.indexOf('@') < 0) { mostrarError('Ingresa un email valido.'); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Procesando...';
+  errEl.style.display = 'none';
+
+  try {
+    var res = await fetch('/api/crear-preferencia', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, nombre: nombre, producto: _modalProducto })
+    });
+    var data = await res.json();
+    if (!res.ok) { mostrarError(data.error || 'Error al procesar.'); return; }
+    window.location.href = data.init_point;
+  } catch(e) {
+    mostrarError('Error de conexion. Intenta de nuevo.');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Pagar con MercadoPago →';
+  }
+}
+
+function mostrarError(msg) {
+  var el = document.getElementById('modalError');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+// Renderizar al cargar
+renderCards();
+</script>
 </div>
 </body>
 </html>
