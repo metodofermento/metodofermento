@@ -38,10 +38,11 @@ p{color:var(--muted);line-height:1.75;font-weight:300}
 
 
 .drawer-plataforma{
-  display:flex!important;align-items:center;justify-content:space-between;
+  display:flex!important;align-items:center;justify-content:center;gap:6px;
   background:var(--terra-l)!important;border:1px solid var(--terra-b)!important;
   border-radius:10px!important;padding:12px 16px!important;
-  color:var(--terra)!important;font-weight:500!important;font-size:13px!important;
+  color:var(--terra)!important;font-weight:600!important;font-size:14px!important;
+  white-space:nowrap;text-align:center;
 }
 .drawer-plataforma:hover{background:rgba(168,86,54,.2)!important}
 
@@ -519,9 +520,9 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
     <a href="#sistema" onclick="document.getElementById('mobileMenu').classList.remove('open')">Consultoría</a>
     <a href="#contacto" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contacto</a>
     <a href="/guia.html" style="color:var(--terra);font-weight:500">Guía de Costeo →</a>
-    <a href="/login" class="drawer-plataforma">Primeros pasos → Accedé a tus cursos</a>
+    <a href="/login" class="drawer-plataforma">Accedé a tus cursos →</a>
     <a href="tel:+541124946818">+54 11 2494‑6818</a>
-    <a href="#contacto" class="btn btn-p" onclick="document.getElementById('mobileMenu').classList.remove('open')">Consulta gratis</a>
+    <a href="#contacto" class="btn btn-p" style="color:#fff!important;text-align:center;justify-content:center;margin-top:8px" onclick="document.getElementById('mobileMenu').classList.remove('open')">Consulta gratis</a>
   </div>
 </div>
 
