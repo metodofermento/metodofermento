@@ -35,7 +35,35 @@ a{color:inherit;text-decoration:none}
 button{cursor:pointer;border:none;background:none;font:inherit}
 p{color:var(--muted);line-height:1.75;font-weight:300}
 
+
+/* Acceso alumnos nav link */
+.nav-plataforma{font-size:11.5px;letter-spacing:.06em;padding:5px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.6)!important;transition:all .2s}
+.nav-plataforma:hover{color:#fff!important;border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.08)}
+nav.scrolled .nav-plataforma{color:var(--muted)!important;border-color:var(--line)}
+nav.scrolled .nav-plataforma:hover{color:var(--terra)!important;border-color:var(--terra-b);background:var(--terra-l)}
+.nav-plataforma-mobile{color:rgba(255,255,255,.55);font-size:13px}
+
 /* ── UTILS ── */
+
+/* MercadoPago style payment buttons */
+.btn-mp{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;padding:15px 20px;border-radius:10px;border:none;
+  background:linear-gradient(135deg,#009EE3 0%,#007EB5 100%);
+  color:#fff;font-family:var(--sans);font-size:14px;font-weight:600;
+  cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(0,158,227,.3);
+  letter-spacing:.02em;
+}
+.btn-mp:hover{background:linear-gradient(135deg,#00B5FF 0%,#0090CC 100%);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,158,227,.4)}
+.btn-mp:active{transform:translateY(0)}
+.btn-mp::before{content:'';display:inline-block;width:18px;height:18px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z'/%3E%3C/svg%3E") center/contain no-repeat;flex-shrink:0}
+.btn-mp-ghost{
+  background:transparent;
+  border:1.5px solid rgba(0,158,227,.5);
+  color:rgba(0,158,227,.9);
+}
+.btn-mp-ghost:hover{background:rgba(0,158,227,.08);border-color:rgba(0,158,227,.8);box-shadow:0 4px 16px rgba(0,158,227,.15)}
+
 .wrap{max-width:1100px;margin:0 auto;padding:0 28px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 28px;border-radius:999px;font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;transition:all .22s var(--ease-out);cursor:pointer;white-space:nowrap;min-height:48px;-webkit-tap-highlight-color:transparent}
 .btn-p{background:var(--terra);color:#fff;border:1.5px solid transparent;box-shadow:0 6px 20px rgba(168,86,54,.3)}
@@ -101,10 +129,15 @@ nav.scrolled .nav-burger span{background:var(--ink)}
 .hero-quote blockquote{font-family:var(--serif);font-size:1.2rem;font-weight:300;font-optical-sizing:auto;font-style:italic;line-height:1.7;color:rgba(255,255,255,.8)}
 .hero-quote blockquote strong{font-style:normal;font-weight:700;color:var(--terra)}
 .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.hstat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px 14px;text-align:center;transition:background .2s,border-color .2s}
-.hstat:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.15)}
-.hstat-n{font-family:var(--serif);font-size:2rem;font-weight:700;font-optical-sizing:auto;color:var(--terra);line-height:1;margin-bottom:5px}
-.hstat-l{font-size:11px;color:rgba(255,255,255,.4);line-height:1.4;font-weight:400}
+.hstat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:22px 18px;text-align:center;transition:all .25s var(--ease-out)}
+.hstat:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.18);transform:translateY(-2px)}
+.hstat-featured{background:linear-gradient(135deg,rgba(168,86,54,.18) 0%,rgba(168,86,54,.06) 100%);border:1px solid rgba(168,86,54,.35);position:relative;overflow:hidden}
+.hstat-featured::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top left,rgba(168,86,54,.15),transparent 60%);pointer-events:none}
+.hstat-featured:hover{background:linear-gradient(135deg,rgba(168,86,54,.25) 0%,rgba(168,86,54,.1) 100%);border-color:rgba(168,86,54,.5);box-shadow:0 8px 32px rgba(168,86,54,.2)}
+.hstat-icon{font-size:20px;margin-bottom:8px;display:block}
+.hstat-n{font-family:var(--serif);font-size:2.6rem;font-weight:900;font-optical-sizing:auto;color:#fff;line-height:1;margin-bottom:6px;text-shadow:0 0 40px rgba(168,86,54,.5)}
+.hstat-featured .hstat-n{color:var(--terra);font-size:2.8rem}
+.hstat-l{font-size:11.5px;color:rgba(255,255,255,.5);line-height:1.4;font-weight:400}
 
 /* bottom grid — 4 diferenciadores inline */
 .hero-bottom{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden}
@@ -371,6 +404,14 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
 
 /* ── CURSOS SECTION ── */
 #cursos{background:transparent;padding:96px 0}
+
+/* Card color themes */
+.curso-card-main.theme-01{background:rgba(168,86,54,.07);border-color:rgba(168,86,54,.2)}
+.curso-card-main.theme-01:hover{border-color:rgba(168,86,54,.45);box-shadow:0 20px 60px rgba(168,86,54,.2)}
+.curso-card-main.theme-02{background:rgba(90,70,120,.1);border-color:rgba(120,90,180,.2)}
+.curso-card-main.theme-02:hover{border-color:rgba(120,90,180,.45);box-shadow:0 20px 60px rgba(100,70,160,.2)}
+.curso-card-main.theme-03{background:rgba(26,26,46,.5);border-color:rgba(80,100,160,.2)}
+.curso-card-main.theme-03:hover{border-color:rgba(80,100,160,.45);box-shadow:0 20px 60px rgba(26,26,80,.3)}
 .cursos-head{text-align:center;margin-bottom:56px}
 .cursos-head h2{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.2rem);font-weight:900;font-optical-sizing:auto;color:#fff;letter-spacing:-.03em;line-height:1.08;margin-top:10px}
 .cursos-head h2 em{font-style:italic;color:var(--terra)}
@@ -446,7 +487,7 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
       <li><a href="#sistema">Consultoría</a></li>
       <li><a href="#contacto">Contacto</a></li>
       <li><a href="/guia.html" style="color:var(--terra)">Guía de Costeo</a></li>
-      <li><a href="/login" style="color:rgba(255,255,255,.5);font-size:12px">Acceso alumnos →</a></li>
+      <li><a href="/login" class="nav-plataforma">Acceso alumnos →</a></li>
     </ul>
     <div class="nav-right">
       <a href="https://wa.me/5491124946818?text=Hola%2C%20quiero%20consultar%20sobre%20el%20servicio" target="_blank" rel="noopener" id="nav-wa" style="font-size:12.5px;color:rgba(255,255,255,.6);transition:color .2s;display:flex;align-items:center;gap:5px" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=document.getElementById('nav').classList.contains('scrolled')?'var(--muted)':'rgba(255,255,255,.6)'">
@@ -469,7 +510,7 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
     <a href="#sistema" onclick="document.getElementById('mobileMenu').classList.remove('open')">Consultoría</a>
     <a href="#contacto" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contacto</a>
     <a href="/guia.html" style="color:var(--terra);font-weight:500">Guía de Costeo →</a>
-    <a href="/login" style="color:rgba(255,255,255,.5)">Acceso alumnos →</a>
+    <a href="/login" class="nav-plataforma-mobile">Acceso alumnos →</a>
     <a href="tel:+541124946818">+54 11 2494‑6818</a>
     <a href="#contacto" class="btn btn-p" onclick="document.getElementById('mobileMenu').classList.remove('open')">Consulta gratis</a>
   </div>
@@ -493,12 +534,34 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
           <a href="#cursos" class="btn btn-p">Ver cursos →</a>
           <a href="#contacto" class="btn btn-g">Consultoría</a>
         </div>
+        <p class="hero-note">Cursos desde $49.000 · Primera consulta de consultoría sin cargo</p>
+      </div>
+
+      <!-- STATS POWER -->
+      <div class="hero-right">
+        <div class="hero-stats">
+          <div class="hstat hstat-featured">
+            <div class="hstat-icon">⏱</div>
+            <div class="hstat-n">9 sem</div>
+            <div class="hstat-l">promedio a punto de equilibrio</div>
+          </div>
+          <div class="hstat hstat-featured">
+            <div class="hstat-icon">📉</div>
+            <div class="hstat-n">−40%</div>
+            <div class="hstat-l">rotación de personal</div>
+          </div>
+          <div class="hstat hstat-featured">
+            <div class="hstat-icon">📈</div>
+            <div class="hstat-n">+28%</div>
+            <div class="hstat-l">margen bruto promedio</div>
+          </div>
         </div>
-          <div class="hstat"><div class="hstat-n">9 sem</div><div class="hstat-l">promedio a punto de equilibrio</div></div>
-          <div class="hstat"><div class="hstat-n">−40%</div><div class="hstat-l">rotación de personal</div></div>
+        <div class="hero-quote">
+          <blockquote>Con <strong>Método Fermento</strong> no aprendés teoría: aprendés a tomar decisiones que se ven en los números de tu negocio.</blockquote>
         </div>
       </div>
     </div>
+  </div>
 
   </div>
 
@@ -694,7 +757,7 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
   <div class="cursos-grid">
 
     <!-- Curso 01 -->
-    <div class="curso-card-main">
+    <div class="curso-card-main theme-01">
       <div class="curso-stripe c-stripe-01"></div>
       <div class="curso-body">
         <div class="curso-num">Curso 01</div>
@@ -712,12 +775,12 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
           <span class="curso-price">$69.000</span>
           <span class="curso-price-label">pago único · acceso permanente</span>
         </div>
-        <button class="curso-btn" onclick="abrirModal('curso01','Marketing Gastronómico y Redes','$69.000')">Comprar acceso →</button>
+        <button class="btn-mp" onclick="abrirModal('curso01','Marketing Gastronómico y Redes','$69.000')">Pagar con MercadoPago</button>
       </div>
     </div>
 
     <!-- Curso 02 -->
-    <div class="curso-card-main">
+    <div class="curso-card-main theme-02">
       <div class="curso-stripe c-stripe-02"></div>
       <div class="curso-body">
         <div class="curso-num">Curso 02</div>
@@ -735,12 +798,12 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
           <span class="curso-price">$49.000</span>
           <span class="curso-price-label">pago único · acceso permanente</span>
         </div>
-        <button class="curso-btn curso-btn-ghost" onclick="abrirModal('curso02','Claves para Armar tu Emprendimiento','$49.000')">Comprar acceso →</button>
+        <button class="btn-mp btn-mp-ghost" onclick="abrirModal('curso02','Claves para Armar tu Emprendimiento','$49.000')">Pagar con MercadoPago</button>
       </div>
     </div>
 
     <!-- Curso 03 -->
-    <div class="curso-card-main">
+    <div class="curso-card-main theme-03">
       <div class="curso-stripe c-stripe-03"></div>
       <div class="curso-body">
         <div class="curso-num">Curso 03</div>
@@ -758,7 +821,7 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
           <span class="curso-price">$79.000</span>
           <span class="curso-price-label">pago único · acceso permanente</span>
         </div>
-        <button class="curso-btn curso-btn-navy" onclick="abrirModal('curso03','Administración de Negocios Gastronómico','$79.000')">Comprar acceso →</button>
+        <button class="btn-mp btn-mp-ghost" onclick="abrirModal('curso03','Administración de Negocios Gastronómico','$79.000')">Pagar con MercadoPago</button>
       </div>
     </div>
 
@@ -787,9 +850,9 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
         <span class="modal-price-label">Total a pagar</span>
         <span class="modal-price-val" id="modalPrecio"></span>
       </div>
-      <button class="modal-btn" id="modalBtn" onclick="procesarCompra()">
+      <button class="btn-mp" id="modalBtn" onclick="procesarCompra()" style="margin-top:4px">
         <div class="modal-spinner"></div>
-        <span class="modal-btn-text">Pagar con MercadoPago →</span>
+        Pagar con MercadoPago
       </button>
       <div class="modal-error" id="modalError"></div>
       <p class="modal-note">Pago seguro vía MercadoPago. Al aprobar el pago recibís tus credenciales por email de forma automática.</p>
