@@ -1,51 +1,28 @@
 {
   "version": 2,
-  "rewrites": [
-    {
-      "source": "/admin",
-      "destination": "/public/admin.html"
-    },
-    {
-      "source": "/login",
-      "destination": "/public/login.html"
-    },
-    {
-      "source": "/cursos",
-      "destination": "/public/cursos.html"
-    },
-    {
-      "source": "/curso01",
-      "destination": "/public/curso01.html"
-    },
-    {
-      "source": "/curso02",
-      "destination": "/public/curso02.html"
-    },
-    {
-      "source": "/curso03",
-      "destination": "/public/curso03.html"
-    },
-    {
-      "source": "/guia/gracias",
-      "destination": "/public/guia-gracias.html"
-    },
-    {
-      "source": "/guia",
-      "destination": "/public/guia.html"
-    },
-    {
-      "source": "/",
-      "destination": "/public/index.html"
+  "outputDirectory": "public",
+  "functions": {
+    "api/*.js": {
+      "runtime": "nodejs20.x"
     }
+  },
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/:path*" },
+    { "source": "/cursos",     "destination": "/cursos.html" },
+    { "source": "/curso01",    "destination": "/curso01.html" },
+    { "source": "/curso02",    "destination": "/curso02.html" },
+    { "source": "/curso03",    "destination": "/curso03.html" },
+    { "source": "/login",      "destination": "/login.html" },
+    { "source": "/admin",      "destination": "/admin.html" },
+    { "source": "/guia",       "destination": "/guia.html" },
+    { "source": "/guia/gracias", "destination": "/guia-gracias.html" },
+    { "source": "/",           "destination": "/index.html" }
   ],
   "headers": [
     {
-      "source": "/(.*).html",
+      "source": "/(.*)\\.html",
       "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "no-cache, no-store, must-revalidate"
-        }
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
       ]
     }
   ]
