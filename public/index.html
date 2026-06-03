@@ -36,6 +36,15 @@ button{cursor:pointer;border:none;background:none;font:inherit}
 p{color:var(--muted);line-height:1.75;font-weight:300}
 
 
+
+.drawer-plataforma{
+  display:flex!important;align-items:center;justify-content:space-between;
+  background:var(--terra-l)!important;border:1px solid var(--terra-b)!important;
+  border-radius:10px!important;padding:12px 16px!important;
+  color:var(--terra)!important;font-weight:500!important;font-size:13px!important;
+}
+.drawer-plataforma:hover{background:rgba(168,86,54,.2)!important}
+
 /* Acceso alumnos nav link */
 .nav-plataforma{font-size:11.5px;letter-spacing:.06em;padding:5px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.6)!important;transition:all .2s}
 .nav-plataforma:hover{color:#fff!important;border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.08)}
@@ -483,7 +492,7 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
   <div class="nav-inner">
     <a href="/" class="nav-logo"><span class="nav-logo-dot"></span>Método Fermento</a>
     <ul class="nav-links">
-      <li><a href="#cursos">Cursos</a></li>
+      <li><a href="#cursos">Capacitación</a></li>
       <li><a href="#sistema">Consultoría</a></li>
       <li><a href="#contacto">Contacto</a></li>
       <li><a href="/guia.html" style="color:var(--terra)">Guía de Costeo</a></li>
@@ -506,11 +515,11 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
 <div class="mobile-menu" id="mobileMenu" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="drawer">
     <button class="drawer-close" onclick="document.getElementById('mobileMenu').classList.remove('open')">✕</button>
-    <a href="#cursos" onclick="document.getElementById('mobileMenu').classList.remove('open')">📚 Cursos online</a>
+    <a href="#cursos" onclick="document.getElementById('mobileMenu').classList.remove('open')">Capacitación</a>
     <a href="#sistema" onclick="document.getElementById('mobileMenu').classList.remove('open')">Consultoría</a>
     <a href="#contacto" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contacto</a>
     <a href="/guia.html" style="color:var(--terra);font-weight:500">Guía de Costeo →</a>
-    <a href="/login" class="nav-plataforma-mobile">Acceso alumnos →</a>
+    <a href="/login" class="drawer-plataforma">Primeros pasos → Accedé a tus cursos</a>
     <a href="tel:+541124946818">+54 11 2494‑6818</a>
     <a href="#contacto" class="btn btn-p" onclick="document.getElementById('mobileMenu').classList.remove('open')">Consulta gratis</a>
   </div>
@@ -534,7 +543,7 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
           <a href="#cursos" class="btn btn-p">Ver cursos →</a>
           <a href="#contacto" class="btn btn-g">Consultoría</a>
         </div>
-        <p class="hero-note">Cursos desde $49.000 · Primera consulta de consultoría sin cargo</p>
+        <p class="hero-note">Primeros pasos con criterio profesional · desde $49.000</p>
       </div>
 
       <!-- STATS POWER -->
@@ -749,9 +758,9 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
 <section id="cursos">
   <div class="wrap">
     <div class="cursos-head">
-      <span class="eyebrow">Plataforma Educativa</span>
-      <h2>Aprendé a fondo.<br><em>Pagás una vez, accedés siempre.</em></h2>
-      <p>Cursos online desarrollados por profesionales gastronómicos. Sin estructura de instituto, sin cuotas, sin relleno. Puro contenido accionable.</p>
+      <span class="eyebrow">Capacitación Gastronómica</span>
+      <h2>Primeros pasos.<br><em>Con criterio profesional.</em></h2>
+      <p>Contenido desarrollado por profesionales del rubro. Sin instituto, sin cuotas, sin intermediarios. Lo que importa, al precio que tiene que ser.</p>
     </div>
   </div>
   <div class="cursos-grid">
@@ -775,6 +784,7 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
           <span class="curso-price">$69.000</span>
           <span class="curso-price-label">pago único · acceso permanente</span>
         </div>
+        <p style="font-size:11px;color:rgba(255,255,255,.3);margin-bottom:12px;line-height:1.5">Sin instituto. Sin cuotas. Sin relleno.</p>
         <button class="btn-mp" onclick="abrirModal('curso01','Marketing Gastronómico y Redes','$69.000')">Pagar con MercadoPago</button>
       </div>
     </div>
@@ -798,6 +808,7 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
           <span class="curso-price">$49.000</span>
           <span class="curso-price-label">pago único · acceso permanente</span>
         </div>
+        <p style="font-size:11px;color:rgba(255,255,255,.3);margin-bottom:12px;line-height:1.5">Sin instituto. Sin cuotas. Sin relleno.</p>
         <button class="btn-mp btn-mp-ghost" onclick="abrirModal('curso02','Claves para Armar tu Emprendimiento','$49.000')">Pagar con MercadoPago</button>
       </div>
     </div>
@@ -821,12 +832,13 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
           <span class="curso-price">$79.000</span>
           <span class="curso-price-label">pago único · acceso permanente</span>
         </div>
+        <p style="font-size:11px;color:rgba(255,255,255,.3);margin-bottom:12px;line-height:1.5">Sin instituto. Sin cuotas. Sin relleno.</p>
         <button class="btn-mp btn-mp-ghost" onclick="abrirModal('curso03','Administración de Negocios Gastronómico','$79.000')">Pagar con MercadoPago</button>
       </div>
     </div>
 
   </div>
-  <p class="cursos-note">¿Ya compraste un curso? <a href="/login">Ingresá a la plataforma →</a></p>
+  <p class="cursos-note">¿Ya tenés acceso? <a href="/login">Ingresá a tus cursos →</a></p>
 </section>
 
 <!-- MODAL COMPRA -->
@@ -1088,7 +1100,7 @@ function mostrarErrorModal(msg) {
   <div class="footer-inner">
     <div class="footer-logo"><span class="footer-dot"></span>Método Fermento</div>
     <ul class="footer-links">
-      <li><a href="#cursos">Cursos</a></li>
+      <li><a href="#cursos">Capacitación</a></li>
       <li><a href="#sistema">Consultoría</a></li>
       <li><a href="#contacto">Contacto</a></li>
       <li><a href="/guia.html">Guía de Costeo</a></li>
