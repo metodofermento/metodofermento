@@ -312,8 +312,24 @@ function mostrarError(msg) {
   el.style.display = 'block';
 }
 
-// Renderizar al cargar
-renderCards();
+// Renderizar: primero intentar datos frescos del servidor
+(async function(){
+  var token = localStorage.getItem('mf_token');
+  if (!token) { renderCards(); return; }
+  try {
+    var r = await fetch('/api/auth?action=verify', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    if (r.ok) {
+      var d = await r.json();
+      if (d.user) {
+        // Actualizar localStorage con datos frescos del servidor
+        localStorage.setItem('mf_user', JSON.stringify(d.user));
+      }
+    }
+  } catch(e) { /* usar datos locales si falla */ }
+  renderCards();
+})();
 </script>
 </div>
 </body>
