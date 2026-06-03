@@ -47,7 +47,7 @@ p{color:var(--muted);line-height:1.75;font-weight:300}
 .drawer-plataforma:hover{background:rgba(168,86,54,.2)!important}
 
 /* Acceso alumnos nav link */
-.nav-plataforma{font-size:11.5px;letter-spacing:.06em;padding:5px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.6)!important;transition:all .2s}
+.nav-plataforma{font-size:11px;letter-spacing:.04em;padding:5px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.6)!important;transition:all .2s;white-space:nowrap}
 .nav-plataforma:hover{color:#fff!important;border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.08)}
 nav.scrolled .nav-plataforma{color:var(--muted)!important;border-color:var(--line)}
 nav.scrolled .nav-plataforma:hover{color:var(--terra)!important;border-color:var(--terra-b);background:var(--terra-l)}
@@ -415,13 +415,21 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
 /* ── CURSOS SECTION ── */
 #cursos{background:transparent;padding:96px 0}
 
-/* Card color themes */
-.curso-card-main.theme-01{background:rgba(168,86,54,.07);border-color:rgba(168,86,54,.2)}
-.curso-card-main.theme-01:hover{border-color:rgba(168,86,54,.45);box-shadow:0 20px 60px rgba(168,86,54,.2)}
-.curso-card-main.theme-02{background:rgba(90,70,120,.1);border-color:rgba(120,90,180,.2)}
-.curso-card-main.theme-02:hover{border-color:rgba(120,90,180,.45);box-shadow:0 20px 60px rgba(100,70,160,.2)}
-.curso-card-main.theme-03{background:rgba(26,26,46,.5);border-color:rgba(80,100,160,.2)}
-.curso-card-main.theme-03:hover{border-color:rgba(80,100,160,.45);box-shadow:0 20px 60px rgba(26,26,80,.3)}
+/* Card color themes — marco superior + borde distintivo */
+.curso-card-main{position:relative}
+.curso-card-main::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:18px 18px 0 0}
+
+.curso-card-main.theme-01{background:rgba(168,86,54,.06);border:1.5px solid rgba(168,86,54,.35)}
+.curso-card-main.theme-01::before{background:linear-gradient(90deg,var(--terra),rgba(168,86,54,.3))}
+.curso-card-main.theme-01:hover{border-color:rgba(168,86,54,.6);box-shadow:0 20px 60px rgba(168,86,54,.18)}
+
+.curso-card-main.theme-02{background:rgba(34,100,80,.07);border:1.5px solid rgba(40,160,100,.3)}
+.curso-card-main.theme-02::before{background:linear-gradient(90deg,#28a064,rgba(40,160,100,.3))}
+.curso-card-main.theme-02:hover{border-color:rgba(40,160,100,.55);box-shadow:0 20px 60px rgba(40,160,100,.15)}
+
+.curso-card-main.theme-03{background:rgba(26,40,80,.15);border:1.5px solid rgba(80,120,220,.3)}
+.curso-card-main.theme-03::before{background:linear-gradient(90deg,#5078dc,rgba(80,120,220,.3))}
+.curso-card-main.theme-03:hover{border-color:rgba(80,120,220,.55);box-shadow:0 20px 60px rgba(80,120,220,.15)}
 .cursos-head{text-align:center;margin-bottom:56px}
 .cursos-head h2{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.2rem);font-weight:900;font-optical-sizing:auto;color:#fff;letter-spacing:-.03em;line-height:1.08;margin-top:10px}
 .cursos-head h2 em{font-style:italic;color:var(--terra)}
@@ -496,8 +504,8 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
       <li><a href="#cursos">Capacitación</a></li>
       <li><a href="#sistema">Consultoría</a></li>
       <li><a href="#contacto">Contacto</a></li>
-      <li><a href="/guia.html" style="color:var(--terra)">Guía de Costeo</a></li>
-      <li><a href="/login" class="nav-plataforma">Acceso alumnos →</a></li>
+      <li><a href="/guia.html" style="color:var(--terra);white-space:nowrap">Guía de Costeo</a></li>
+      <li><a href="/login" class="nav-plataforma">Alumnos →</a></li>
     </ul>
     <div class="nav-right">
       <a href="https://wa.me/5491124946818?text=Hola%2C%20quiero%20consultar%20sobre%20el%20servicio" target="_blank" rel="noopener" id="nav-wa" style="font-size:12.5px;color:rgba(255,255,255,.6);transition:color .2s;display:flex;align-items:center;gap:5px" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=document.getElementById('nav').classList.contains('scrolled')?'var(--muted)':'rgba(255,255,255,.6)'">
@@ -810,7 +818,7 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
           <span class="curso-price-label">pago único · acceso permanente</span>
         </div>
         <p style="font-size:11px;color:rgba(255,255,255,.3);margin-bottom:12px;line-height:1.5">Sin instituto. Sin cuotas. Sin relleno.</p>
-        <button class="btn-mp btn-mp-ghost" onclick="abrirModal('curso02','Claves para Armar tu Emprendimiento','$49.000')">Pagar con MercadoPago</button>
+        <button class="btn-mp" onclick="abrirModal('curso02','Claves para Armar tu Emprendimiento','$49.000')">Pagar con MercadoPago</button>
       </div>
     </div>
 
@@ -834,7 +842,7 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
           <span class="curso-price-label">pago único · acceso permanente</span>
         </div>
         <p style="font-size:11px;color:rgba(255,255,255,.3);margin-bottom:12px;line-height:1.5">Sin instituto. Sin cuotas. Sin relleno.</p>
-        <button class="btn-mp btn-mp-ghost" onclick="abrirModal('curso03','Administración de Negocios Gastronómico','$79.000')">Pagar con MercadoPago</button>
+        <button class="btn-mp" onclick="abrirModal('curso03','Administración de Negocios Gastronómico','$79.000')">Pagar con MercadoPago</button>
       </div>
     </div>
 
