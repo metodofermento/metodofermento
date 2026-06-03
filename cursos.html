@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Método Fermento · Plataforma Educativa</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--terra:#A85636;--terra-d:#7F3A22;--terra-l:rgba(168,86,54,.13);--terra-b:rgba(168,86,54,.25);--navy:#1A1A2E;--ink:#1C1917;--muted:#6B6560;--muted-l:#9C9490;--sand:#F7F4EF;--sand-d:#EDE8E0;--white:#fff}
+body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--sand);min-height:100vh;overflow-x:hidden}
+#landing{background:radial-gradient(ellipse 70% 40% at 85% 5%,rgba(168,86,54,.09) 0%,transparent 65%),radial-gradient(ellipse 50% 30% at 10% 90%,rgba(168,86,54,.06) 0%,transparent 60%),var(--ink);padding-bottom:60px;min-height:100vh}
+.land-head{padding:36px 22px 0;max-width:1200px;margin:0 auto}
+.mf-wordmark{font-family:'Playfair Display',serif;font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-l);display:flex;align-items:center;gap:8px;margin-bottom:44px}
+.mf-dot{width:7px;height:7px;border-radius:50%;background:var(--terra);flex-shrink:0}
+.land-eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:5px 14px 5px 10px;margin-bottom:22px}
+.ey-dot{width:5px;height:5px;border-radius:50%;background:var(--terra)}
+.land-title{font-family:'Playfair Display',serif;font-size:40px;font-weight:900;line-height:1.06;letter-spacing:-.02em;color:var(--white);margin-bottom:18px}
+.land-title em{font-style:italic;color:var(--terra)}
+.land-sub{font-size:14px;color:var(--muted-l);line-height:1.75;margin-bottom:42px;max-width:340px}
+@media(min-width:900px){
+  .land-head{padding:48px 48px 0}
+  .land-hero{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-bottom:48px}
+  .land-title{font-size:52px;margin-bottom:0;max-width:560px}
+  .land-sub{margin-bottom:0;max-width:280px;font-size:15px}
+}
+.divider{display:flex;align-items:center;gap:10px;margin:0 22px 32px;max-width:1200px}
+.div-line{flex:1;height:1px;background:rgba(255,255,255,.06)}
+.div-dot{width:4px;height:4px;border-radius:50%;background:var(--terra);opacity:.5}
+@media(min-width:900px){.divider{margin:0 auto 40px;padding:0 48px}}
+.cards{padding:0 16px;display:flex;flex-direction:column;gap:14px;max-width:1200px;margin:0 auto}
+@media(min-width:900px){.cards{flex-direction:row;gap:20px;padding:0 48px;align-items:stretch}.curso-card{flex:1;display:flex;flex-direction:column}.card-body{flex:1;display:flex;flex-direction:column}.card-cta{margin-top:auto}}
+.curso-card{border-radius:16px;overflow:hidden;cursor:pointer;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.03);transition:transform .25s,border-color .25s;text-decoration:none;display:block}
+.curso-card:hover{transform:translateY(-4px);border-color:var(--terra-b)}
+.curso-card:active{transform:scale(.99)}
+.card-stripe{height:3px;width:100%}
+.s0{background:var(--terra)}
+.s1{background:linear-gradient(90deg,var(--terra),rgba(168,86,54,.5))}
+.s2{background:linear-gradient(90deg,var(--navy),#3a4a7a)}
+.card-body{padding:22px}
+.card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.card-num{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.card-pills{display:flex;gap:6px}
+.pill{font-size:10px;padding:3px 9px;border-radius:20px;font-weight:500;background:var(--terra-l);color:var(--terra);border:1px solid var(--terra-b)}
+.pill-navy{background:rgba(26,26,46,.4);color:#8a9cc0;border:1px solid rgba(26,26,46,.6)}
+.card-icon{font-size:28px;margin-bottom:10px;display:block}
+.card-title{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--white);line-height:1.15;margin-bottom:6px}
+.card-meta{font-size:11px;color:var(--muted);margin-bottom:14px}
+.card-desc{font-size:13.5px;color:var(--muted-l);line-height:1.78;margin-bottom:16px}
+.card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:20px}
+.tag{font-size:10.5px;padding:4px 10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;color:var(--muted-l)}
+.card-cta{width:100%;padding:14px 18px;border-radius:10px;border:none;font-family:'Playfair Display',serif;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:all .2s}
+.cta-solid{background:var(--terra);color:var(--white)}.cta-solid:hover{background:var(--terra-d)}
+.cta-ghost{background:var(--terra-l);color:var(--terra);border:1px solid var(--terra-b)}.cta-ghost:hover{background:var(--terra-b)}
+.cta-navy{background:rgba(26,26,46,.5);color:#8a9cc0;border:1px solid rgba(26,26,46,.8)}.cta-navy:hover{background:rgba(26,26,46,.7)}
+.cta-arrow{font-size:18px;transition:transform .2s}
+.curso-card:hover .cta-arrow{transform:translateX(5px)}
+.land-foot{text-align:center;padding:36px 24px 0;font-size:10px;color:var(--muted);opacity:.4;letter-spacing:.08em}
+</style>
+</head>
+<body>
+<script>
+(function(){
+  var token = localStorage.getItem("mf_token");
+  if (!token) { window.location.href = "/login?next=" + encodeURIComponent(window.location.pathname); return; }
+  // Verify in background — only redirect on definitive auth failure (401/403)
+  fetch("/api/auth?action=verify", { headers: { "Authorization": "Bearer " + token } })
+    .then(function(r){
+      if (r.status === 401 || r.status === 403) {
+        localStorage.removeItem("mf_token");
+        localStorage.removeItem("mf_user");
+        window.location.href = "/login?next=" + encodeURIComponent(window.location.pathname);
+      }
+    })
+    .catch(function(){ /* network error — allow offline */ });
+})();
+</script>
+<div id="landing">
+  <div class="land-head">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:44px">
+  <div class="mf-wordmark" style="margin-bottom:0"><div class="mf-dot"></div>Método Fermento</div>
+  <div style="display:flex;align-items:center;gap:12px">
+    <span id="userName" style="font-size:12px;color:var(--muted-l)"></span>
+    <button onclick="doLogout()" style="background:transparent;border:1px solid rgba(255,255,255,.1);border-radius:8px;color:var(--muted-l);font-family:DM Sans,sans-serif;font-size:12px;padding:6px 12px;cursor:pointer">Salir</button>
+  </div>
+</div>
+<script>
+var u = JSON.parse(localStorage.getItem("mf_user")||"null");
+if(u) document.getElementById("userName").textContent = u.nombre || u.email;
+async function doLogout(){
+  var t = localStorage.getItem("mf_token");
+  if(t) await fetch("/api/auth?action=logout",{method:"POST",headers:{"Authorization":"Bearer "+t}}).catch(()=>{});
+  localStorage.removeItem("mf_token"); localStorage.removeItem("mf_user");
+  window.location.href="/login";
+}
+</script>
+    <div class="land-hero">
+      <div>
+        <div class="land-eyebrow"><div class="ey-dot"></div>Plataforma Educativa &middot; Buenos Aires</div>
+        <h1 class="land-title">Formacion<br>para negocios<br><em>gastronomicos rentables.</em></h1>
+      </div>
+      <p class="land-sub">Tres cursos completos con material de lectura y evaluacion por modulo. Avanzas cuando aprobas.</p>
+    </div>
+  </div>
+  <div class="divider"><div class="div-line"></div><div class="div-dot"></div><div class="div-dot"></div><div class="div-dot"></div><div class="div-line"></div></div>
+  <div class="cards">
+
+    <a class="curso-card" href="/curso01">
+      <div class="card-stripe s0"></div>
+      <div class="card-body">
+        <div class="card-top"><span class="card-num">Curso 01</span><div class="card-pills"><span class="pill">24 hs</span><span class="pill">14 modulos</span></div></div>
+        <span class="card-icon">&#128226;</span>
+        <h2 class="card-title">Marketing Gastronomico y Redes</h2>
+        <div class="card-meta">12 clases &middot; 2 horas cada una</div>
+        <p class="card-desc">Posiciona tu negocio, construi una marca con identidad propia y capta clientes reales con estrategias que funcionan en el mercado argentino.</p>
+        <div class="card-tags"><span class="tag">Branding</span><span class="tag">Carta efectiva</span><span class="tag">Social Media</span><span class="tag">Fidelizacion</span><span class="tag">Plan de marketing</span></div>
+        <div class="card-cta cta-solid">Ingresar al curso <span class="cta-arrow">&#8594;</span></div>
+      </div>
+    </a>
+
+    <a class="curso-card" href="/curso02">
+      <div class="card-stripe s1"></div>
+      <div class="card-body">
+        <div class="card-top"><span class="card-num">Curso 02</span><div class="card-pills"><span class="pill">16 hs</span><span class="pill">14 modulos</span></div></div>
+        <span class="card-icon">&#128640;</span>
+        <h2 class="card-title">Claves para Armar tu Emprendimiento</h2>
+        <div class="card-meta">8 clases &middot; 2 horas cada una</div>
+        <p class="card-desc">Todo lo que necesitas saber antes de abrir: local, equipamiento, proveedores, equipo y plan de negocio concreto.</p>
+        <div class="card-tags"><span class="tag">Plan de negocio</span><span class="tag">Proveedores</span><span class="tag">RRHH</span><span class="tag">Habilitaciones</span><span class="tag">Identidad</span></div>
+        <div class="card-cta cta-ghost">Ingresar al curso <span class="cta-arrow">&#8594;</span></div>
+      </div>
+    </a>
+
+    <a class="curso-card" href="/curso03">
+      <div class="card-stripe s2"></div>
+      <div class="card-body">
+        <div class="card-top"><span class="card-num">Curso 03</span><div class="card-pills"><span class="pill pill-navy">30 hs</span><span class="pill pill-navy">12 modulos</span></div></div>
+        <span class="card-icon">&#128202;</span>
+        <h2 class="card-title">Administracion de Negocios Gastronomico</h2>
+        <div class="card-meta">12 clases &middot; 2,5 horas cada una</div>
+        <p class="card-desc">Maneja los numeros con criterio: costos, food cost, auditoria interna, sistemas de gestion y rentabilidad por plato.</p>
+        <div class="card-tags"><span class="tag">Food cost</span><span class="tag">Prime cost</span><span class="tag">Auditoria</span><span class="tag">Sistemas</span><span class="tag">Rentabilidad</span></div>
+        <div class="card-cta cta-navy">Ingresar al curso <span class="cta-arrow">&#8594;</span></div>
+      </div>
+    </a>
+
+  </div>
+  <div class="land-foot">metodofermento.com.ar &middot; Consultoria Gastronomica Estrategica</div>
+</div>
+</body>
+</html>
