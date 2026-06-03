@@ -218,12 +218,12 @@ function renderCards() {
     var pills = c.pills.map(function(p){ return '<span class="' + c.pillClass + '">' + p + '</span>'; }).join('');
     var tags  = c.tags.map(function(t){ return '<span class="tag">' + t + '</span>'; }).join('');
 
-    var ctaHtml = acceso
+        var ctaHtml = acceso
       ? '<div class="card-cta ' + c.cta + '">Ingresar al curso <span class="card-arrow">&#8594;</span></div>'
       : '<div class="locked-badge">&#128274; No disponible</div>'
-        + '<button class="card-cta cta-locked" onclick="abrirModal(event,'' + c.id + '','' + c.title + '','' + c.precio + '')">Comprar acceso &#8594;</button>';
+        + '<button class="card-cta cta-locked" data-id="' + c.id + '" data-title="' + c.title + '" data-precio="' + c.precio + '" onclick="handleComprar(this)">Comprar acceso &#8594;</button>';
 
-    var cardHtml = '<div class="card-stripe ' + c.stripe + '"></div>'
+        var cardHtml = '<div class="card-stripe ' + c.stripe + '"></div>'
       + '<div class="card-body">'
       + '<div class="card-top"><span class="card-num">' + c.num + '</span><div class="card-pills">' + pills + '</div></div>'
       + '<span class="card-icon">' + c.icon + '</span>'
@@ -247,6 +247,13 @@ function renderCards() {
       container.appendChild(div);
     }
   });
+}
+
+function handleComprar(btn) {
+  var producto = btn.getAttribute('data-id');
+  var nombre   = btn.getAttribute('data-title');
+  var precio   = btn.getAttribute('data-precio');
+  abrirModal({ stopPropagation: function(){} }, producto, nombre, precio);
 }
 
 function abrirModal(e, producto, nombre, precio) {
