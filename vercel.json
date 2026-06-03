@@ -1,29 +1,20 @@
 {
   "version": 2,
-  "outputDirectory": "public",
   "functions": {
     "api/*.js": {
       "runtime": "nodejs20.x"
     }
   },
-  "rewrites": [
-    { "source": "/api/:path*", "destination": "/api/:path*" },
-    { "source": "/cursos",     "destination": "/cursos.html" },
-    { "source": "/curso01",    "destination": "/curso01.html" },
-    { "source": "/curso02",    "destination": "/curso02.html" },
-    { "source": "/curso03",    "destination": "/curso03.html" },
-    { "source": "/login",      "destination": "/login.html" },
-    { "source": "/admin",      "destination": "/admin.html" },
-    { "source": "/guia",       "destination": "/guia.html" },
-    { "source": "/guia/gracias", "destination": "/guia-gracias.html" },
-    { "source": "/",           "destination": "/index.html" }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)\\.html",
-      "headers": [
-        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
-      ]
-    }
+  "routes": [
+    { "src": "/api/(.*)",      "dest": "/api/$1" },
+    { "src": "/cursos",        "dest": "/public/cursos.html" },
+    { "src": "/curso01",       "dest": "/public/curso01.html" },
+    { "src": "/curso02",       "dest": "/public/curso02.html" },
+    { "src": "/curso03",       "dest": "/public/curso03.html" },
+    { "src": "/login",         "dest": "/public/login.html" },
+    { "src": "/admin",         "dest": "/public/admin.html" },
+    { "src": "/guia/gracias",  "dest": "/public/guia-gracias.html" },
+    { "src": "/guia",          "dest": "/public/guia.html" },
+    { "src": "/(.*)",          "dest": "/public/$1" }
   ]
 }
