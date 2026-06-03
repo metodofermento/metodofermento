@@ -108,12 +108,16 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--sand);mi
 (function(){
   var token = localStorage.getItem("mf_token");
   if (!token) { window.location.href = "/login?next=" + encodeURIComponent(window.location.pathname); return; }
+  // Verify in background — only redirect on definitive auth failure (401/403)
   fetch("/api/auth?action=verify", { headers: { "Authorization": "Bearer " + token } })
-    .then(function(r){ return r.json(); })
-    .then(function(d){
-      if (!d.user) { localStorage.removeItem("mf_token"); localStorage.removeItem("mf_user"); window.location.href = "/login?next=" + encodeURIComponent(window.location.pathname); }
+    .then(function(r){
+      if (r.status === 401 || r.status === 403) {
+        localStorage.removeItem("mf_token");
+        localStorage.removeItem("mf_user");
+        window.location.href = "/login?next=" + encodeURIComponent(window.location.pathname);
+      }
     })
-    .catch(function(){ });
+    .catch(function(){ /* network error — allow offline */ });
 })();
 </script>
 <div id="landing" class="view" style="display:none">

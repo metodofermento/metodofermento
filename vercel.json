@@ -1,14 +1,52 @@
 {
   "version": 2,
   "rewrites": [
-    { "source": "/admin",         "destination": "/public/admin.html" },
-    { "source": "/login",         "destination": "/public/login.html" },
-    { "source": "/cursos",        "destination": "/public/cursos.html" },
-    { "source": "/curso01",       "destination": "/public/curso01.html" },
-    { "source": "/curso02",       "destination": "/public/curso02.html" },
-    { "source": "/curso03",       "destination": "/public/curso03.html" },
-    { "source": "/guia/gracias",  "destination": "/public/guia-gracias.html" },
-    { "source": "/guia",          "destination": "/public/guia.html" },
-    { "source": "/",              "destination": "/public/index.html" }
+    {
+      "source": "/admin",
+      "destination": "/public/admin.html"
+    },
+    {
+      "source": "/login",
+      "destination": "/public/login.html"
+    },
+    {
+      "source": "/cursos",
+      "destination": "/public/cursos.html"
+    },
+    {
+      "source": "/curso01",
+      "destination": "/public/curso01.html"
+    },
+    {
+      "source": "/curso02",
+      "destination": "/public/curso02.html"
+    },
+    {
+      "source": "/curso03",
+      "destination": "/public/curso03.html"
+    },
+    {
+      "source": "/guia/gracias",
+      "destination": "/public/guia-gracias.html"
+    },
+    {
+      "source": "/guia",
+      "destination": "/public/guia.html"
+    },
+    {
+      "source": "/",
+      "destination": "/public/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*).html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        }
+      ]
+    }
   ]
 }
