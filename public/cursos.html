@@ -126,7 +126,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--sand);mi
 }
 .curso-card-2026:hover{background:rgba(20,16,14,.98)}
 .curso-img-2026{
-  height:180px;overflow:hidden;position:relative;background:#1a1412;
+  height:200px;overflow:hidden;position:relative;background:#1a1412;
+  display:block;
 }
 .curso-img-2026 img{
   width:100%;height:100%;object-fit:cover;display:block;
@@ -327,40 +328,39 @@ function renderCards() {
   var container = document.getElementById('cardsContainer');
   container.innerHTML = '';
 
-  CURSOS_DEF.forEach(function(c) {
-    var acceso = tieneAcceso(user, c.id);
+  CURSOS_DEF.forEach(function(curso) {
+    var acceso = tieneAcceso(user, curso.id);
 
-    var pills = c.pills.map(function(p){ return '<span class="' + c.pillClass + '">' + p + '</span>'; }).join('');
-    var tags  = c.tags.map(function(t){ return '<span class="tag">' + t + '</span>'; }).join('');
+    var tags = curso.tags.map(function(t){
+      return '<span class="curso-tag-2026">' + t + '</span>';
+    }).join('');
 
-        var ctaHtml = acceso
-      ? '<div class="card-cta ' + c.cta + '">Ingresar al curso <span class="card-arrow">&#8594;</span></div>'
-      : '<div class="locked-badge">&#128274; No disponible</div>'
-        + '<button class="card-cta cta-locked" data-id="' + c.id + '" data-title="' + c.title + '" data-precio="' + c.precio + '" onclick="handleComprar(this)">Comprar acceso &#8594;</button>';
+    var ctaHtml = acceso
+      ? '<a href="' + curso.slug + '" class="btn-mp" style="text-align:center;justify-content:center;text-decoration:none;display:flex;align-items:center;gap:8px">Ingresar al curso &#8594;</a>'
+      : '<div class="locked-badge" style="margin-bottom:10px">&#128274; No disponible</div>'
+        + '<button class="btn-mp" style="background:rgba(168,86,54,.15);box-shadow:none;border:1px solid rgba(168,86,54,.3)" data-id="' + curso.id + '" data-title="' + curso.title + '" data-precio="' + curso.precio + '" onclick="handleComprar(this)">Comprar acceso &#8594;</button>';
 
-        var cardHtml = '<div class="card-stripe ' + c.stripe + '"></div>'
-      + '<div class="card-body">'
-      + '<div class="card-top"><span class="card-num">' + c.num + '</span><div class="card-pills">' + pills + '</div></div>'
-      + '<span class="card-icon">' + c.icon + '</span>'
-      + '<h2 class="card-title">' + c.title + '</h2>'
-      + '<div class="card-meta">' + c.meta + '</div>'
-      + '<p class="card-desc">' + c.desc + '</p>'
-      + '<div class="card-tags">' + tags + '</div>'
+    var priceHtml = acceso ? ''
+      : '<div class="curso-price-2026"><span class="curso-price-num-2026">' + curso.precio + '</span><span class="curso-price-lbl-2026">pago único · acceso permanente</span></div>';
+
+    var card = document.createElement('div');
+    card.className = 'curso-card-2026';
+    card.innerHTML =
+      '<div class="curso-img-2026">'
+      + '<span class="curso-num-tag">' + curso.num + '</span>'
+      + '<img src="' + curso.img + '" alt="' + curso.title + '" loading="lazy">'
+      + '<div class="curso-img-2026-overlay"></div>'
+      + '</div>'
+      + '<div class="curso-body-2026">'
+      + '<div class="curso-title-2026">' + curso.title + '</div>'
+      + '<div class="curso-meta-2026">' + curso.meta + '</div>'
+      + '<p class="curso-desc-2026">' + curso.desc + '</p>'
+      + '<div class="curso-tags-2026">' + tags + '</div>'
+      + priceHtml
       + ctaHtml
       + '</div>';
 
-    if (acceso) {
-      var a = document.createElement('a');
-      a.className = 'curso-card';
-      a.href = c.slug;
-      a.innerHTML = cardHtml;
-      container.appendChild(a);
-    } else {
-      var div = document.createElement('div');
-      div.className = 'curso-card locked';
-      div.innerHTML = cardHtml;
-      container.appendChild(div);
-    }
+    container.appendChild(card);
   });
 }
 
@@ -437,7 +437,9 @@ function mostrarError(msg) {
 // Renderizar: primero intentar datos frescos del servidor
 (async function(){
   var token = localStorage.getItem('mf_token');
-  if (!token) { renderCards(); return; }
+  if (!token) { renderCards();
+var _u = JSON.parse(localStorage.getItem("mf_user")||"null");
+if(_u && document.getElementById("userName")) document.getElementById("userName").textContent = _u.nombre || _u.email; return; }
   try {
     var r = await fetch('/api/auth?action=verify', {
       headers: { 'Authorization': 'Bearer ' + token }
