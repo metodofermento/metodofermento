@@ -336,9 +336,9 @@ function renderCards() {
     }).join('');
 
     var ctaHtml = acceso
-      ? '<a href="' + curso.slug + '" class="btn-mp" style="text-align:center;justify-content:center;text-decoration:none;display:flex;align-items:center;gap:8px">Ingresar al curso &#8594;</a>'
+      ? '<a href="' + curso.slug + '" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;border-radius:10px;background:var(--terra);color:#fff;text-decoration:none;font-family:Playfair Display,serif;font-size:14px;font-weight:700;transition:background .2s" onmouseover="this.style.background='#7F3A22'" onmouseout="this.style.background='#A85636'">Ingresar al curso &#8594;</a>'
       : '<div class="locked-badge" style="margin-bottom:10px">&#128274; No disponible</div>'
-        + '<button class="btn-mp" style="background:rgba(168,86,54,.15);box-shadow:none;border:1px solid rgba(168,86,54,.3)" data-id="' + curso.id + '" data-title="' + curso.title + '" data-precio="' + curso.precio + '" onclick="handleComprar(this)">Comprar acceso &#8594;</button>';
+        + '<button class="btn-mp" data-id="' + curso.id + '" data-title="' + curso.title + '" data-precio="' + curso.precio + '" onclick="handleComprar(this)">Pagar con MercadoPago</button>';
 
     var priceHtml = acceso ? ''
       : '<div class="curso-price-2026"><span class="curso-price-num-2026">' + curso.precio + '</span><span class="curso-price-lbl-2026">pago único · acceso permanente</span></div>';
@@ -437,9 +437,13 @@ function mostrarError(msg) {
 // Renderizar: primero intentar datos frescos del servidor
 (async function(){
   var token = localStorage.getItem('mf_token');
-  if (!token) { renderCards();
-var _u = JSON.parse(localStorage.getItem("mf_user")||"null");
-if(_u && document.getElementById("userName")) document.getElementById("userName").textContent = _u.nombre || _u.email; return; }
+
+  // Set username immediately from localStorage
+  var _u = JSON.parse(localStorage.getItem('mf_user') || 'null');
+  var _nameEl = document.getElementById('userName');
+  if (_u && _nameEl) _nameEl.textContent = _u.nombre || _u.email;
+
+  if (!token) { renderCards(); return; }
   try {
     var r = await fetch('/api/auth?action=verify', {
       headers: { 'Authorization': 'Bearer ' + token }
@@ -447,8 +451,9 @@ if(_u && document.getElementById("userName")) document.getElementById("userName"
     if (r.ok) {
       var d = await r.json();
       if (d.user) {
-        // Actualizar localStorage con datos frescos del servidor
         localStorage.setItem('mf_user', JSON.stringify(d.user));
+        // Update name with fresh data
+        if (_nameEl) _nameEl.textContent = d.user.nombre || d.user.email;
       }
     }
   } catch(e) { /* usar datos locales si falla */ }
