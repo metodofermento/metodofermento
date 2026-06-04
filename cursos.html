@@ -74,6 +74,105 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--sand);mi
 .curso-card:nth-child(2){border-color:rgba(40,160,100,.2)!important}
 .curso-card:nth-child(3){border-color:rgba(80,120,220,.2)!important}
 
+
+/* ── VIDEO HERO ── */
+.cursos-hero{
+  position:relative;min-height:70vh;display:flex;align-items:flex-end;
+  overflow:hidden;padding-bottom:0;
+}
+.cursos-hero-video{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;
+}
+.cursos-hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(135deg,rgba(14,12,11,.9) 0%,rgba(14,12,11,.7) 50%,rgba(168,86,54,.1) 100%),
+    linear-gradient(to top,rgba(14,12,11,1) 0%,transparent 50%);
+}
+.cursos-hero-content{
+  position:relative;z-index:2;width:100%;max-width:1200px;
+  margin:0 auto;padding:120px 60px 60px;
+}
+@media(max-width:899px){.cursos-hero-content{padding:100px 24px 48px}}
+.cursos-hero-top{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:48px;
+}
+.cursos-user-bar{display:flex;align-items:center;gap:12px}
+.cursos-user-name{font-size:13px;color:rgba(255,255,255,.65);font-weight:500}
+.cursos-logout{
+  background:transparent;border:1px solid rgba(255,255,255,.12);
+  border-radius:8px;color:rgba(255,255,255,.45);font-family:'DM Sans',sans-serif;
+  font-size:12px;padding:6px 14px;cursor:pointer;transition:all .2s;
+}
+.cursos-logout:hover{border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.7)}
+
+/* ── CARDS 2026 ── */
+.cursos-cards-wrap{
+  background:#0e0c0b;padding:0 60px 80px;max-width:1200px;margin:0 auto;
+}
+@media(max-width:899px){.cursos-cards-wrap{padding:0 16px 60px}}
+.cursos-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:rgba(255,255,255,.05);
+  border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.06);
+  margin-top:-2px;
+}
+@media(max-width:899px){.cursos-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto}}
+.curso-card-2026{
+  background:#0e0c0b;display:flex;flex-direction:column;
+  transition:background .25s;position:relative;
+  text-decoration:none;
+}
+.curso-card-2026:hover{background:rgba(20,16,14,.98)}
+.curso-img-2026{
+  height:180px;overflow:hidden;position:relative;background:#1a1412;
+}
+.curso-img-2026 img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .5s ease;
+}
+.curso-card-2026:hover .curso-img-2026 img{transform:scale(1.06)}
+.curso-img-2026-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 40%,rgba(14,12,11,.9) 100%);
+}
+.curso-img-2026 .curso-num-tag{
+  position:absolute;top:12px;left:12px;z-index:2;
+  font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.6);background:rgba(0,0,0,.5);
+  border:1px solid rgba(255,255,255,.1);border-radius:4px;
+  padding:3px 8px;backdrop-filter:blur(4px);
+}
+.curso-body-2026{padding:22px 24px;flex:1;display:flex;flex-direction:column}
+.curso-title-2026{
+  font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;
+  color:#fff;line-height:1.2;margin-bottom:6px;
+}
+.curso-meta-2026{font-size:11px;color:rgba(255,255,255,.3);margin-bottom:12px}
+.curso-desc-2026{font-size:12.5px;color:rgba(255,255,255,.45);line-height:1.75;margin-bottom:14px;flex:1}
+.curso-tags-2026{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:18px}
+.curso-tag-2026{
+  font-size:10px;padding:3px 9px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+  border-radius:20px;color:rgba(255,255,255,.35);
+}
+.curso-price-2026{
+  display:flex;align-items:baseline;gap:8px;margin-bottom:14px;
+}
+.curso-price-num-2026{
+  font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:900;color:var(--terra);
+}
+.curso-price-lbl-2026{font-size:10px;color:rgba(255,255,255,.25);line-height:1.4}
+
+/* Color accents per course */
+.curso-card-2026:nth-child(1){border-top:2px solid rgba(168,86,54,.5)}
+.curso-card-2026:nth-child(2){border-top:2px solid rgba(40,160,100,.4)}
+.curso-card-2026:nth-child(3){border-top:2px solid rgba(80,120,220,.4)}
+.curso-card-2026:nth-child(1):hover{background:rgba(168,86,54,.05)}
+.curso-card-2026:nth-child(2):hover{background:rgba(40,160,100,.04)}
+.curso-card-2026:nth-child(3):hover{background:rgba(80,120,220,.04)}
+
 </style>
 </head>
 <body>
@@ -110,37 +209,36 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--sand);mi
 })();
 </script>
 <div id="landing">
-  <div class="land-head">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:44px">
-  <div class="mf-wordmark" style="margin-bottom:0"><div class="mf-dot"></div>Método Fermento</div>
-  <div style="display:flex;align-items:center;gap:12px">
-    <span id="userName" style="font-size:13px;color:rgba(255,255,255,.7);font-weight:500"></span>
-    <button onclick="doLogout()" style="background:transparent;border:1px solid rgba(255,255,255,.1);border-radius:8px;color:var(--muted-l);font-family:DM Sans,sans-serif;font-size:12px;padding:6px 12px;cursor:pointer">Salir</button>
-  </div>
-</div>
-<script>
-var u = JSON.parse(localStorage.getItem("mf_user")||"null");
-if(u) document.getElementById("userName").textContent = u.nombre || u.email;
-async function doLogout(){
-  var t = localStorage.getItem("mf_token");
-  if(t) await fetch("/api/auth?action=logout",{method:"POST",headers:{"Authorization":"Bearer "+t}}).catch(()=>{});
-  localStorage.removeItem("mf_token"); localStorage.removeItem("mf_user");
-  window.location.href="/login";
-}
-</script>
-    <div class="land-hero">
-      <div>
-        <div class="land-eyebrow"><div class="ey-dot"></div>Plataforma Educativa &middot; Buenos Aires</div>
-        <h1 class="land-title">Formación<br>para negocios<br><em>gastronómicos rentables.</em></h1>
+
+<!-- VIDEO HERO -->
+<section class="cursos-hero">
+  <video id="cursosBg" autoplay muted loop playsinline
+    poster="/img/hero-01.jpg"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0">
+    <source src="/video/cursos.mp4" type="video/mp4">
+  </video>
+  <div class="cursos-hero-overlay"></div>
+  <div class="cursos-hero-content">
+    <div class="cursos-hero-top">
+      <div class="mf-wordmark"><div class="mf-dot"></div>Método Fermento</div>
+      <div class="cursos-user-bar">
+        <span class="cursos-user-name" id="userName"></span>
+        <button class="cursos-logout" onclick="doLogout()">Salir</button>
       </div>
-      <p class="land-sub">Tres cursos completos con material de lectura y evaluación por módulo. Avanzás cuando aprobás.</p>
     </div>
+    <div class="land-eyebrow"><div class="ey-dot"></div>Plataforma Educativa &middot; Buenos Aires</div>
+    <h1 class="land-title" style="margin-top:12px">Formación<br>para negocios<br><em>gastronómicos rentables.</em></h1>
+    <p class="land-sub" style="margin-top:16px;max-width:38ch">Tres cursos completos con material de lectura y evaluación por módulo. Avanzás cuando aprobás.</p>
   </div>
-  <div class="divider"><div class="div-line"></div><div class="div-dot"></div><div class="div-dot"></div><div class="div-dot"></div><div class="div-line"></div></div>
-  <div class="cards" id="cardsContainer">
-    <!-- Renderizado dinámico por JS según cursos del usuario -->
-  </div>
-  <div class="land-foot">metodofermento.com.ar &middot; Consultoria Gastronomica Estrategica</div>
+</section>
+
+<!-- CURSOS GRID -->
+<div style="background:#0e0c0b;padding:0 48px 80px;max-width:1200px;margin:0 auto">
+  <div id="cardsContainer" class="cursos-grid"></div>
+  <p style="text-align:center;margin-top:20px;font-size:11px;color:rgba(255,255,255,.2);letter-spacing:.06em">
+    metodofermento.com.ar &middot; Consultoría Gastronómica Estratégica
+  </p>
+</div>
 
 <!-- MODAL COMPRA -->
 <div id="modalCompra" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:1000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)">
