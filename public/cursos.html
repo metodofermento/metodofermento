@@ -9,19 +9,19 @@
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--terra:#A85636;--terra-d:#7F3A22;--terra-l:rgba(168,86,54,.13);--terra-b:rgba(168,86,54,.25);--navy:#1A1A2E;--ink:#1C1917;--muted:#6B6560;--muted-l:#9C9490;--sand:#F7F4EF;--sand-d:#EDE8E0;--white:#fff}
 body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--sand);min-height:100vh;overflow-x:hidden}
-#landing{background:radial-gradient(ellipse 70% 40% at 85% 5%,rgba(168,86,54,.09) 0%,transparent 65%),radial-gradient(ellipse 50% 30% at 10% 90%,rgba(168,86,54,.06) 0%,transparent 60%),var(--ink);padding-bottom:60px;min-height:100vh}
+#landing{background:radial-gradient(ellipse 80% 50% at 85% 0%,rgba(168,86,54,.14) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 5% 95%,rgba(168,86,54,.08) 0%,transparent 55%),#0e0c0b;padding-bottom:80px;min-height:100vh}
 .land-head{padding:36px 22px 0;max-width:1200px;margin:0 auto}
 .mf-wordmark{font-family:'Playfair Display',serif;font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-l);display:flex;align-items:center;gap:8px;margin-bottom:44px}
 .mf-dot{width:7px;height:7px;border-radius:50%;background:var(--terra);flex-shrink:0}
 .land-eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:5px 14px 5px 10px;margin-bottom:22px}
 .ey-dot{width:5px;height:5px;border-radius:50%;background:var(--terra)}
-.land-title{font-family:'Playfair Display',serif;font-size:40px;font-weight:900;line-height:1.06;letter-spacing:-.02em;color:var(--white);margin-bottom:18px}
+.land-title{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,3.8rem);font-weight:900;line-height:1.04;letter-spacing:-.03em;color:var(--white);margin-bottom:18px}
 .land-title em{font-style:italic;color:var(--terra)}
 .land-sub{font-size:14px;color:var(--muted-l);line-height:1.75;margin-bottom:42px;max-width:340px}
 @media(min-width:900px){
   .land-head{padding:48px 48px 0}
   .land-hero{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-bottom:48px}
-  .land-title{font-size:52px;margin-bottom:0;max-width:560px}
+  .land-title{font-size:clamp(3rem,5.5vw,4.2rem);margin-bottom:0;max-width:600px}
   .land-sub{margin-bottom:0;max-width:280px;font-size:15px}
 }
 .divider{display:flex;align-items:center;gap:10px;margin:0 22px 32px;max-width:1200px}
@@ -31,7 +31,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--sand);mi
 .cards{padding:0 16px;display:flex;flex-direction:column;gap:14px;max-width:1200px;margin:0 auto}
 @media(min-width:900px){.cards{flex-direction:row;gap:20px;padding:0 48px;align-items:stretch}.curso-card{flex:1;display:flex;flex-direction:column}.card-body{flex:1;display:flex;flex-direction:column}.card-cta{margin-top:auto}}
 .curso-card{border-radius:16px;overflow:hidden;cursor:pointer;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.03);transition:transform .25s,border-color .25s;text-decoration:none;display:block}
-.curso-card:hover{transform:translateY(-4px);border-color:var(--terra-b)}
+.curso-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.4)}
 .curso-card:active{transform:scale(.99)}
 .card-stripe{height:3px;width:100%}
 .s0{background:var(--terra)}
@@ -63,6 +63,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--sand);mi
 .locked-badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:4px 12px;margin-bottom:12px}
 .cta-locked{background:rgba(168,86,54,.12)!important;color:var(--terra)!important;border:1px solid var(--terra-b)!important;cursor:pointer!important;pointer-events:all!important}
 .cta-locked:hover{background:rgba(168,86,54,.2)!important}
+
+/* Card image band */
+.card-img-band{height:160px;overflow:hidden;position:relative;background:#1a1412}
+.card-img-band img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.curso-card:hover .card-img-band img{transform:scale(1.06)}
+.card-img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(14,12,11,.85) 100%)}
+/* Card border per course */
+.curso-card:nth-child(1){border-color:rgba(168,86,54,.25)!important}
+.curso-card:nth-child(2){border-color:rgba(40,160,100,.2)!important}
+.curso-card:nth-child(3){border-color:rgba(80,120,220,.2)!important}
+
 </style>
 </head>
 <body>
@@ -103,7 +114,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--sand);mi
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:44px">
   <div class="mf-wordmark" style="margin-bottom:0"><div class="mf-dot"></div>Método Fermento</div>
   <div style="display:flex;align-items:center;gap:12px">
-    <span id="userName" style="font-size:12px;color:var(--muted-l)"></span>
+    <span id="userName" style="font-size:13px;color:rgba(255,255,255,.7);font-weight:500"></span>
     <button onclick="doLogout()" style="background:transparent;border:1px solid rgba(255,255,255,.1);border-radius:8px;color:var(--muted-l);font-family:DM Sans,sans-serif;font-size:12px;padding:6px 12px;cursor:pointer">Salir</button>
   </div>
 </div>
@@ -120,9 +131,9 @@ async function doLogout(){
     <div class="land-hero">
       <div>
         <div class="land-eyebrow"><div class="ey-dot"></div>Plataforma Educativa &middot; Buenos Aires</div>
-        <h1 class="land-title">Formacion<br>para negocios<br><em>gastronomicos rentables.</em></h1>
+        <h1 class="land-title">Formación<br>para negocios<br><em>gastronómicos rentables.</em></h1>
       </div>
-      <p class="land-sub">Tres cursos completos con material de lectura y evaluacion por modulo. Avanzas cuando aprobas.</p>
+      <p class="land-sub">Tres cursos completos con material de lectura y evaluación por módulo. Avanzás cuando aprobás.</p>
     </div>
   </div>
   <div class="divider"><div class="div-line"></div><div class="div-dot"></div><div class="div-dot"></div><div class="div-dot"></div><div class="div-line"></div></div>
@@ -171,32 +182,38 @@ var CURSOS_DEF = [
   {
     id: 'curso01', slug: '/curso01', stripe: 's0', cta: 'cta-solid',
     num: 'Curso 01', icon: '&#128226;',
-    title: 'Marketing Gastronomico y Redes',
-    meta: '12 clases &middot; 2 horas cada una',
-    desc: 'Posiciona tu negocio, construi una marca con identidad propia y capta clientes reales con estrategias que funcionan en el mercado argentino.',
-    tags: ['Branding','Carta efectiva','Social Media','Fidelizacion','Plan de marketing'],
-    pills: ['24 hs','14 modulos'], pillClass: 'pill',
-    precio: '$69.000'
+    title: 'Marketing Gastronómico y Redes',
+    meta: '14 módulos · 24 horas de contenido',
+    desc: 'Posicioná tu negocio, construí una marca con identidad propia y captá clientes reales con estrategias que funcionan en el mercado argentino.',
+    tags: ['Branding','Carta efectiva','Social Media','Fidelización','Plan de marketing'],
+    pills: ['24 hs','14 módulos'], pillClass: 'pill',
+    precio: '$69.000',
+    img: '/img/curso01.jpg',
+    borderColor: 'rgba(168,86,54,.4)'
   },
   {
     id: 'curso02', slug: '/curso02', stripe: 's1', cta: 'cta-ghost',
     num: 'Curso 02', icon: '&#128640;',
     title: 'Claves para Armar tu Emprendimiento',
-    meta: '8 clases &middot; 2 horas cada una',
-    desc: 'Todo lo que necesitas saber antes de abrir: local, equipamiento, proveedores, equipo y plan de negocio concreto.',
+    meta: '14 módulos · 16 horas de contenido',
+    desc: 'Todo lo que necesitás saber antes de abrir: local, equipamiento, proveedores, equipo y plan de negocio concreto.',
     tags: ['Plan de negocio','Proveedores','RRHH','Habilitaciones','Identidad'],
-    pills: ['16 hs','14 modulos'], pillClass: 'pill',
-    precio: '$49.000'
+    pills: ['16 hs','14 módulos'], pillClass: 'pill',
+    precio: '$49.000',
+    img: '/img/curso02.jpg',
+    borderColor: 'rgba(40,160,100,.35)'
   },
   {
     id: 'curso03', slug: '/curso03', stripe: 's2', cta: 'cta-navy',
     num: 'Curso 03', icon: '&#128202;',
-    title: 'Administracion de Negocios Gastronomico',
-    meta: '12 clases &middot; 2,5 horas cada una',
-    desc: 'Maneja los numeros con criterio: costos, food cost, auditoria interna, sistemas de gestion y rentabilidad por plato.',
-    tags: ['Food cost','Prime cost','Auditoria','Sistemas','Rentabilidad'],
-    pills: ['30 hs','12 modulos'], pillClass: 'pill pill-navy',
-    precio: '$79.000'
+    title: 'Administración de Negocios Gastronómico',
+    meta: '12 módulos · 30 horas de contenido',
+    desc: 'Manejá los números con criterio: costos, food cost, auditoría interna, sistemas de gestión y rentabilidad por plato.',
+    tags: ['Food cost','Prime cost','Auditoría','Sistemas','Rentabilidad'],
+    pills: ['30 hs','12 módulos'], pillClass: 'pill pill-navy',
+    precio: '$79.000',
+    img: '/img/curso03.jpg',
+    borderColor: 'rgba(80,120,220,.35)'
   }
 ];
 
