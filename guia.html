@@ -181,28 +181,46 @@
     }
 
     /* ── QUÉ INCLUYE ── */
-    .incluye { max-width: 1100px; margin: 0 auto; padding: 72px 28px; }
+    .incluye { max-width: 1100px; margin: 0 auto; padding: 80px 28px; }
     .incluye-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
     }
     .inc-card {
-      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
-      border-radius: 14px; padding: 28px 24px;
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px; padding: 32px 28px;
       transition: background .25s, border-color .25s, transform .25s;
       position: relative; overflow: hidden;
     }
-    .inc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--terra),transparent);opacity:0;transition:opacity .25s}
-    .inc-card:hover{background:rgba(168,86,54,.07);border-color:rgba(168,86,54,.25);transform:translateY(-3px)}
-    .inc-card:hover::before{opacity:1}
+    .inc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2.5px;transition:opacity .25s}
+    .inc-card:nth-child(1)::before{background:linear-gradient(90deg,var(--terra),rgba(168,86,54,.2))}
+    .inc-card:nth-child(2)::before{background:linear-gradient(90deg,#28a064,rgba(40,160,100,.2))}
+    .inc-card:nth-child(3)::before{background:linear-gradient(90deg,#5078dc,rgba(80,120,220,.2))}
+    .inc-card:nth-child(4)::before{background:linear-gradient(90deg,#8a50c8,rgba(138,80,200,.2))}
+    .inc-card:nth-child(5)::before{background:linear-gradient(90deg,var(--terra),rgba(168,86,54,.2))}
+    .inc-card:nth-child(1){border-top-color:rgba(168,86,54,.35)}
+    .inc-card:nth-child(2){border-top-color:rgba(40,160,100,.35)}
+    .inc-card:nth-child(3){border-top-color:rgba(80,120,220,.35)}
+    .inc-card:nth-child(4){border-top-color:rgba(138,80,200,.35)}
+    .inc-card:nth-child(5){border-top-color:rgba(168,86,54,.35)}
+    .inc-card:hover{background:rgba(255,255,255,.07);transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.3)}
     .inc-card-icon {
-      width: 48px; height: 48px; border-radius: 12px;
-      background: rgba(168,86,54,.18); border: 1px solid rgba(168,86,54,.25);
+      width: 56px; height: 56px; border-radius: 14px;
+      background: rgba(168,86,54,.15); border: 1px solid rgba(168,86,54,.2);
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; margin-bottom: 18px;
+      font-size: 1.8rem; margin-bottom: 20px;
+      transition: background .25s, transform .25s;
     }
+    .inc-card:hover .inc-card-icon{background:rgba(168,86,54,.25);transform:scale(1.08)}
+    .inc-card:nth-child(2) .inc-card-icon{background:rgba(40,160,100,.15);border-color:rgba(40,160,100,.2)}
+    .inc-card:nth-child(2):hover .inc-card-icon{background:rgba(40,160,100,.25)}
+    .inc-card:nth-child(3) .inc-card-icon{background:rgba(80,120,220,.15);border-color:rgba(80,120,220,.2)}
+    .inc-card:nth-child(3):hover .inc-card-icon{background:rgba(80,120,220,.25)}
+    .inc-card:nth-child(4) .inc-card-icon{background:rgba(138,80,200,.15);border-color:rgba(138,80,200,.2)}
+    .inc-card:nth-child(4):hover .inc-card-icon{background:rgba(138,80,200,.25)}
     .inc-card h3 {
-      font-family: var(--serif); font-size: 1.1rem; font-weight: 700;
-      color: #fff; margin-bottom: 8px; font-optical-sizing: auto;
+      font-family: var(--serif); font-size: 1.2rem; font-weight: 700;
+      color: #fff; margin-bottom: 10px; font-optical-sizing: auto;
+      letter-spacing: -.01em;
     }
     .inc-card p { font-size: .88rem; margin-bottom: 12px; color: rgba(255,255,255,.45); }
     .inc-card ul { list-style: none; }
