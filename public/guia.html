@@ -239,20 +239,44 @@
     .para-quien-inner { max-width: 1100px; margin: 0 auto; }
     .para-quien .section-h2 { color: #fff; }
     .negocios-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 16px;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
     }
+    @media(max-width:1100px){.negocios-grid{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:600px){.negocios-grid{grid-template-columns:repeat(2,1fr)}}
     .negocio-card {
-      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
-      border-radius: 10px; padding: 22px 18px;
-      transition: background .2s, border-color .2s;
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
+      border-radius: 14px; overflow: hidden;
+      transition: transform .25s, border-color .25s, box-shadow .25s;
+      display: flex; flex-direction: column;
     }
-    .negocio-card:hover { background: rgba(168,86,54,.1); border-color: rgba(168,86,54,.3); }
-    .negocio-icon { font-size: 1.8rem; display: block; margin-bottom: 10px; }
+    .negocio-card:hover { transform: translateY(-4px); border-color: rgba(168,86,54,.3); box-shadow: 0 12px 36px rgba(0,0,0,.3); }
+    .negocio-img {
+      width: 100%; aspect-ratio: 1/1; overflow: hidden;
+      background: rgba(168,86,54,.1); position: relative;
+    }
+    .negocio-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .5s ease;
+      display: block;
+    }
+    .negocio-card:hover .negocio-img img { transform: scale(1.07); }
+    .negocio-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, rgba(14,12,11,.8) 100%);
+    }
+    .negocio-img-placeholder {
+      width: 100%; height: 100%; display: flex; align-items: center;
+      justify-content: center; font-size: 2.2rem;
+    }
+    .negocio-body { padding: 14px 14px 18px; flex: 1; }
+    .negocio-icon { font-size: 1.6rem; display: block; margin-bottom: 8px; }
     .negocio-card h3 {
-      font-family: var(--serif); font-size: 1rem; font-weight: 700;
-      color: #fff; margin-bottom: 6px; font-optical-sizing: auto;
+      font-family: var(--serif); font-size: .95rem; font-weight: 700;
+      color: #fff; margin-bottom: 6px; font-optical-sizing: auto; line-height: 1.25;
     }
-    .negocio-card p { font-size: .82rem; color: rgba(255,255,255,.6); line-height: 1.55; }
+    .negocio-card p { font-size: .78rem; color: rgba(255,255,255,.5); line-height: 1.55; }
 
     /* ── LO QUE VAS A APRENDER ── */
     .aprende { max-width: 1100px; margin: 0 auto; padding: 72px 28px; position: relative; }
@@ -547,37 +571,67 @@
         <span class="section-eyebrow">Para quién es</span>
         <h2 class="section-h2">Para cualquier negocio que venda comida</h2>
         <div class="negocios-grid">
-          <div class="negocio-card">
-            <span class="negocio-icon">☕</span>
-            <h3>Café / Bar</h3>
-            <p>Optimizá el mix bebida/comida. El café subsidia la comida — pero hay que saberlo calcular.</p>
-          </div>
-          <div class="negocio-card">
-            <span class="negocio-icon">🍽️</span>
-            <h3>Restaurante</h3>
-            <p>Ficha técnica por plato, ingeniería de carta y punto de equilibrio real con tu estructura.</p>
-          </div>
-          <div class="negocio-card">
-            <span class="negocio-icon">🥡</span>
-            <h3>Viandas / Catering</h3>
-            <p>Incluí packaging, transporte y tiempo propio. El food cost "puro" siempre subestima el costo real.</p>
-          </div>
-          <div class="negocio-card">
-            <span class="negocio-icon">🛵</span>
-            <h3>Delivery / Dark Kitchen</h3>
-            <p>Calculá siempre sobre el precio neto después de la comisión de la plataforma (15–30%).</p>
-          </div>
-          <div class="negocio-card">
-            <span class="negocio-icon">🥩</span>
-            <h3>Rotisería / Despacho</h3>
-            <p>Identificá qué preparaciones están destruyendo el margen. Un promedio global puede ocultar un plato al 55%.</p>
-          </div>
-          <div class="negocio-card">
-            <span class="negocio-icon">🏠</span>
-            <h3>Emprendimiento hogareño</h3>
-            <p>Empezá con la estructura correcta antes de fijar precios que después no te cierran.</p>
-          </div>
-        </div>
+  <div class="negocio-card">
+    <div class="negocio-img">
+      <img src="/img/neg-cafe.jpg" alt="Café / Bar" loading="lazy"
+        onerror="this.parentElement.innerHTML='<div class=negocio-img-placeholder>☕</div>'">
+    </div>
+    <div class="negocio-body">
+      <h3>Café / Bar</h3>
+      <p>Optimizá el mix bebida/comida. El café subsidia la comida — pero hay que saberlo calcular.</p>
+    </div>
+  </div>
+  <div class="negocio-card">
+    <div class="negocio-img">
+      <img src="/img/neg-restaurante.jpg" alt="Restaurante" loading="lazy"
+        onerror="this.parentElement.innerHTML='<div class=negocio-img-placeholder>🍽️</div>'">
+    </div>
+    <div class="negocio-body">
+      <h3>Restaurante</h3>
+      <p>Ficha técnica por plato, ingeniería de carta y punto de equilibrio real con tu estructura.</p>
+    </div>
+  </div>
+  <div class="negocio-card">
+    <div class="negocio-img">
+      <img src="/img/neg-viandas.jpg" alt="Viandas / Catering" loading="lazy"
+        onerror="this.parentElement.innerHTML='<div class=negocio-img-placeholder>🥡</div>'">
+    </div>
+    <div class="negocio-body">
+      <h3>Viandas / Catering</h3>
+      <p>Incluí packaging, transporte y tiempo propio. El food cost "puro" siempre subestima el costo real.</p>
+    </div>
+  </div>
+  <div class="negocio-card">
+    <div class="negocio-img">
+      <img src="/img/neg-delivery.jpg" alt="Delivery / Dark Kitchen" loading="lazy"
+        onerror="this.parentElement.innerHTML='<div class=negocio-img-placeholder>🛵</div>'">
+    </div>
+    <div class="negocio-body">
+      <h3>Delivery / Dark Kitchen</h3>
+      <p>Calculá siempre sobre el precio neto después de la comisión de la plataforma (15–30%).</p>
+    </div>
+  </div>
+  <div class="negocio-card">
+    <div class="negocio-img">
+      <img src="/img/neg-rotiseria.jpg" alt="Rotisería / Despacho" loading="lazy"
+        onerror="this.parentElement.innerHTML='<div class=negocio-img-placeholder>🍗</div>'">
+    </div>
+    <div class="negocio-body">
+      <h3>Rotisería / Despacho</h3>
+      <p>Identificá qué preparaciones están destruyendo el margen. Un promedio global puede ocultar un plato al 55%.</p>
+    </div>
+  </div>
+  <div class="negocio-card">
+    <div class="negocio-img">
+      <img src="/img/neg-hogar.jpg" alt="Emprendimiento hogareño" loading="lazy"
+        onerror="this.parentElement.innerHTML='<div class=negocio-img-placeholder>🏠</div>'">
+    </div>
+    <div class="negocio-body">
+      <h3>Emprendimiento hogareño</h3>
+      <p>Empezá con la estructura correcta antes de fijar precios que después no te cierran.</p>
+    </div>
+  </div>
+</div>
       </div>
     </section>
 
