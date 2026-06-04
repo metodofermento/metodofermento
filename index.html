@@ -711,6 +711,16 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
   object-fit:cover;max-height:420px;
 }
 
+
+/* Video hero mobile */
+@media(max-width:899px){
+  #hero > div[style*="max-width:1200px"]{padding:100px 24px 100px !important}
+  #hero > div[style*="max-width:1200px"] > div[style*="position:absolute;bottom"]{
+    position:relative !important;bottom:auto !important;left:auto !important;right:auto !important;
+    margin-top:32px;max-width:100% !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -756,10 +766,27 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
 </div>
 
 
-<!-- ═══ HERO 2026 ═══ -->
-<section id="hero" style="padding:0;overflow:hidden">
-  <div class="hero-2026">
-    <div class="hero-text-col">
+<!-- ═══ HERO 2026 VIDEO ═══ -->
+<section id="hero" style="padding:0;overflow:hidden;position:relative;min-height:100vh;display:flex;align-items:center">
+
+  <!-- VIDEO FONDO -->
+  <video
+    id="heroBg"
+    autoplay muted loop playsinline
+    poster="/video/hero-poster.jpg"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0">
+    <source src="/video/hero.mp4" type="video/mp4">
+  </video>
+
+  <!-- OVERLAY: oscuro + gradiente terra -->
+  <div style="position:absolute;inset:0;z-index:1;
+    background:linear-gradient(135deg,rgba(14,12,11,.82) 0%,rgba(14,12,11,.65) 50%,rgba(168,86,54,.15) 100%),
+               linear-gradient(to top,rgba(14,12,11,.7) 0%,transparent 60%)">
+  </div>
+
+  <!-- CONTENIDO FLOTANTE -->
+  <div style="position:relative;z-index:2;width:100%;max-width:1200px;margin:0 auto;padding:120px 60px 80px">
+    <div style="max-width:640px">
       <div class="hero-2026-eyebrow"><span></span>Método Fermento · Buenos Aires</div>
       <h1 class="hero-2026-h1">Formación y consultoría<em>para negocios<br>gastronómicos rentables.</em></h1>
       <p class="hero-2026-sub">Primeros pasos con criterio profesional. Sin instituto, sin cuotas, sin intermediarios.</p>
@@ -767,23 +794,32 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
         <a href="#cursos" class="btn btn-p">Capacitación →</a>
         <a href="#sistema" class="btn btn-g">Consultoría</a>
       </div>
-      <p class="hero-note">Cursos desde $49.000 · Primera consulta sin cargo</p>
-      <div class="hero-2026-stats" style="margin-top:32px">
-        <div class="hstat26"><div class="hstat26-n">9 sem</div><div class="hstat26-l">promedio a punto de equilibrio</div></div>
-        <div class="hstat26"><div class="hstat26-n">-40%</div><div class="hstat26-l">rotación de personal</div></div>
-        <div class="hstat26"><div class="hstat26-n">+28%</div><div class="hstat26-l">margen bruto promedio</div></div>
-      </div>
+      <p class="hero-note" style="margin-top:16px">Cursos desde $49.000 · Primera consulta sin cargo</p>
     </div>
-    <div class="hero-mosaic-col">
-      <div class="hero-mosaic">
-        <div class="mosaic-cell"><img src="/img/hero-01.jpg" alt="Cocina profesional" loading="eager"></div>
-        <div class="mosaic-cell"><img src="/img/hero-02.jpg" alt="Restaurante" loading="eager"></div>
-        <div class="mosaic-cell"><img src="/img/hero-03.jpg" alt="Emprendimiento" loading="eager"></div>
-        <div class="mosaic-cell"><img src="/img/hero-04.jpg" alt="Planificacion" loading="eager"></div>
+
+    <!-- STATS FLOTANTES ABAJO -->
+    <div style="position:absolute;bottom:48px;left:60px;right:60px;display:flex;gap:1px;max-width:500px">
+      <div class="hstat26" style="background:rgba(14,12,11,.7);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1)">
+        <div class="hstat26-n">9 sem</div>
+        <div class="hstat26-l">promedio a punto de equilibrio</div>
       </div>
-      <div class="hero-mosaic-overlay"></div>
+      <div class="hstat26" style="background:rgba(14,12,11,.7);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1)">
+        <div class="hstat26-n">-40%</div>
+        <div class="hstat26-l">rotación de personal</div>
+      </div>
+      <div class="hstat26" style="background:rgba(14,12,11,.7);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1)">
+        <div class="hstat26-n">+28%</div>
+        <div class="hstat26-l">margen bruto promedio</div>
+      </div>
     </div>
   </div>
+
+  <!-- SCROLL INDICATOR -->
+  <div style="position:absolute;bottom:24px;right:60px;z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:.4">
+    <div style="font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#fff">Scroll</div>
+    <div style="width:1px;height:32px;background:linear-gradient(to bottom,#fff,transparent)"></div>
+  </div>
+
 </section>
 
 <!-- ═══ MID: FORMACION ═══ -->
