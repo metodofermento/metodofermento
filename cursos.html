@@ -174,6 +174,16 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--sand);mi
 .curso-card-2026:nth-child(2):hover{background:rgba(40,160,100,.04)}
 .curso-card-2026:nth-child(3):hover{background:rgba(80,120,220,.04)}
 
+
+.btn-ingresar{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:14px;border-radius:10px;
+  background:var(--terra);color:#fff;text-decoration:none;
+  font-family:'Playfair Display',serif;font-size:14px;font-weight:700;
+  transition:background .2s;text-align:center;
+}
+.btn-ingresar:hover{background:#7F3A22}
+
 </style>
 </head>
 <body>
@@ -336,7 +346,7 @@ function renderCards() {
     }).join('');
 
     var ctaHtml = acceso
-      ? '<a href="' + curso.slug + '" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;border-radius:10px;background:var(--terra);color:#fff;text-decoration:none;font-family:Playfair Display,serif;font-size:14px;font-weight:700;transition:background .2s" onmouseover="this.style.background='#7F3A22'" onmouseout="this.style.background='#A85636'">Ingresar al curso &#8594;</a>'
+      ? '<a href="' + curso.slug + '" class="btn-ingresar">Ingresar al curso &#8594;</a>'
       : '<div class="locked-badge" style="margin-bottom:10px">&#128274; No disponible</div>'
         + '<button class="btn-mp" data-id="' + curso.id + '" data-title="' + curso.title + '" data-precio="' + curso.precio + '" onclick="handleComprar(this)">Pagar con MercadoPago</button>';
 
