@@ -27,7 +27,7 @@
     }
 
     html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-    body { font-family: var(--sans); color: var(--ink); background: var(--navy); overflow-x: hidden; line-height: 1.6; }
+    body { font-family: var(--sans); color: var(--ink); background: #0e0c0b; overflow-x: hidden; line-height: 1.6; }
     a { color: inherit; text-decoration: none; }
     p { color: var(--muted); line-height: 1.75; font-weight: 300; }
 
@@ -35,7 +35,7 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       padding: 0 28px;
-      background: rgba(26,26,46,.9);
+      background: rgba(14,12,11,.92);
       backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(255,255,255,.07);
     }
@@ -78,7 +78,7 @@
     /* ── HERO ── */
     .hero {
       padding: 110px 28px 0;
-      background: var(--navy); position: relative; overflow: hidden;
+      background: #0e0c0b; position: relative; overflow: hidden;
     }
     .hero::before {
       content: ''; position: absolute; inset: 0; pointer-events: none;
@@ -130,7 +130,7 @@
 
     /* ── STICKY BAND ── */
     .compra-band {
-      background: #fff; border-bottom: 1px solid var(--line);
+      background: #fff; border-bottom: 1px solid rgba(255,255,255,.06);
       padding: 0 28px; position: sticky; top: 62px; z-index: 100;
       box-shadow: 0 4px 24px rgba(0,0,0,.07);
     }
@@ -188,34 +188,38 @@
       display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
     }
     .inc-card {
-      background: #fff; border: 1px solid var(--line);
-      border-radius: 12px; padding: 28px 24px;
-      transition: box-shadow .2s, transform .2s;
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
+      border-radius: 14px; padding: 28px 24px;
+      transition: background .25s, border-color .25s, transform .25s;
+      position: relative; overflow: hidden;
     }
-    .inc-card:hover { box-shadow: 0 12px 40px rgba(26,18,8,.08); transform: translateY(-2px); }
+    .inc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--terra),transparent);opacity:0;transition:opacity .25s}
+    .inc-card:hover{background:rgba(168,86,54,.07);border-color:rgba(168,86,54,.25);transform:translateY(-3px)}
+    .inc-card:hover::before{opacity:1}
     .inc-card-icon {
-      width: 44px; height: 44px; border-radius: 10px;
-      background: var(--terra-l); display: flex;
-      align-items: center; justify-content: center;
-      font-size: 1.4rem; margin-bottom: 16px;
+      width: 48px; height: 48px; border-radius: 12px;
+      background: rgba(168,86,54,.18); border: 1px solid rgba(168,86,54,.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 18px;
     }
     .inc-card h3 {
-      font-family: var(--serif); font-size: 1.05rem; font-weight: 700;
-      color: var(--ink); margin-bottom: 8px; font-optical-sizing: auto;
+      font-family: var(--serif); font-size: 1.1rem; font-weight: 700;
+      color: #fff; margin-bottom: 8px; font-optical-sizing: auto;
     }
-    .inc-card p { font-size: .88rem; margin-bottom: 12px; }
+    .inc-card p { font-size: .88rem; margin-bottom: 12px; color: rgba(255,255,255,.45); }
     .inc-card ul { list-style: none; }
     .inc-card ul li {
       font-size: .83rem; color: var(--muted);
       padding: 5px 0; display: flex; align-items: flex-start; gap: 8px;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid rgba(255,255,255,.06);
     }
     .inc-card ul li:last-child { border-bottom: none; }
+    .inc-card ul li { color: rgba(255,255,255,.55); }
     .inc-card ul li::before { content: '→'; color: var(--terra); font-size: .78rem; flex-shrink: 0; margin-top: 2px; }
     .full-width { grid-column: 1 / -1; }
 
     /* ── PARA QUIÉN ── */
-    .para-quien { background: var(--navy); padding: 72px 28px; }
+    .para-quien { background: #0e0c0b; padding: 72px 28px; }
     .para-quien-inner { max-width: 1100px; margin: 0 auto; }
     .para-quien .section-h2 { color: #fff; }
     .negocios-grid {
@@ -235,28 +239,30 @@
     .negocio-card p { font-size: .82rem; color: rgba(255,255,255,.45); line-height: 1.55; }
 
     /* ── LO QUE VAS A APRENDER ── */
-    .aprende { max-width: 1100px; margin: 0 auto; padding: 72px 28px; }
+    .aprende { max-width: 1100px; margin: 0 auto; padding: 72px 28px; position: relative; }
     .aprende-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .aprende-item {
       display: flex; align-items: flex-start; gap: 14px;
-      background: #fff; border: 1px solid var(--line);
-      border-radius: 10px; padding: 20px;
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
+      border-radius: 12px; padding: 22px;
+      transition: background .2s, border-color .2s;
     }
+    .aprende-item:hover{background:rgba(168,86,54,.07);border-color:rgba(168,86,54,.2)}
     .aprende-num {
       font-family: var(--serif); font-size: 1.5rem; font-weight: 900;
       color: var(--terra); line-height: 1; flex-shrink: 0; width: 36px;
       font-optical-sizing: auto;
     }
-    .aprende-item h4 { font-size: .95rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
-    .aprende-item p { font-size: .84rem; line-height: 1.6; }
+    .aprende-item h4 { font-size: .95rem; font-weight: 600; color: #fff; margin-bottom: 4px; }
+    .aprende-item p { font-size: .84rem; line-height: 1.6; color: rgba(255,255,255,.45); }
 
     /* ── COMPRA PRINCIPAL ── */
-    .compra-main { background: var(--navy); padding: 80px 28px; }
+    .compra-main { background: #0e0c0b; padding: 80px 28px; }
     .compra-main-inner { max-width: 540px; margin: 0 auto; text-align: center; }
     .compra-main h2 {
-      font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.5rem);
-      font-weight: 700; color: #fff; line-height: 1.2;
-      letter-spacing: -.02em; margin-bottom: 12px; font-optical-sizing: auto;
+      font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900; color: #fff; line-height: 1.1;
+      letter-spacing: -.03em; margin-bottom: 12px; font-optical-sizing: auto;
     }
     .compra-main-sub { font-size: .94rem; color: rgba(255,255,255,.5); margin-bottom: 36px; line-height: 1.7; }
     .precio-bloque { display: flex; align-items: baseline; justify-content: center; gap: 10px; margin-bottom: 6px; }
@@ -308,10 +314,10 @@
     .pago-error-msg.visible { display: block; }
 
     /* ── FAQ ── */
-    .faq { max-width: 720px; margin: 0 auto; padding: 72px 28px; }
+    .faq { max-width: 720px; margin: 0 auto; padding: 72px 28px; background: transparent; }
     .faq .section-h2 { text-align: center; }
-    .faq-item { border-bottom: 1px solid var(--line); }
-    .faq-item summary {
+    .faq-item { border-bottom: 1px solid rgba(255,255,255,.06); }
+    .faq-item summary { color: rgba(255,255,255,.8); font-weight: 500;
       font-size: .97rem; font-weight: 500; color: var(--ink);
       padding: 1.1rem 0; cursor: pointer; list-style: none;
       display: flex; justify-content: space-between; align-items: center; gap: 1rem;
@@ -319,7 +325,7 @@
     .faq-item summary::-webkit-details-marker { display: none; }
     .faq-item summary::after { content: '+'; font-size: 1.3rem; color: var(--terra); transition: transform .2s; flex-shrink: 0; }
     .faq-item[open] summary::after { transform: rotate(45deg); }
-    .faq-item p { font-size: .9rem; line-height: 1.72; margin: 0 0 1.2rem; }
+    .faq-item p { font-size: .9rem; line-height: 1.72; margin: 0 0 1.2rem; color: rgba(255,255,255,.45); }
 
     /* ── FOOTER ── */
     footer { background: #0F0F1C; padding: 36px 28px; }
