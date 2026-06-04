@@ -1446,7 +1446,8 @@ function setPerfil(i){
   var p=PDATA[i];
   var total=p.mods.reduce(function(s,m){return s+m.price;},0);
   var pct=total/PMAX;
-  document.getElementById('pgauge').setAttribute('stroke-dasharray',(pct*PCIRC).toFixed(1)+' '+((1-pct)*PCIRC).toFixed(1));
+  var pg=document.getElementById('pgauge');if(!pg)return;
+  pg.setAttribute('stroke-dasharray',(pct*PCIRC).toFixed(1)+' '+((1-pct)*PCIRC).toFixed(1));
   pAnimCounter(total,function(v){
     document.getElementById('pgnum').textContent=pfmtK(v);
     document.getElementById('pgusd').textContent='≈ USD '+Math.round(v/PTC).toLocaleString('es-AR');
@@ -1466,7 +1467,7 @@ function setPerfil(i){
   });
 }
 
-setPerfil(0);
+if(document.getElementById('pgauge')) setPerfil(0);
 </script>
 
 <script>
