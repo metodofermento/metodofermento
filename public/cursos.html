@@ -342,7 +342,13 @@ var _modalProducto = '';
 
 function tieneAcceso(user, cursoId) {
   if (!user || !user.cursos) return false;
-  return user.cursos.includes('todos') || user.cursos.includes(cursoId);
+  var cursos = user.cursos;
+  // Acepta: 'todos', 'curso01', 'curso02', 'curso03'
+  // También acepta sin prefijo: '01', '02', '03' por si acaso
+  return cursos.includes('todos') 
+    || cursos.includes(cursoId)
+    || cursos.includes(cursoId.replace('curso',''))
+    || cursos.some(function(c){ return c.indexOf(cursoId) >= 0 || cursoId.indexOf(c) >= 0; });
 }
 
 function renderCards() {
