@@ -490,6 +490,227 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
 .modal-error.show{display:block}
 .modal-note{font-size:11px;color:rgba(255,255,255,.3);text-align:center;margin-top:12px;line-height:1.6}
 @keyframes mspin{to{transform:rotate(360deg)}}
+
+/* ═══ 2026 REDESIGN ═══ */
+
+/* Hero 2026 */
+#hero{padding:0;min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.hero-2026{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;max-width:none}
+@media(max-width:899px){.hero-2026{grid-template-columns:1fr;min-height:auto}}
+
+.hero-text-col{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:120px 60px 80px;
+  position:relative;z-index:2;
+}
+@media(max-width:899px){.hero-text-col{padding:100px 24px 40px}}
+
+.hero-2026-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(255,255,255,.35);margin-bottom:28px;
+}
+.hero-2026-eyebrow span{width:24px;height:1px;background:var(--terra);display:inline-block}
+
+.hero-2026-h1{
+  font-family:var(--serif);font-size:clamp(2.6rem,4.5vw,4rem);
+  font-weight:900;line-height:1.04;letter-spacing:-.04em;
+  color:#fff;margin-bottom:20px;font-optical-sizing:auto;
+}
+.hero-2026-h1 em{font-style:italic;color:var(--terra);display:block}
+
+.hero-2026-sub{
+  font-size:14px;color:rgba(255,255,255,.45);line-height:1.8;
+  max-width:38ch;margin-bottom:36px;
+}
+
+.hero-2026-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px}
+
+.hero-2026-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  border:1px solid rgba(255,255,255,.07);border-radius:12px;overflow:hidden;
+  max-width:440px;
+}
+.hstat26{
+  background:rgba(255,255,255,.03);padding:14px 16px;
+  text-align:center;
+}
+.hstat26-n{
+  font-family:var(--serif);font-size:1.5rem;font-weight:900;
+  color:var(--terra);line-height:1;margin-bottom:4px;font-optical-sizing:auto;
+}
+.hstat26-l{font-size:9.5px;color:rgba(255,255,255,.35);line-height:1.4;letter-spacing:.02em}
+
+/* Hero mosaic */
+.hero-mosaic-col{position:relative;overflow:hidden}
+@media(max-width:899px){.hero-mosaic-col{height:55vw;min-height:280px}}
+.hero-mosaic{
+  display:grid;grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;
+  height:100%;gap:3px;
+}
+.mosaic-cell{overflow:hidden;position:relative}
+.mosaic-cell img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .6s var(--ease-out);
+  display:block;
+}
+.mosaic-cell:hover img{transform:scale(1.06)}
+.mosaic-cell::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(168,86,54,.15),transparent 60%);
+  pointer-events:none;
+}
+.hero-mosaic-overlay{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(to right,rgba(14,12,11,.7) 0%,transparent 30%),
+             linear-gradient(to top,rgba(14,12,11,.4) 0%,transparent 40%);
+}
+
+/* Mid section — chef instructor */
+.mid-section{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:0;max-width:none;overflow:hidden;
+  background:var(--ink);
+}
+@media(max-width:899px){.mid-section{grid-template-columns:1fr}}
+.mid-img-col{position:relative;overflow:hidden;min-height:520px}
+@media(max-width:899px){.mid-img-col{min-height:320px}}
+.mid-img-col img{width:100%;height:100%;object-fit:cover;display:block;object-position:center top}
+.mid-img-col::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to right,transparent 50%,rgba(14,12,11,1) 100%),
+             linear-gradient(135deg,rgba(168,86,54,.1),transparent);
+}
+@media(max-width:899px){.mid-img-col::after{background:linear-gradient(to bottom,transparent 60%,rgba(14,12,11,1) 100%)}}
+.mid-text-col{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 60px;
+}
+@media(max-width:899px){.mid-text-col{padding:40px 24px 60px}}
+.mid-eyebrow{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--terra);margin-bottom:16px}
+.mid-h2{
+  font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);
+  font-weight:900;color:#fff;line-height:1.06;
+  letter-spacing:-.03em;margin-bottom:16px;font-optical-sizing:auto;
+}
+.mid-h2 em{font-style:italic;color:var(--terra)}
+.mid-p{font-size:14px;color:rgba(255,255,255,.45);line-height:1.8;max-width:40ch;margin-bottom:32px}
+.mid-features{display:flex;flex-direction:column;gap:10px}
+.mid-feat{
+  display:flex;align-items:center;gap:12px;
+  font-size:13px;color:rgba(255,255,255,.55);
+}
+.mid-feat-dot{width:6px;height:6px;border-radius:50%;background:var(--terra);flex-shrink:0}
+
+/* Stats strip */
+.stats-strip{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid rgba(255,255,255,.05);
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+@media(max-width:600px){.stats-strip{grid-template-columns:1fr}}
+.stat-strip-item{
+  padding:48px 40px;text-align:center;
+  border-right:1px solid rgba(255,255,255,.05);
+  position:relative;overflow:hidden;
+}
+.stat-strip-item:last-child{border-right:none}
+.stat-strip-item::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--terra),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.stat-strip-item:hover::before{opacity:1}
+.stat-n{
+  font-family:var(--serif);font-size:clamp(2.5rem,4vw,3.5rem);
+  font-weight:900;color:#fff;line-height:1;margin-bottom:8px;
+  font-optical-sizing:auto;
+}
+.stat-n span{color:var(--terra)}
+.stat-l{font-size:12px;color:rgba(255,255,255,.35);letter-spacing:.06em;text-transform:uppercase}
+
+/* Cursos 2026 */
+#cursos{padding:100px 0;background:transparent}
+.cursos-header{text-align:center;margin-bottom:64px;padding:0 24px}
+.cursos-header h2{
+  font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.2rem);
+  font-weight:900;color:#fff;letter-spacing:-.03em;
+  line-height:1.06;margin-top:10px;font-optical-sizing:auto;
+}
+.cursos-header h2 em{font-style:italic;color:var(--terra)}
+.cursos-header p{font-size:14px;color:rgba(255,255,255,.4);max-width:50ch;margin:12px auto 0;line-height:1.8}
+
+.cursos-grid-2026{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:rgba(255,255,255,.05);
+  max-width:1200px;margin:0 auto;
+  border:1px solid rgba(255,255,255,.05);
+  border-radius:20px;overflow:hidden;
+}
+@media(max-width:899px){.cursos-grid-2026{grid-template-columns:1fr;max-width:480px}}
+
+.curso-card-26{
+  background:rgba(12,10,9,.95);
+  display:flex;flex-direction:column;
+  transition:background .25s;
+}
+.curso-card-26:hover{background:rgba(20,16,14,.98)}
+
+.curso-img-26{
+  height:180px;overflow:hidden;position:relative;
+}
+.curso-img-26 img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .5s var(--ease-out);
+  display:block;
+}
+.curso-card-26:hover .curso-img-26 img{transform:scale(1.05)}
+.curso-img-26::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 40%,rgba(12,10,9,.95) 100%);
+}
+.curso-num-badge{
+  position:absolute;top:14px;left:14px;z-index:2;
+  font-size:9px;letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(255,255,255,.5);background:rgba(0,0,0,.5);
+  border:1px solid rgba(255,255,255,.1);border-radius:4px;
+  padding:3px 8px;backdrop-filter:blur(4px);
+}
+.curso-body-26{padding:24px;flex:1;display:flex;flex-direction:column}
+.curso-title-26{
+  font-family:var(--serif);font-size:1.15rem;font-weight:700;
+  color:#fff;line-height:1.2;margin-bottom:6px;font-optical-sizing:auto;
+}
+.curso-meta-26{font-size:11px;color:rgba(255,255,255,.3);margin-bottom:12px}
+.curso-desc-26{font-size:12.5px;color:rgba(255,255,255,.4);line-height:1.75;margin-bottom:16px;flex:1}
+.curso-tags-26{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:20px}
+.curso-tag-26{
+  font-size:10px;padding:3px 9px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:20px;color:rgba(255,255,255,.35);
+}
+.curso-price-26{
+  display:flex;align-items:baseline;gap:8px;margin-bottom:6px;
+}
+.curso-price-num{
+  font-family:var(--serif);font-size:1.9rem;font-weight:900;
+  color:var(--terra);font-optical-sizing:auto;
+}
+.curso-price-lbl{font-size:10.5px;color:rgba(255,255,255,.25);line-height:1.4}
+.curso-tagline{font-size:10px;color:rgba(255,255,255,.2);margin-bottom:16px;letter-spacing:.03em}
+
+/* Guia section update */
+#guia-costeo .guia-img-wrap{
+  border-radius:16px;overflow:hidden;
+  box-shadow:0 24px 60px rgba(0,0,0,.4);
+}
+#guia-costeo .guia-img-wrap img{
+  width:100%;display:block;
+  object-fit:cover;max-height:420px;
+}
+
 </style>
 </head>
 <body>
@@ -534,320 +755,129 @@ body:has(a:hover,button:hover,.mod:hover) #cursor-ring{width:52px;height:52px;bo
   </div>
 </div>
 
-<!-- ═══ HERO ═══ -->
-<section id="hero">
-  <div class="hero-bg">
-    <div class="hero-orb hero-orb-1"></div>
-    <div class="hero-orb hero-orb-2"></div>
-    <div class="hero-orb hero-orb-3"></div>
-  </div>
 
-  <div class="hero-content">
-    <div class="hero-top">
-      <div class="hero-left">
-        <div class="hero-badge"><span class="hero-badge-dot"></span>Buenos Aires · Argentina</div>
-        <h1 class="hero-h1">Formación y consultoría<br><em>para negocios gastronómicos</em> rentables.</h1>
-        <p class="hero-sub">Formación online para emprendedores gastronómicos. Consultoría estratégica para proyectos que necesitan más.</p>
-        <div class="hero-actions">
-          <a href="#cursos" class="btn btn-p">Ver cursos →</a>
-          <a href="#contacto" class="btn btn-g">Consultoría</a>
-        </div>
-        <p class="hero-note">Primeros pasos con criterio profesional · desde $49.000</p>
+<!-- ═══ HERO 2026 ═══ -->
+<section id="hero" style="padding:0;overflow:hidden">
+  <div class="hero-2026">
+    <div class="hero-text-col">
+      <div class="hero-2026-eyebrow"><span></span>Método Fermento · Buenos Aires</div>
+      <h1 class="hero-2026-h1">Formación y consultoría<em>para negocios<br>gastronómicos rentables.</em></h1>
+      <p class="hero-2026-sub">Primeros pasos con criterio profesional. Sin instituto, sin cuotas, sin intermediarios.</p>
+      <div class="hero-2026-actions">
+        <a href="#cursos" class="btn btn-p">Capacitación →</a>
+        <a href="#sistema" class="btn btn-g">Consultoría</a>
       </div>
-
-      <!-- STATS POWER -->
-      <div class="hero-right">
-        <div class="hero-stats">
-          <div class="hstat hstat-featured">
-            <div class="hstat-icon">⏱</div>
-            <div class="hstat-n">9 sem</div>
-            <div class="hstat-l">promedio a punto de equilibrio</div>
-          </div>
-          <div class="hstat hstat-featured">
-            <div class="hstat-icon">📉</div>
-            <div class="hstat-n">−40%</div>
-            <div class="hstat-l">rotación de personal</div>
-          </div>
-          <div class="hstat hstat-featured">
-            <div class="hstat-icon">📈</div>
-            <div class="hstat-n">+28%</div>
-            <div class="hstat-l">margen bruto promedio</div>
-          </div>
-        </div>
-        <div class="hero-quote">
-          <blockquote>Con <strong>Método Fermento</strong> no aprendés teoría: aprendés a tomar decisiones que se ven en los números de tu negocio.</blockquote>
-        </div>
+      <p class="hero-note">Cursos desde $49.000 · Primera consulta sin cargo</p>
+      <div class="hero-2026-stats" style="margin-top:32px">
+        <div class="hstat26"><div class="hstat26-n">9 sem</div><div class="hstat26-l">promedio a punto de equilibrio</div></div>
+        <div class="hstat26"><div class="hstat26-n">-40%</div><div class="hstat26-l">rotación de personal</div></div>
+        <div class="hstat26"><div class="hstat26-n">+28%</div><div class="hstat26-l">margen bruto promedio</div></div>
       </div>
     </div>
-  </div>
-
-  </div>
-
-  <!-- Ticker -->
-  <div class="ticker-wrap" aria-hidden="true">
-    <div class="ticker-track">
-      <span class="ticker-item">Apertura de restaurantes<span class="ticker-dot">·</span></span>
-      <span class="ticker-item">Estudio de factibilidad<span class="ticker-dot">·</span></span>
-      <span class="ticker-item">Ingeniería de menú<span class="ticker-dot">·</span></span>
-      <span class="ticker-item">Diseño operativo<span class="ticker-dot">·</span></span>
-      <span class="ticker-item">Arquitectura gastronómica<span class="ticker-dot">·</span></span>
-      <span class="ticker-item">Marketing gastronómico<span class="ticker-dot">·</span></span>
-      <span class="ticker-item">Legal & Finanzas<span class="ticker-dot">·</span></span>
-      <span class="ticker-item">Tecnología & Datos<span class="ticker-dot">·</span></span>
-      <span class="ticker-item">Apertura de restaurantes<span class="ticker-dot">·</span></span>
-      <span class="ticker-item">Estudio de factibilidad<span class="ticker-dot">·</span></span>
-      <span class="ticker-item">Ingeniería de menú<span class="ticker-dot">·</span></span>
-      <span class="ticker-item">Diseño operativo<span class="ticker-dot">·</span></span>
-      <span class="ticker-item">Arquitectura gastronómica<span class="ticker-dot">·</span></span>
-      <span class="ticker-item">Marketing gastronómico<span class="ticker-dot">·</span></span>
-      <span class="ticker-item">Legal & Finanzas<span class="ticker-dot">·</span></span>
-      <span class="ticker-item">Tecnología & Datos<span class="ticker-dot">·</span></span>
+    <div class="hero-mosaic-col">
+      <div class="hero-mosaic">
+        <div class="mosaic-cell"><img src="/img/hero-01.jpg" alt="Cocina profesional" loading="eager"></div>
+        <div class="mosaic-cell"><img src="/img/hero-02.jpg" alt="Restaurante" loading="eager"></div>
+        <div class="mosaic-cell"><img src="/img/hero-03.jpg" alt="Emprendimiento" loading="eager"></div>
+        <div class="mosaic-cell"><img src="/img/hero-04.jpg" alt="Planificacion" loading="eager"></div>
+      </div>
+      <div class="hero-mosaic-overlay"></div>
     </div>
   </div>
 </section>
 
-<!-- ═══ PERFILES ═══ -->
-<section id="perfiles" style="background:transparent;padding:80px 0 0">
-  <div class="wrap">
-    <div class="scale-in" style="background:rgba(18,18,31,.75);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.06);border-radius:24px;overflow:hidden;padding:40px 32px">
-
-      <!-- Header -->
-      <div style="text-align:center;margin-bottom:32px">
-        <span class="eyebrow">¿Para quién es?</span>
-        <h2 style="font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:900;color:#fff;margin-top:10px;letter-spacing:-.03em;font-optical-sizing:auto;line-height:1.08">Desde la primera idea<br>hasta <em style="color:var(--terra);font-weight:700">la rentabilidad<br>que buscás.</em></h2>
-        <p style="font-size:14px;color:rgba(255,255,255,.35);margin-top:14px;max-width:40ch;margin-left:auto;margin-right:auto;line-height:1.6">Trabajamos con vos en cualquier etapa. Seleccioná tu momento y mirá qué módulos tienen sentido.</p>
-      </div>
-
-      <!-- Tabs -->
-      <div id="ptabs" style="display:flex;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:999px;padding:4px;gap:4px;margin-bottom:28px">
-        <button class="ptab active" onclick="setPerfil(0)">Tengo una idea</button>
-        <button class="ptab" onclick="setPerfil(1)">Estoy abriendo</button>
-        <button class="ptab" onclick="setPerfil(2)">Existe pero no rinde</button>
-      </div>
-
-      <!-- Content grid -->
-      <div style="display:grid;grid-template-columns:1fr 180px;gap:20px;align-items:start" class="pcontenido">
-
-        <!-- Module cards -->
-        <div id="pmods" style="display:flex;flex-direction:column;gap:8px"></div>
-
-        <!-- Gauge -->
-        <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
-          <span style="font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3)">Inversión estimada</span>
-          <svg viewBox="0 0 160 160" style="width:160px;height:160px">
-            <circle cx="80" cy="80" r="64" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="12"/>
-            <circle cx="80" cy="80" r="64" fill="none" stroke="rgba(168,86,54,.12)" stroke-width="12"/>
-            <circle id="pgauge" cx="80" cy="80" r="64" fill="none" stroke="#A85636" stroke-width="12"
-              stroke-linecap="round" stroke-dasharray="0 402.1"
-              transform="rotate(-90 80 80)" style="transition:stroke-dasharray .9s cubic-bezier(.16,1,.3,1)"/>
-            <text x="80" y="68" font-family="Georgia,serif" font-size="10" fill="rgba(255,255,255,.28)" text-anchor="middle" font-style="italic">desde</text>
-            <text id="pgnum" x="80" y="92" font-family="Georgia,serif" font-size="20" font-weight="700" fill="#A85636" text-anchor="middle">$0</text>
-            <text id="pgusd" x="80" y="109" font-family="system-ui,sans-serif" font-size="10" fill="rgba(255,255,255,.25)" text-anchor="middle">≈ USD 0</text>
-          </svg>
-          <p style="font-size:10px;color:rgba(255,255,255,.2);text-align:center;line-height:1.5;max-width:130px">Estimado orientativo. Varía según alcance.</p>
-        </div>
-      </div>
-
-      <!-- CTA -->
-      <div style="display:flex;gap:10px;justify-content:center;margin-top:28px;flex-wrap:wrap">
-        <a href="#sistema" class="btn btn-p" style="font-size:12px">Ver los 8 módulos →</a>
-        <a href="#contacto" class="btn btn-g" style="font-size:12px">Consulta gratis</a>
-      </div>
-
+<!-- ═══ MID: FORMACION ═══ -->
+<section style="padding:0;overflow:hidden;background:var(--ink)">
+  <div class="mid-section">
+    <div class="mid-img-col">
+      <img src="/img/mid-01.jpg" alt="Formacion gastronomica profesional" loading="lazy">
     </div>
-  </div>
-</section>
-
-<!-- ═══ ALCANCE ═══ -->
-<section id="alcance" style="background:transparent;padding:40px 0">
-  <div class="wrap">
-    <div class="scale-in" style="background:rgba(18,18,31,.75);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.06);border-radius:24px;overflow:hidden;padding:32px 28px;position:relative">
-      <div style="position:absolute;top:-40%;right:-10%;width:55vw;height:55vw;border-radius:50%;background:radial-gradient(circle,rgba(168,86,54,.1),transparent 65%);filter:blur(70px);pointer-events:none"></div>
-      <div style="position:relative;z-index:1">
-
-        <!-- Top -->
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px;flex-wrap:wrap">
-          <div style="display:inline-flex;align-items:center;gap:7px;padding:5px 13px;background:rgba(168,86,54,.12);border:1px solid rgba(168,86,54,.25);border-radius:999px;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#c4683e">
-            <div style="width:5px;height:5px;border-radius:50%;background:#A85636;animation:pulse 2.5s ease-in-out infinite"></div>
-            Alcance del servicio
-          </div>
-          <span style="font-family:var(--serif);font-size:.95rem;color:rgba(255,255,255,.45);font-style:italic;text-align:right">El marco que define tu proyecto.<br><strong style="font-style:normal;color:#fff">La ejecución, el paso siguiente.</strong></span>
-        </div>
-
-        <!-- Letters -->
-        <div id="alcLetters" style="display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid rgba(255,255,255,.07)">
-          <div class="alc-btn alc-active" data-i="0" onclick="alcGoTo(0,true)" style="display:flex;flex-direction:column;align-items:center;padding:16px 8px 0;cursor:pointer;gap:6px;opacity:1">
-            <div class="alc-char" style="font-family:var(--serif);font-size:clamp(2.4rem,5vw,4rem);font-weight:700;color:#A85636;line-height:1;transition:color .3s">E</div>
-            <div style="font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(168,86,54,.8);margin-bottom:12px;text-align:center;line-height:1.3">Estrategia</div>
-          </div>
-          <div class="alc-btn" data-i="1" onclick="alcGoTo(1,true)" style="display:flex;flex-direction:column;align-items:center;padding:16px 8px 0;cursor:pointer;gap:6px;opacity:.35">
-            <div class="alc-char" style="font-family:var(--serif);font-size:clamp(2.4rem,5vw,4rem);font-weight:700;color:#fff;line-height:1;transition:color .3s">A</div>
-            <div style="font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:12px;text-align:center;line-height:1.3">Anteproyecto</div>
-          </div>
-          <div class="alc-btn" data-i="2" onclick="alcGoTo(2,true)" style="display:flex;flex-direction:column;align-items:center;padding:16px 8px 0;cursor:pointer;gap:6px;opacity:.35">
-            <div class="alc-char" style="font-family:var(--serif);font-size:clamp(2.4rem,5vw,4rem);font-weight:700;color:#fff;line-height:1;transition:color .3s">O</div>
-            <div style="font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:12px;text-align:center;line-height:1.3">Oferta & Costeo</div>
-          </div>
-          <div class="alc-btn" data-i="3" onclick="alcGoTo(3,true)" style="display:flex;flex-direction:column;align-items:center;padding:16px 8px 0;cursor:pointer;gap:6px;opacity:.35">
-            <div class="alc-char" style="font-family:var(--serif);font-size:clamp(2.4rem,5vw,4rem);font-weight:700;color:#fff;line-height:1;transition:color .3s">R</div>
-            <div style="font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:12px;text-align:center;line-height:1.3">Ruta Operativa</div>
-          </div>
-        </div>
-
-        <!-- Progress bar -->
-        <div style="height:2px;background:rgba(255,255,255,.06);position:relative">
-          <div id="alcBar" style="position:absolute;top:0;left:0;height:100%;background:#A85636;width:0%;border-radius:999px"></div>
-        </div>
-
-        <!-- Panel -->
-        <div style="padding:24px 4px 8px;min-height:110px">
-          <div id="alcPanel" style="opacity:0;transform:translateY(8px);transition:opacity .35s,transform .35s"></div>
-        </div>
-
-        <!-- Nota -->
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;background:rgba(168,86,54,.06);border:1px solid rgba(168,86,54,.14);border-radius:12px">
-          <span style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#A85636;white-space:nowrap;flex-shrink:0;padding-top:1px">Nota</span>
-          <span style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.55">Todo lo que entregamos es <strong style="color:rgba(255,255,255,.7)">conceptual, estratégico y ejecutable</strong> — el punto de partida desde donde tu proyecto toma forma real. La construcción, la cocina en marcha y el equipo contratado son la etapa siguiente.</span>
-        </div>
-
+    <div class="mid-text-col">
+      <div class="mid-eyebrow">Plataforma educativa</div>
+      <h2 class="mid-h2">Primeros pasos.<br><em>Con criterio profesional.</em></h2>
+      <p class="mid-p">Contenido desarrollado por profesionales del rubro. Lo que importa, al precio que tiene que ser.</p>
+      <div class="mid-features">
+        <div class="mid-feat"><div class="mid-feat-dot"></div>14 módulos con lectura y evaluación por módulo</div>
+        <div class="mid-feat"><div class="mid-feat-dot"></div>Avanzás cuando aprobás — sin fecha de vencimiento</div>
+        <div class="mid-feat"><div class="mid-feat-dot"></div>Acceso permanente desde cualquier dispositivo</div>
+        <div class="mid-feat"><div class="mid-feat-dot"></div>Sin instituto, sin cuotas, sin intermediarios</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ GUÍA DE COSTEO ═══ -->
-<section id="guia-costeo" style="background:transparent;padding:60px 0">
-  <div class="wrap">
-    <div style="background:linear-gradient(135deg,rgba(168,86,54,.12) 0%,rgba(26,26,46,.6) 100%);border:1px solid rgba(168,86,54,.25);border-radius:20px;padding:48px 56px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center">
-      <div>
-        <span class="eyebrow" style="margin-bottom:16px;display:block">Producto digital · Acceso inmediato</span>
-        <h2 style="font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:900;font-optical-sizing:auto;color:#fff;line-height:1.1;letter-spacing:-.03em;margin-bottom:16px">
-          ¿Sabés cuánto te cuesta<br><em style="font-style:italic;color:var(--terra)">cada plato de tu menú?</em>
-        </h2>
-        <p style="font-size:15px;color:rgba(255,255,255,.55);line-height:1.75;font-weight:300;max-width:52ch;margin-bottom:28px">
-          Si no tenés el número exacto, estás fijando precios a ojo. La Guía de Costeo & Food Cost te da el marco y la planilla para calcularlo hoy — sin consultora, sin Excel complicado.
-        </p>
-        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px">
-          <span style="font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.1);padding:5px 12px;border-radius:999px">PDF · 9 capítulos</span>
-          <span style="font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.1);padding:5px 12px;border-radius:999px">Planilla profesional</span>
-          <span style="font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.1);padding:5px 12px;border-radius:999px">220 ingredientes con mermas</span>
-          <span style="font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.1);padding:5px 12px;border-radius:999px">Punto de equilibrio</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
-          <a href="/guia.html" class="btn btn-p" style="font-size:13px;padding:14px 28px">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-            Bajate la guía · solo $9.990
-          </a>
-          <span style="font-size:12px;color:rgba(255,255,255,.28)">≈ USD 7 · Pago único</span>
-        </div>
-      </div>
-      <div style="flex-shrink:0;text-align:center">
-        <div style="background:rgba(168,86,54,.15);border:1px solid rgba(168,86,54,.3);border-radius:16px;padding:28px 24px;min-width:180px">
-          <p style="font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);margin-bottom:12px">Incluye</p>
-          <div style="display:flex;flex-direction:column;gap:10px;text-align:left">
-            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.7)"><span style="color:var(--terra);font-weight:700">✓</span>PDF completo</div>
-            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.7)"><span style="color:var(--terra);font-weight:700">✓</span>Receta estándar</div>
-            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.7)"><span style="color:var(--terra);font-weight:700">✓</span>Calculadora de precios</div>
-            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.7)"><span style="color:var(--terra);font-weight:700">✓</span>Comparador rentabilidad</div>
-            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.7)"><span style="color:var(--terra);font-weight:700">✓</span>Punto de equilibrio</div>
-          </div>
-          <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(168,86,54,.2)">
-            <p style="font-family:var(--serif);font-size:2rem;font-weight:900;color:var(--terra);line-height:1;font-optical-sizing:auto">$9.990</p>
-            <p style="font-size:11px;color:rgba(255,255,255,.3);margin-top:4px">≈ USD 7</p>
-          </div>
-        </div>
-      </div>
-    </div>
+<!-- ═══ STATS STRIP ═══ -->
+<section style="padding:0;background:var(--ink)">
+  <div class="stats-strip">
+    <div class="stat-strip-item reveal"><div class="stat-n"><span>9</span> sem</div><div class="stat-l">promedio a punto de equilibrio</div></div>
+    <div class="stat-strip-item reveal"><div class="stat-n">-<span>40</span>%</div><div class="stat-l">rotacion de personal</div></div>
+    <div class="stat-strip-item reveal"><div class="stat-n">+<span>28</span>%</div><div class="stat-l">margen bruto promedio</div></div>
   </div>
 </section>
 
-<!-- ═══ MÓDULOS + COTIZADOR RUEDA ═══ -->
-
-<!-- ═══ CURSOS ═══ -->
-<section id="cursos">
+<!-- ═══ CURSOS 2026 ═══ -->
+<section id="cursos" style="padding:100px 0;background:transparent">
   <div class="wrap">
-    <div class="cursos-head">
-      <span class="eyebrow">Capacitación Gastronómica</span>
-      <h2>Primeros pasos.<br><em>Con criterio profesional.</em></h2>
-      <p>Contenido desarrollado por profesionales del rubro. Sin instituto, sin cuotas, sin intermediarios. Lo que importa, al precio que tiene que ser.</p>
+    <div class="cursos-header reveal" style="text-align:center;margin-bottom:64px">
+      <span class="eyebrow">Capacitacion Gastronomica</span>
+      <h2 style="font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.2rem);font-weight:900;color:#fff;letter-spacing:-.03em;line-height:1.06;margin-top:10px;font-optical-sizing:auto">Aprendé a fondo.<br><em style="font-style:italic;color:var(--terra)">Pagás una vez, accedés siempre.</em></h2>
+      <p style="font-size:14px;color:rgba(255,255,255,.4);max-width:50ch;margin:12px auto 0;line-height:1.8">Sin estructura de instituto, sin cuotas, sin relleno. Puro contenido accionable.</p>
     </div>
   </div>
-  <div class="cursos-grid">
+  <div style="max-width:1200px;margin:0 auto;padding:0 24px">
+    <div class="cursos-grid-2026">
 
-    <!-- Curso 01 -->
-    <div class="curso-card-main theme-01">
-      <div class="curso-stripe c-stripe-01"></div>
-      <div class="curso-body">
-        <div class="curso-num">Curso 01</div>
-        <div class="curso-icon">📣</div>
-        <h3 class="curso-title">Marketing Gastronómico y Redes</h3>
-        <div class="curso-meta">14 módulos · 24 horas de contenido</div>
-        <p class="curso-desc">Posicioná tu negocio, construí una marca con identidad propia y captá clientes reales con estrategias que funcionan en el mercado argentino.</p>
-        <div class="curso-tags">
-          <span class="curso-tag">Branding</span>
-          <span class="curso-tag">Carta efectiva</span>
-          <span class="curso-tag">Social Media</span>
-          <span class="curso-tag">Plan de marketing</span>
+      <div class="curso-card-26">
+        <div class="curso-img-26">
+          <span class="curso-num-badge">Curso 01</span>
+          <img src="/img/curso01.jpg" alt="Marketing Gastronomico" loading="lazy">
         </div>
-        <div class="curso-price-row">
-          <span class="curso-price">$69.000</span>
-          <span class="curso-price-label">pago único · acceso permanente</span>
+        <div class="curso-body-26">
+          <h3 class="curso-title-26">Marketing Gastronomico y Redes</h3>
+          <div class="curso-meta-26">14 modulos &middot; 24 horas de contenido</div>
+          <p class="curso-desc-26">Posiciona tu negocio, construi una marca con identidad propia y capta clientes reales con estrategias que funcionan en el mercado argentino.</p>
+          <div class="curso-tags-26"><span class="curso-tag-26">Branding</span><span class="curso-tag-26">Carta efectiva</span><span class="curso-tag-26">Social Media</span><span class="curso-tag-26">Plan de marketing</span></div>
+          <div class="curso-price-26"><span class="curso-price-num">$69.000</span><span class="curso-price-lbl">pago unico &middot; acceso permanente</span></div>
+          <p class="curso-tagline">Sin instituto. Sin cuotas. Sin relleno.</p>
+          <button class="btn-mp" onclick="abrirModal('curso01','Marketing Gastronomico y Redes','$69.000')">Pagar con MercadoPago</button>
         </div>
-        <p style="font-size:11px;color:rgba(255,255,255,.3);margin-bottom:12px;line-height:1.5">Sin instituto. Sin cuotas. Sin relleno.</p>
-        <button class="btn-mp" onclick="abrirModal('curso01','Marketing Gastronómico y Redes','$69.000')">Pagar con MercadoPago</button>
       </div>
-    </div>
 
-    <!-- Curso 02 -->
-    <div class="curso-card-main theme-02">
-      <div class="curso-stripe c-stripe-02"></div>
-      <div class="curso-body">
-        <div class="curso-num">Curso 02</div>
-        <div class="curso-icon">🚀</div>
-        <h3 class="curso-title">Claves para Armar tu Emprendimiento</h3>
-        <div class="curso-meta">14 módulos · 16 horas de contenido</div>
-        <p class="curso-desc">Todo lo que necesitás saber antes de abrir: local, equipamiento, proveedores, equipo y plan de negocio concreto y ejecutable.</p>
-        <div class="curso-tags">
-          <span class="curso-tag">Plan de negocio</span>
-          <span class="curso-tag">Proveedores</span>
-          <span class="curso-tag">RRHH</span>
-          <span class="curso-tag">Habilitaciones</span>
+      <div class="curso-card-26">
+        <div class="curso-img-26">
+          <span class="curso-num-badge">Curso 02</span>
+          <img src="/img/curso02.jpg" alt="Emprendimiento" loading="lazy">
         </div>
-        <div class="curso-price-row">
-          <span class="curso-price">$49.000</span>
-          <span class="curso-price-label">pago único · acceso permanente</span>
+        <div class="curso-body-26">
+          <h3 class="curso-title-26">Claves para Armar tu Emprendimiento</h3>
+          <div class="curso-meta-26">14 modulos &middot; 16 horas de contenido</div>
+          <p class="curso-desc-26">Todo lo que necesitas saber antes de abrir: local, equipamiento, proveedores, equipo y plan de negocio concreto y ejecutable.</p>
+          <div class="curso-tags-26"><span class="curso-tag-26">Plan de negocio</span><span class="curso-tag-26">Proveedores</span><span class="curso-tag-26">RRHH</span><span class="curso-tag-26">Habilitaciones</span></div>
+          <div class="curso-price-26"><span class="curso-price-num">$49.000</span><span class="curso-price-lbl">pago unico &middot; acceso permanente</span></div>
+          <p class="curso-tagline">Sin instituto. Sin cuotas. Sin relleno.</p>
+          <button class="btn-mp" onclick="abrirModal('curso02','Claves para Armar tu Emprendimiento','$49.000')">Pagar con MercadoPago</button>
         </div>
-        <p style="font-size:11px;color:rgba(255,255,255,.3);margin-bottom:12px;line-height:1.5">Sin instituto. Sin cuotas. Sin relleno.</p>
-        <button class="btn-mp" onclick="abrirModal('curso02','Claves para Armar tu Emprendimiento','$49.000')">Pagar con MercadoPago</button>
       </div>
-    </div>
 
-    <!-- Curso 03 -->
-    <div class="curso-card-main theme-03">
-      <div class="curso-stripe c-stripe-03"></div>
-      <div class="curso-body">
-        <div class="curso-num">Curso 03</div>
-        <div class="curso-icon">📊</div>
-        <h3 class="curso-title">Administración de Negocios Gastronómico</h3>
-        <div class="curso-meta">12 módulos · 30 horas de contenido</div>
-        <p class="curso-desc">Manejá los números con criterio: costos, food cost, auditoría interna, sistemas de gestión y rentabilidad por plato.</p>
-        <div class="curso-tags">
-          <span class="curso-tag">Food cost</span>
-          <span class="curso-tag">Prime cost</span>
-          <span class="curso-tag">Auditoría</span>
-          <span class="curso-tag">Rentabilidad</span>
+      <div class="curso-card-26">
+        <div class="curso-img-26">
+          <span class="curso-num-badge">Curso 03</span>
+          <img src="/img/curso03.jpg" alt="Administracion" loading="lazy">
         </div>
-        <div class="curso-price-row">
-          <span class="curso-price">$79.000</span>
-          <span class="curso-price-label">pago único · acceso permanente</span>
+        <div class="curso-body-26">
+          <h3 class="curso-title-26">Administracion de Negocios Gastronomico</h3>
+          <div class="curso-meta-26">12 modulos &middot; 30 horas de contenido</div>
+          <p class="curso-desc-26">Maneja los numeros con criterio: costos, food cost, auditoria interna, sistemas de gestion y rentabilidad por plato.</p>
+          <div class="curso-tags-26"><span class="curso-tag-26">Food cost</span><span class="curso-tag-26">Prime cost</span><span class="curso-tag-26">Auditoria</span><span class="curso-tag-26">Rentabilidad</span></div>
+          <div class="curso-price-26"><span class="curso-price-num">$79.000</span><span class="curso-price-lbl">pago unico &middot; acceso permanente</span></div>
+          <p class="curso-tagline">Sin instituto. Sin cuotas. Sin relleno.</p>
+          <button class="btn-mp" onclick="abrirModal('curso03','Administracion de Negocios Gastronomico','$79.000')">Pagar con MercadoPago</button>
         </div>
-        <p style="font-size:11px;color:rgba(255,255,255,.3);margin-bottom:12px;line-height:1.5">Sin instituto. Sin cuotas. Sin relleno.</p>
-        <button class="btn-mp" onclick="abrirModal('curso03','Administración de Negocios Gastronómico','$79.000')">Pagar con MercadoPago</button>
       </div>
-    </div>
 
+    </div>
+    <p class="cursos-note" style="margin-top:24px">Ya tenes acceso? <a href="/login">Ingresa a tus cursos</a></p>
   </div>
-  <p class="cursos-note">¿Ya tenés acceso? <a href="/login">Ingresá a tus cursos →</a></p>
 </section>
 
 <!-- MODAL COMPRA -->
@@ -937,6 +967,28 @@ function mostrarErrorModal(msg) {
   el.classList.add('show');
 }
 </script>
+
+
+<!-- ═══ GUIA COSTEO ═══ -->
+<section id="guia-costeo" style="background:transparent;padding:80px 0">
+  <div class="wrap">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:960px;margin:0 auto">
+      <div class="reveal">
+        <span class="eyebrow">Material de apoyo</span>
+        <h2 style="font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;color:#fff;line-height:1.1;margin:10px 0 16px;font-optical-sizing:auto">Guia de Costeo<br><em style="font-style:italic;color:var(--terra)">y Food Cost.</em></h2>
+        <p style="font-size:14px;color:rgba(255,255,255,.45);line-height:1.8;margin-bottom:28px">La herramienta practica que usan los profesionales. PDF + planilla Excel para calcular el costo de cada plato y fijar precios con criterio.</p>
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:20px">
+          <span style="font-family:var(--serif);font-size:2rem;font-weight:900;color:var(--terra);font-optical-sizing:auto">$9.900</span>
+          <span style="font-size:12px;color:rgba(255,255,255,.3)">pago unico - descarga inmediata</span>
+        </div>
+        <a href="/guia.html" class="btn btn-p">Obtener la guia</a>
+      </div>
+      <div class="reveal" style="border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.4)">
+        <img src="/img/guia.jpg" alt="Guia de Costeo Metodo Fermento" loading="lazy" style="width:100%;display:block;object-fit:cover;max-height:420px">
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="sistema">
   <div class="wrap">
@@ -1083,7 +1135,6 @@ function mostrarErrorModal(msg) {
   </div>
 </section>
 
-<div id="cotizador" style="display:none"></div>
 <section id="contacto">
   <div class="cta-inner">
     <span class="eyebrow">Empezá hoy</span>
@@ -1103,20 +1154,6 @@ function mostrarErrorModal(msg) {
     </div>
   </div>
 </section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-logo"><span class="footer-dot"></span>Método Fermento</div>
-    <ul class="footer-links">
-      <li><a href="#cursos">Capacitación</a></li>
-      <li><a href="#sistema">Consultoría</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-      <li><a href="/guia.html">Guía de Costeo</a></li>
-      <li><a href="/login">Plataforma</a></li>
-    </ul>
-    <div class="footer-copy">© 2026 Método Fermento · Buenos Aires, Argentina</div>
-  </div>
 </footer>
 
 <script>
