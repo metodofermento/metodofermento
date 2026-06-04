@@ -187,13 +187,34 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--sand);mi
 
 /* MP button en cards de cursos */
 .curso-card-2026 .btn-mp{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:10px !important;
+  width:100% !important;
+  padding:14px 18px !important;
+  border-radius:10px !important;
   background:linear-gradient(135deg,#009EE3 0%,#007EB5 100%) !important;
-  color:#fff !important;border:none !important;
-  box-shadow:0 4px 16px rgba(0,158,227,.3) !important;
+  color:#fff !important;
+  border:none !important;
+  font-family:'DM Sans',sans-serif !important;
+  font-size:14px !important;
+  font-weight:600 !important;
+  cursor:pointer !important;
+  box-shadow:0 4px 16px rgba(0,158,227,.35) !important;
+  transition:all .2s !important;
+  letter-spacing:.02em !important;
+}
+.curso-card-2026 .btn-mp::before{
+  content:'';
+  display:inline-block;
+  width:18px;height:18px;flex-shrink:0;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") center/contain no-repeat;
 }
 .curso-card-2026 .btn-mp:hover{
-  background:linear-gradient(135deg,#00B5FF 0%,#0090CC 100%) !important;
-  box-shadow:0 8px 24px rgba(0,158,227,.4) !important;
+  background:linear-gradient(135deg,#00AAFF 0%,#0090CC 100%) !important;
+  transform:translateY(-2px) !important;
+  box-shadow:0 8px 24px rgba(0,158,227,.45) !important;
 }
 
 </style>
