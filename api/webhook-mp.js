@@ -96,7 +96,7 @@ async function getDownloadUrl(filePath) {
 
 async function procesarCurso({ email, nombre, product }) {
   const cursoNombre = CURSOS_NOMBRES[product] || product;
-  const baseUrl     = process.env.BASE_URL || 'https://metodofermento.com.ar';
+  const baseUrl     = process.env.SITE_URL || 'https://www.chefprivado.ar/management';
 
   // Ver si ya existe el usuario
   const { data: existing } = await supabase
@@ -128,16 +128,16 @@ async function procesarCurso({ email, nombre, product }) {
   // Mail de credenciales / acceso
   const html = esNuevo ? `
 <!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"></head>
-<body style="margin:0;padding:0;background:#f7f4ef;font-family:'Helvetica Neue',Arial,sans-serif">
-<table width="100%" cellpadding="0" cellspacing="0" style="background:#f7f4ef;padding:40px 0"><tr><td align="center">
+<body style="margin:0;padding:0;background:#FAF6EF;font-family:'Helvetica Neue',Arial,sans-serif">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#FAF6EF;padding:40px 0"><tr><td align="center">
 <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%">
-  <tr><td style="background:#1A1A2E;border-radius:16px 16px 0 0;padding:28px 32px">
-    <p style="margin:0 0 6px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5)">Método Fermento · Plataforma Educativa</p>
+  <tr><td style="background:#0D1B2A;border-radius:16px 16px 0 0;padding:28px 32px">
+    <img src="https://www.chefprivado.ar/img/management/logo-pill.png" width="220" alt="Celestia Management" style="display:block;height:auto;border:0;margin:0 0 14px"><p style="margin:0 0 6px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5)">Plataforma educativa</p>
     <h1 style="margin:0;font-size:24px;font-weight:700;color:#fff;font-family:Georgia,serif">¡Tu acceso está listo, ${nombre}!</h1>
   </td></tr>
   <tr><td style="background:#fff;border-left:1px solid #e2ddd6;border-right:1px solid #e2ddd6;padding:32px">
     <p style="margin:0 0 20px;font-size:15px;color:#1c1917;line-height:1.7">Gracias por tu compra. Ya podés ingresar a <strong>${cursoNombre}</strong> con estas credenciales:</p>
-    <table cellpadding="0" cellspacing="0" style="width:100%;background:#f7f4ef;border:1px solid #e2ddd6;border-radius:10px;margin-bottom:24px">
+    <table cellpadding="0" cellspacing="0" style="width:100%;background:#FAF6EF;border:1px solid #e2ddd6;border-radius:10px;margin-bottom:24px">
       <tr><td style="padding:16px 20px">
         <p style="margin:0 0 10px;font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:#9c9490">Tus credenciales</p>
         <p style="margin:0 0 6px;font-size:14px;color:#1c1917"><strong>Email:</strong> ${email}</p>
@@ -146,49 +146,49 @@ async function procesarCurso({ email, nombre, product }) {
     </table>
     <p style="margin:0 0 20px;font-size:13px;color:#6b6560;line-height:1.7">Te recomendamos cambiar tu contraseña después del primer acceso. Guardá este mail.</p>
     <table cellpadding="0" cellspacing="0" style="margin:0 auto">
-      <tr><td style="background:#A85636;border-radius:8px">
-        <a href="${baseUrl}/login" style="display:inline-block;padding:14px 32px;font-family:Georgia,serif;font-size:15px;color:#fff;text-decoration:none;font-weight:700">Ingresar a la plataforma →</a>
+      <tr><td style="background:#C9A84C;border-radius:8px">
+        <a href="${baseUrl}/login" style="display:inline-block;padding:14px 32px;font-family:Georgia,serif;font-size:15px;color:#0D1B2A;text-decoration:none;font-weight:700">Ingresar a la plataforma →</a>
       </td></tr>
     </table>
   </td></tr>
-  <tr><td style="background:#faf8f5;border:1px solid #e2ddd6;border-top:none;padding:16px 32px;border-radius:0 0 16px 16px;text-align:center">
-    <p style="margin:0;font-size:11px;color:#b0a89e">Método Fermento · metodofermento.com.ar · Buenos Aires, Argentina</p>
+  <tr><td style="background:#FAF6EF;border:1px solid #e2ddd6;border-top:none;padding:16px 32px;border-radius:0 0 16px 16px;text-align:center">
+    <p style="margin:0;font-size:11px;color:#b0a89e">Celestia Management · chefprivado.ar/management · Buenos Aires, Argentina</p>
   </td></tr>
 </table></td></tr></table></body></html>` : `
 <!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"></head>
-<body style="margin:0;padding:0;background:#f7f4ef;font-family:'Helvetica Neue',Arial,sans-serif">
-<table width="100%" cellpadding="0" cellspacing="0" style="background:#f7f4ef;padding:40px 0"><tr><td align="center">
+<body style="margin:0;padding:0;background:#FAF6EF;font-family:'Helvetica Neue',Arial,sans-serif">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#FAF6EF;padding:40px 0"><tr><td align="center">
 <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%">
-  <tr><td style="background:#1A1A2E;border-radius:16px 16px 0 0;padding:28px 32px">
-    <p style="margin:0 0 6px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5)">Método Fermento · Plataforma Educativa</p>
+  <tr><td style="background:#0D1B2A;border-radius:16px 16px 0 0;padding:28px 32px">
+    <img src="https://www.chefprivado.ar/img/management/logo-pill.png" width="220" alt="Celestia Management" style="display:block;height:auto;border:0;margin:0 0 14px"><p style="margin:0 0 6px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5)">Plataforma educativa</p>
     <h1 style="margin:0;font-size:24px;font-weight:700;color:#fff;font-family:Georgia,serif">Nuevo curso activado</h1>
   </td></tr>
   <tr><td style="background:#fff;border-left:1px solid #e2ddd6;border-right:1px solid #e2ddd6;padding:32px">
     <p style="margin:0 0 20px;font-size:15px;color:#1c1917;line-height:1.7">Hola ${nombre}, agregamos <strong>${cursoNombre}</strong> a tu cuenta. Ingresá con tu email y contraseña habitual.</p>
     <table cellpadding="0" cellspacing="0" style="margin:0 auto">
-      <tr><td style="background:#A85636;border-radius:8px">
-        <a href="${baseUrl}/login" style="display:inline-block;padding:14px 32px;font-family:Georgia,serif;font-size:15px;color:#fff;text-decoration:none;font-weight:700">Ir a mis cursos →</a>
+      <tr><td style="background:#C9A84C;border-radius:8px">
+        <a href="${baseUrl}/login" style="display:inline-block;padding:14px 32px;font-family:Georgia,serif;font-size:15px;color:#0D1B2A;text-decoration:none;font-weight:700">Ir a mis cursos →</a>
       </td></tr>
     </table>
   </td></tr>
-  <tr><td style="background:#faf8f5;border:1px solid #e2ddd6;border-top:none;padding:16px 32px;border-radius:0 0 16px 16px;text-align:center">
-    <p style="margin:0;font-size:11px;color:#b0a89e">Método Fermento · metodofermento.com.ar · Buenos Aires, Argentina</p>
+  <tr><td style="background:#FAF6EF;border:1px solid #e2ddd6;border-top:none;padding:16px 32px;border-radius:0 0 16px 16px;text-align:center">
+    <p style="margin:0;font-size:11px;color:#b0a89e">Celestia Management · chefprivado.ar/management · Buenos Aires, Argentina</p>
   </td></tr>
 </table></td></tr></table></body></html>`;
 
   await transporter.sendMail({
-    from:    `"Método Fermento" <${process.env.SMTP_USER}>`,
+    from:    `"Celestia Management" <${process.env.SMTP_USER}>`,
     to:      email,
     replyTo: process.env.ADMIN_EMAIL,
     subject: esNuevo
-      ? `✅ Tu acceso a ${cursoNombre} – Método Fermento`
-      : `✅ ${cursoNombre} activado en tu cuenta – Método Fermento`,
+      ? `✅ Tu acceso a ${cursoNombre} – Celestia Management`
+      : `✅ ${cursoNombre} activado en tu cuenta – Celestia Management`,
     html,
   });
 
   // Notificar al admin
   await transporter.sendMail({
-    from:    `"Método Fermento Web" <${process.env.SMTP_USER}>`,
+    from:    `"Celestia Management Web" <${process.env.SMTP_USER}>`,
     to:      process.env.ADMIN_EMAIL,
     subject: `🎓 Nueva compra — ${cursoNombre} · ${email}`,
     html:    `<p><strong>Producto:</strong> ${cursoNombre}<br><strong>Email:</strong> ${email}<br><strong>Nombre:</strong> ${nombre}<br><strong>Usuario nuevo:</strong> ${esNuevo ? 'Sí' : 'No (ya existía)'}</p>`,
@@ -202,29 +202,29 @@ async function procesarGuia({ email }) {
   const downloadUrlXlsx = await getDownloadUrl('guias/planillas-mf.xlsx');
 
   const html = `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"></head>
-<body style="margin:0;padding:0;background:#f7f4ef;font-family:'Helvetica Neue',Arial,sans-serif">
-<table width="100%" cellpadding="0" cellspacing="0" style="background:#f7f4ef;padding:40px 0"><tr><td align="center">
+<body style="margin:0;padding:0;background:#FAF6EF;font-family:'Helvetica Neue',Arial,sans-serif">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#FAF6EF;padding:40px 0"><tr><td align="center">
 <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%">
-  <tr><td style="background:#1A1A2E;border-radius:16px 16px 0 0;padding:28px 32px">
-    <p style="margin:0 0 8px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5)">Método Fermento</p>
+  <tr><td style="background:#0D1B2A;border-radius:16px 16px 0 0;padding:28px 32px">
+    <img src="https://www.chefprivado.ar/img/management/logo-pill.png" width="220" alt="Celestia Management" style="display:block;height:auto;border:0;margin:0 0 14px">
     <h1 style="margin:0;font-size:26px;font-weight:400;color:#f5f0e8;line-height:1.3;font-family:Georgia,serif">Tu material ya está listo 🧮</h1>
   </td></tr>
   <tr><td style="background:#fff;border-left:1px solid #e2ddd6;border-right:1px solid #e2ddd6;padding:32px">
     <p style="margin:0 0 16px;font-size:15px;color:#1c1917;line-height:1.7">¡Gracias por tu compra! Tu pago fue aprobado. Los links están disponibles 30 días.</p>
-    <table cellpadding="0" cellspacing="0" style="margin:0 auto 12px"><tr><td style="background:#A85636;border-radius:8px">
-      <a href="${downloadUrlPdf}" style="display:inline-block;padding:15px 36px;font-family:Georgia,serif;font-size:15px;color:#fff;text-decoration:none">Descargar Guía PDF →</a>
+    <table cellpadding="0" cellspacing="0" style="margin:0 auto 12px"><tr><td style="background:#C9A84C;border-radius:8px">
+      <a href="${downloadUrlPdf}" style="display:inline-block;padding:15px 36px;font-family:Georgia,serif;font-size:15px;color:#0D1B2A;text-decoration:none">Descargar Guía PDF →</a>
     </td></tr></table>
-    <table cellpadding="0" cellspacing="0" style="margin:0 auto 12px"><tr><td style="background:#1A1A2E;border-radius:8px">
+    <table cellpadding="0" cellspacing="0" style="margin:0 auto 12px"><tr><td style="background:#0D1B2A;border-radius:8px">
       <a href="${downloadUrlXlsx}" style="display:inline-block;padding:15px 36px;font-family:Georgia,serif;font-size:15px;color:#fff;text-decoration:none">Descargar Planilla Excel →</a>
     </td></tr></table>
   </td></tr>
-  <tr><td style="background:#faf8f5;border:1px solid #e2ddd6;border-top:none;padding:16px 32px;border-radius:0 0 16px 16px;text-align:center">
-    <p style="margin:0;font-size:11px;color:#b0a89e">Método Fermento · metodofermento.com.ar · Buenos Aires, Argentina</p>
+  <tr><td style="background:#FAF6EF;border:1px solid #e2ddd6;border-top:none;padding:16px 32px;border-radius:0 0 16px 16px;text-align:center">
+    <p style="margin:0;font-size:11px;color:#b0a89e">Celestia Management · chefprivado.ar/management · Buenos Aires, Argentina</p>
   </td></tr>
 </table></td></tr></table></body></html>`;
 
   await transporter.sendMail({
-    from:    `"Método Fermento" <${process.env.SMTP_USER}>`,
+    from:    `"Celestia Management" <${process.env.SMTP_USER}>`,
     to:      email,
     replyTo: process.env.ADMIN_EMAIL,
     subject: '🧮 Tu Guía de Costeo & Food Cost – Links de descarga',

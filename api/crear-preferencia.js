@@ -30,7 +30,7 @@ const CURSOS = {
   // Producto existente — guía PDF
   'guia': {
     id:          'guia-fermento-v1',
-    title:       'Guía de Costeo & Food Cost – Método Fermento',
+    title:       'Guía de Costeo & Food Cost – Celestia Management',
     description: 'Guía de Costeo & Food Cost para negocios gastronómicos. PDF + planilla profesional.',
     price:       9900,
     slug:        'guia',
@@ -57,7 +57,7 @@ export default async function handler(req, res) {
     if (!curso)
       return res.status(400).json({ error: 'Producto no reconocido' });
 
-    const baseUrl     = process.env.BASE_URL || 'https://www.metodofermento.com.ar';
+    const baseUrl     = process.env.SITE_URL || 'https://www.chefprivado.ar/management';
     const webhookBase = process.env.WEBHOOK_BASE_URL || 'https://metodofermento.vercel.app';
     const emailEnc = encodeURIComponent(email);
     const nomEnc   = encodeURIComponent(nombre.trim());
@@ -83,10 +83,10 @@ export default async function handler(req, res) {
         },
         back_urls: {
           success: curso.slug === 'guia'
-            ? `${baseUrl}/guia-gracias.html`
+            ? `${baseUrl}/guia/gracias`
             : `${baseUrl}/login?activado=1`,
-          failure: `${baseUrl}/?pago=error`,
-          pending: `${baseUrl}/?pago=pendiente`,
+          failure: `${baseUrl}?pago=error`,
+          pending: `${baseUrl}?pago=pendiente`,
         },
         auto_return:      'approved',
         notification_url: `${webhookBase}/api/webhook-mp`,
