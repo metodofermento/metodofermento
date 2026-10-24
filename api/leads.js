@@ -2,6 +2,7 @@
 import { createClient } from '@supabase/supabase-js';
 import nodemailer from 'nodemailer';
 import ws from 'ws';
+import { AVISOS_A } from '../lib/avisos.js';
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -202,7 +203,7 @@ export default async function handler(req, res) {
       }),
       transporter.sendMail({
         from:    `"Celestia Management Web" <${process.env.SMTP_USER}>`,
-        to:      process.env.ADMIN_EMAIL,
+        to:      AVISOS_A,
         replyTo: email,
         subject: `🍽️ Nuevo lead — ${nombre} · ${fmt(totalARS)}`,
         html:    mailAdmin,

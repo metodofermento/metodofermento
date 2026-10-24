@@ -4,6 +4,7 @@ import { createClient } from '@supabase/supabase-js';
 import ws from 'ws';
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
+import { AVISOS_A } from '../lib/avisos.js';
 
 const mp = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN });
 
@@ -189,7 +190,7 @@ async function procesarCurso({ email, nombre, product }) {
   // Notificar al admin
   await transporter.sendMail({
     from:    `"Celestia Management Web" <${process.env.SMTP_USER}>`,
-    to:      process.env.ADMIN_EMAIL,
+    to:      AVISOS_A,
     subject: `🎓 Nueva compra — ${cursoNombre} · ${email}`,
     html:    `<p><strong>Producto:</strong> ${cursoNombre}<br><strong>Email:</strong> ${email}<br><strong>Nombre:</strong> ${nombre}<br><strong>Usuario nuevo:</strong> ${esNuevo ? 'Sí' : 'No (ya existía)'}</p>`,
   });
@@ -229,6 +230,14 @@ async function procesarGuia({ email }) {
     replyTo: process.env.ADMIN_EMAIL,
     subject: '🧮 Tu Guía de Costeo & Food Cost – Links de descarga',
     html,
+  });
+
+  await transporter.sendMail({
+    from:    `"Celestia Management Web" <${process.env.SMTP_USER}>`,
+    to:      AVISOS_A,
+    replyTo: email,
+    subject: `🧮 Nueva compra — Guía de costeo · ${email}`,
+    html:    `<p><strong>Producto:</strong> Guía de Costeo &amp; Food Cost<br><strong>Email:</strong> ${email}<br>Ya se le mandaron los links de descarga.</p>`,
   });
 }
 
