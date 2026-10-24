@@ -136,6 +136,38 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({ user });
   }
 
+  // ── RESET: genera una contraseña nueva y la manda por mail ──────
+  if (action === 'reset' && req.method === 'POST') {
+    const email = String((req.body || {}).email || '').toLowerCase().trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+      return res.status(400).json({ error: 'Ingresá un email válido.' });
+    const user = await sbGet('users', `select=id,email,nombre,activo&email=eq.${enc(email)}`);
+    // Respuesta igual exista o no la cuenta (no revelamos qué emails están registrados)
+    if (user && user.activo) {
+      const words = ['Fuego','Menta','Caldo','Horno','Masa','Sal','Aceite','Brasa','Lima','Anis'];
+      const pick = () => words[randomBytes(1)[0] % words.length];
+      const nueva = pick() + pick() + (10 + randomBytes(1)[0] % 90);
+      await sbPatch('users', `id=eq.${user.id}`, { password_hash: hashPassword(nueva), updated_at: new Date().toISOString() });
+      await sbDelete('sessions', `user_id=eq.${user.id}`);
+      try {
+        const nodemailer = require('nodemailer');
+        const t = nodemailer.createTransport({ host: process.env.SMTP_HOST || 'smtp.gmail.com', port: Number(process.env.SMTP_PORT || 465), secure: true, auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS } });
+        const site = process.env.SITE_URL || 'https://www.chefprivado.ar/management';
+        await t.sendMail({
+          from: `"Celestia Management" <${process.env.SMTP_USER}>`, to: user.email, replyTo: process.env.ADMIN_EMAIL,
+          subject: 'Tu nueva contraseña · Celestia Management',
+          html: `<div style="background:#FAF6EF;padding:28px 12px;font-family:Arial,sans-serif"><div style="max-width:560px;margin:auto;background:#fff;border:1px solid #E7DFCF;border-radius:16px;overflow:hidden">
+            <div style="background:#0D1B2A;padding:24px 28px"><img src="https://www.chefprivado.ar/img/management/logo-pill.png" width="220" alt="Celestia Management" style="display:block;height:auto;border:0"></div>
+            <div style="padding:26px 28px;color:#1c1f2a;font-size:15px;line-height:1.7"><p style="margin:0 0 14px">Hola ${user.nombre || ''}, te generamos una contraseña nueva para entrar a la plataforma de cursos:</p>
+            <p style="margin:0 0 6px"><b>Email:</b> ${user.email}</p><p style="margin:0 0 20px"><b>Contraseña:</b> <span style="font-family:monospace;background:#FAF6EF;border:1px solid #E7DFCF;border-radius:6px;padding:3px 9px">${nueva}</span></p>
+            <a href="${site}/login" style="display:inline-block;background:#C9A84C;color:#0D1B2A;text-decoration:none;font-weight:bold;padding:12px 24px;border-radius:24px">Ingresar a mis cursos →</a>
+            <p style="margin:20px 0 0;font-size:13px;color:#777">Si no pediste este cambio, escribinos por WhatsApp al +54 9 11 6041-0607.</p></div></div></div>`,
+        });
+      } catch (e) { console.error('[auth reset] mail', e.message); }
+    }
+    return res.status(200).json({ ok: true });
+  }
+
   // ── LOGOUT ───────────────────────────────────────────────────────
   if (action === 'logout' && req.method === 'POST') {
     const token = getToken(req);
